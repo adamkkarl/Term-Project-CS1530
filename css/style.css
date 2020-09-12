@@ -1,9 +1,37 @@
+main {
+    padding-top: 52px;
+}
+
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 form {
     text-align: center;
-  }
+}
+
+.input_section{
+    border-radius: 25px;
+    padding: 10px;
+    width: 350px;
+}
+
+.signin_button{
+    border-radius: 25px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    width: 350px;
+}
+
+#forgot {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    background: none;
+    color: blue;
+}

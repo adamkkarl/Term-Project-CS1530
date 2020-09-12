@@ -10,21 +10,17 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <header>
-        <img src="./images/logo.png" class="center" alt="..." width=20% height="200">
-    </header>
     <main>
+        <img src="./images/logo.png" class="center" alt="..." width=20% height="200">
         <!-- if we want the form to sent the data from the form to 
             the server then write: action=(double quotes)/action_page.php(double quotes) -->
         <form>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username"><br><br>
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password"><br><br>
-            <input type="submit" value="Submit">
-            <input type="submit" value="Forgot Password">
-            <input type="submit" value="Create Account">
-          </form>
+            <input type="text" class="input_section" id="username" placeholder="Username" name="username"><br><br>
+            <input type="text" class="input_section" id="password" placeholder="Password" name="password"><br><br>
+            <input type="submit" class="signin_button" value="Sign In">
+        </form>
+        <button id="forgot" class="center" onclick="forgot.html">Forgot Password</button>
+        <h6 class="center">New to SharkLine? <a href="create.html">Join now</a></h6>
     </main>
 </body>
 </html>
