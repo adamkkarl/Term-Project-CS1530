@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     
     <link rel="stylesheet" href="./css/style.css">
+    
+    <script src="scripts/login.js"></script>
 </head>
-<body>
+<body onload="noDisplayHelp()">
     <main>
         <img src="./images/logo.png" class="center" alt="..." width=30% height="200">
         <!-- if we want the form to sent the data from the form to 
             the server then write: action=(double quotes)/action_page.php(double quotes) -->
+        <button onclick="displayHelp()">I Need Help</button>
         <form>
+            <p id="usernamehelp">Please enter your username in the field. This is the name you use to log into the system.</p>
+            <label for="username">Username:</label>
             <input type="text" class="input_section" id="username" placeholder="Username" name="username"><br><br>
-            <input type="text" class="input_section" id="password" placeholder="Password" name="password"><br><br>
+            <p id="passwordhelp">Please enter the password you used to create your account. If you forget what your password is, please click the "Forgot Password" button below.</p>
+            <label for="passwrd">Password:</label>
+            <input type="password" class="input_section" id="password" placeholder="Password" name="password"><br><br>
             <input type="submit" class="signin_button" value="Sign In">
         </form>
         <button id="forgot" class="center" onclick="forgot.html">Forgot Password</button>
