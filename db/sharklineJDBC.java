@@ -11,12 +11,19 @@ import java.time.LocalDateTime;
 * Also, you probably will need to install the MySQL server from the workbench.
 * Link is provided here:  https://dev.mysql.com/downloads/installer/
 * Youtube for additional help on installation: https://www.youtube.com/watch?v=kEnD_KN7P-k&t=12s
+*
+*
 **/
 
 public class sharklineJDBC
 {
+  //You'll need to fill this out for your own server MySQL for it
+  //To work on your machine
+  private String username;
+  private String password;
+
   public static void main(String[] args)
   {
-
+    
   }
 }
