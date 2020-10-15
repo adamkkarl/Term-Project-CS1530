@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 * Link is provided here:  https://dev.mysql.com/downloads/installer/
 * Youtube for additional help on installation: https://www.youtube.com/watch?v=kEnD_KN7P-k&t=12s
 *
-*
+* When you download MySQL Workbench and the server, you'll need to run the
+* scripts from the SharklineSchema.sql on your local server for this to work
+* properly (as well as having some data in the tables)
 **/
 
 public class sharklineJDBC
@@ -24,6 +26,7 @@ public class sharklineJDBC
 
   public static void main(String[] args)
   {
-    
+
   }
+
 }
