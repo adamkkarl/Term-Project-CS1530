@@ -56,8 +56,7 @@ CREATE TABLE company_project (
 );
 
 # investor_accounts table stores all the data for investor type accounts.
-# investor_email and investor_name attributes reference the table attributes
-# of accounts, with the respective account_email and account_name.
+# investor_email reference the accounts table
 
 CREATE TABLE investor_accounts (
 	investor_email VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -70,8 +69,7 @@ CREATE TABLE investor_accounts (
 );
 
 # account_connections table refers to currently matched companies
-# and investors on the website. The foreign keys are referenced by
-# their respective tables.
+# and investors on the website.
 
 CREATE TABLE account_connections (
     business_email VARCHAR(50) NOT NULL,
@@ -84,15 +82,15 @@ CREATE TABLE account_connections (
 );
 
 # chat_log stores the information regarding messages sent
-# between parties on the website. sender_name and recipient_name
-# can either be from a business or investor, and as such reference
-# both tables. Further work may need to be done to ensure that
-# the table cannot take a sender and recipient from the same table,
-# IE an investor sending a message to another investor.
+# between parties on the website. business_email and investor_email
+# each reference the business and investor accounts.
+# sender is 0 if the business sent the message, and 
+# 1 if the investor sent the message
 
 CREATE TABLE chat_log (
 	business_email VARCHAR(50) NOT NULL,
     investor_email VARCHAR(50) NOT NULL,
+    sender TINYINT DEFAULT 1, #0=sent by business, 1=sent by investor
     datetime_sent DATETIME,
     message VARCHAR(900) NOT NULL,
 
