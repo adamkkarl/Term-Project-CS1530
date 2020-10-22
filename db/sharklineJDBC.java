@@ -130,7 +130,7 @@ public class sharklineJDBC
     }
   }
   private static class Account //Might make this into a seperate file later, but for
-                        //for now ill keep it as a private class
+                               //now ill keep it as a private class
   {
     public String account_email;
     public String account_name;
