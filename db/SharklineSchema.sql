@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS accounts;
 CREATE TABLE accounts (
 	account_email VARCHAR(50) NOT NULL PRIMARY KEY,
     account_password VARCHAR(25) NOT NULL,
+    account_name VARCHAR(50) NOT NULL,
     type ENUM('Investor', 'Business'),
     verification TINYINT DEFAULT 0,
     img_proof VARCHAR(1024)
@@ -32,7 +33,7 @@ CREATE TABLE business_accounts (
     logo VARCHAR(1024),
     size ENUM ('1-10', '11-30', '31-50', '51-100', '101-200', '200+'),
     established YEAR,
-    investment_ask INT UNSIGNED CHECK (investment_ask > 1000),	# investment ask
+    investment_ask INT UNSIGNED CHECK (investment_ask >= 1000),	# investment ask
     equity_offer INT UNSIGNED CHECK (equity_offer > 0),			# percent of the company to give
     website VARCHAR(2083),
     name_CEO VARCHAR(50),
@@ -62,7 +63,7 @@ CREATE TABLE investor_accounts (
 	investor_email VARCHAR(50) NOT NULL PRIMARY KEY,
     investor_name VARCHAR(50) NOT NULL,
     investor_description VARCHAR(1000),
-    investment_Range_Init INT UNSIGNED CHECK (investment_Range_Init > 1000),
+    investment_Range_Init INT UNSIGNED CHECK (investment_Range_Init >= 1000),
     investment_Range_End INT UNSIGNED,
 
     FOREIGN KEY (investor_email) REFERENCES accounts(account_email)
