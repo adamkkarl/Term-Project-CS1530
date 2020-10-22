@@ -33,7 +33,7 @@ INSERT INTO investor_accounts
 VALUES ('johnsmith@gmail.com', 'John Smith',
 'Independently wealthy investor based in San Jose, CA.',
 'Pitt 2010, currently living in CA.',
-1000, 100000);
+1000, 100000, 'www.johnsmithinvesting.com', null);
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
