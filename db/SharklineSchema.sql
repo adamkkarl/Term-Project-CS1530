@@ -30,6 +30,7 @@ CREATE TABLE business_accounts (
 	business_email VARCHAR(50) NOT NULL PRIMARY KEY,
     business_name VARCHAR(50) NOT NULL UNIQUE,
     business_description VARCHAR(1000),
+    business_abstract VARCHAR(200),
     logo VARCHAR(1024),
     size ENUM ('1-10', '11-30', '31-50', '51-100', '101-200', '200+'),
     established YEAR,
@@ -63,8 +64,11 @@ CREATE TABLE investor_accounts (
 	investor_email VARCHAR(50) NOT NULL PRIMARY KEY,
     investor_name VARCHAR(50) NOT NULL,
     investor_description VARCHAR(1000),
+    investor_abstract VARCHAR(200),
     investment_Range_Init INT UNSIGNED CHECK (investment_Range_Init >= 1000),
     investment_Range_End INT UNSIGNED,
+    website VARCHAR(2083),
+    name_CEO VARCHAR(50),
 
     FOREIGN KEY (investor_email) REFERENCES accounts(account_email)
 );
