@@ -71,28 +71,6 @@ CREATE TABLE investor_accounts (
     name_CEO VARCHAR(50),
 
     FOREIGN KEY (investor_email) REFERENCES accounts(account_email)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 );
 
 # account_connections table refers to currently matched companies
@@ -112,7 +90,7 @@ CREATE TABLE account_connections (
 # chat_log stores the information regarding messages sent
 # between parties on the website. business_email and investor_email
 # each reference the business and investor accounts.
-# sender is 0 if the business sent the message, and 
+# sender is 0 if the business sent the message, and
 # 1 if the investor sent the message
 
 CREATE TABLE chat_log (
