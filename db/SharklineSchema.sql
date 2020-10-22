@@ -71,6 +71,28 @@ CREATE TABLE investor_accounts (
     name_CEO VARCHAR(50),
 
     FOREIGN KEY (investor_email) REFERENCES accounts(account_email)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 );
 
 # account_connections table refers to currently matched companies
