@@ -21,6 +21,7 @@ VALUES ('uberOfficial@gmail.com', 'Uber',
 'We are a company that uses smartphone apps to connect riders with drivers.',
 null, '200+', 2009, 1000000, 5, 'https://www.uber.com', 'Dara Khosrowshahi', 'Transportation');
 
+# TODO TEMPLATE FOR COMPANY PROJECTS
 
 # TEMPLATE FOR INVESTOR ACCOUNTS
 
@@ -30,4 +31,16 @@ INSERT INTO investor_accounts
 VALUES ('johnsmith@gmail.com', 'John Smith',
 'Independently wealthy investor based in San Jose, CA.',
 1000, 100000);
+
+# TEMPLATE FOR CONNECTIONS
+INSERT INTO account_connections
+VALUES ('googleHQ@gmail.com', 'johnsmith@gmail.com', 1, STR_TO_DATE('01,10,2020','%d,%m,%Y'));
+
+# TEMPLATE FOR chatlog
+INSERT INTO chat_log
+VALUES (1, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, my name is John and I\'m interested in investing.');
+INSERT INTO chat_log
+VALUES (1, NOW(), 0, 'Hi John, we can do 1% for $10,000,000.');
+
+
 

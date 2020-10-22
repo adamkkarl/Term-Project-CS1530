@@ -90,7 +90,7 @@ CREATE TABLE account_connections (
 # 1 if the investor sent the message
 
 CREATE TABLE chat_log (
-	connection_id int NOT NULL UNIQUE,
+	connection_id int NOT NULL,
     datetime_sent DATETIME,
     sender TINYINT DEFAULT 1, #0=sent by business, 1=sent by investor
     message VARCHAR(900) NOT NULL,
