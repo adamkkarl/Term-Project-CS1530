@@ -12,6 +12,7 @@ VALUES ('googleHQ@gmail.com', 'myPassword',  'Google', 'Business', 1, null);
 INSERT INTO business_accounts
 VALUES ('googleHQ@gmail.com', 'Google',
 'We are a tech company with a main focus on search engine optimization and cloud computing.',
+'Cloud computing and search engine since 1998',
 null, '200+', 1998, 10000000, 1, 'https://www.google.com', 'Sundar Pichai', 'Software/Tech');
 
 INSERT INTO accounts
@@ -19,6 +20,7 @@ VALUES ('uberOfficial@gmail.com', '12341234', 'Uber', 'Business', 1, null);
 INSERT INTO business_accounts
 VALUES ('uberOfficial@gmail.com', 'Uber',
 'We are a company that uses smartphone apps to connect riders with drivers.',
+'Tech + transportation company since 2009',
 null, '200+', 2009, 1000000, 5, 'https://www.uber.com', 'Dara Khosrowshahi', 'Transportation');
 
 # TODO TEMPLATE FOR COMPANY PROJECTS
@@ -30,6 +32,7 @@ VALUES ('johnsmith@gmail.com', 'yankees1990', 'John Smith', 'Investor', 1, null)
 INSERT INTO investor_accounts
 VALUES ('johnsmith@gmail.com', 'John Smith',
 'Independently wealthy investor based in San Jose, CA.',
+'Pitt 2010, currently living in CA.',
 1000, 100000);
 
 # TEMPLATE FOR CONNECTIONS
