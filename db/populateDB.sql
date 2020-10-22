@@ -4,6 +4,8 @@ USE sharklineDB;
 
 INSERT INTO accounts
 VALUES ('fraudulentEmail@hotmail.com', 'password', 'Elon Musk', 'Investor', 0, null);
+INSERT INTO accounts
+VALUES ('Microsoft@ms.com', 'windows98', 'Bill Gates', 'Business', 0, null);
 
 # TEMPLATE FOR BUSINESS ACCOUNTS
 
@@ -41,6 +43,3 @@ INSERT INTO chat_log
 VALUES (1, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, my name is John and I\'m interested in investing.');
 INSERT INTO chat_log
 VALUES (1, NOW(), 0, 'Hi John, we can do 1% for $10,000,000.');
-
-
-
