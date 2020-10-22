@@ -19,7 +19,7 @@ CREATE TABLE accounts (
     account_password VARCHAR(25) NOT NULL,
     type ENUM('Investor', 'Business'),
     verification TINYINT DEFAULT 0,
-    img_proof VARCHAR(1024) NOT NULL
+    img_proof VARCHAR(1024)
 );
 
 # business_accounts includes information related to business accounts.
@@ -74,6 +74,7 @@ CREATE TABLE investor_accounts (
 CREATE TABLE account_connections (
     business_email VARCHAR(50) NOT NULL,
     investor_email VARCHAR(50) NOT NULL,
+	connection_id int NOT NULL UNIQUE AUTO_INCREMENT,
     date_connected DATE,
 
     PRIMARY KEY(business_email, investor_email),
@@ -88,13 +89,10 @@ CREATE TABLE account_connections (
 # 1 if the investor sent the message
 
 CREATE TABLE chat_log (
-	business_email VARCHAR(50) NOT NULL,
-    investor_email VARCHAR(50) NOT NULL,
-    sender TINYINT DEFAULT 1, #0=sent by business, 1=sent by investor
+	connection_id int NOT NULL UNIQUE,
     datetime_sent DATETIME,
+    sender TINYINT DEFAULT 1, #0=sent by business, 1=sent by investor
     message VARCHAR(900) NOT NULL,
 
-    PRIMARY KEY(business_email, investor_email, datetime_sent),
-    FOREIGN KEY (business_email) REFERENCES business_accounts(business_email),
-    FOREIGN KEY (investor_email) REFERENCES investor_accounts(investor_email)
+    PRIMARY KEY(connection_id, datetime_sent)
 );
