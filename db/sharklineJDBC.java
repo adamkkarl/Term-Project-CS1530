@@ -68,9 +68,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = "root";
-      password = "@Junotheroman6";
-      String url = "jdbc:mysql://localhost/sharklinedb";
+      username = "";
+      password = "";
+      String url = ""
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
