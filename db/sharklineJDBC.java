@@ -98,6 +98,11 @@ public class sharklineJDBC
         System.out.println("Microsoft verified!");
       else
         System.out.println("Account already verified or no account found!");
+
+      if(addBusinessAccount(findAccount("Microsoft@ms.com"), Industry.SOFTWARE_TECH))
+        System.out.println("Microsoft added to business accounts!");
+      else
+        System.out.println("Account not added!");
     }
     catch(Exception e)
     {
@@ -200,16 +205,39 @@ public class sharklineJDBC
       return false;
     }
   }
-  public static boolean addBusinessAccount(Account account)
+  /**
+  * addBusinessAccount adds an account which has been verified into the
+  * business_accounts table. To update the other attributes, call
+  * updateBusinessAccount()
+  *
+  * @param account the account which has information about business account
+  *                (use findAccount method to get account)
+  * @param industry the industry sector the account is in (see enum Industry)
+  * @return true if account is verified, the email and name are unique, and
+  *         argument given for industry is valid, false if otherwise
+  */
+  public static boolean addBusinessAccount(Account account, Industry industry)
   {
     try
     {
       boolean isAdded = false;
       if(!account.isVerified)
         return isAdded;
-      PreparedStatement st = dbcon.prepareStatement("INSERT INTO business_accounts VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
-      st.setString(1, account.accountEmail);
 
+      PreparedStatement st =
+      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+                            "(?, ?, NULL, NULL, NULL, NULL, NULL," +
+                            "NULL, NULL, NULL, NULL, ?)");
+      st.setString(1, account.accountEmail);
+      st.setString(2, account.accountName);
+      if(setIndustry(st, industry, 3) == null)
+        return isAdded;
+
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
       return isAdded;
     }
     catch(SQLException e1)
@@ -230,6 +258,86 @@ public class sharklineJDBC
                                               Industry industry)
   {
     return false;
+  }
+  /**
+  * setIndustry is a helper method designed to streamline updating industry attribute
+  * in business_accounts table, not for use in queries
+  *
+  * @param st the PreparedStatement update which we will update
+  * @param industry the enum Industry (see enum Industry above)
+  * @param pos the position in the PreparedStatement we would like to inject to
+  *
+  * @return the PreparedStatement st with industry set at position pos, null
+  *         if otherwise
+  */
+  private static PreparedStatement setIndustry(PreparedStatement st, Industry industry, int pos)
+  {
+    try
+    {
+      switch(industry)
+      {
+        case INDUSTRIAL:
+          st.setString(pos, "Industrial");
+          break;
+        case HEALTH:
+          st.setString(pos, "Health");
+          break;
+        case SOFTWARE_TECH:
+          st.setString(pos, "Software/Tech");
+          break;
+        case ENTERTAINMENT:
+          st.setString(pos, "Entertainment");
+          break;
+        case FOOD:
+          st.setString(pos, "Food");
+          break;
+        case FINANCE:
+          st.setString(pos, "Finance");
+          break;
+        case MARKETING:
+          st.setString(pos, "Marketing");
+          break;
+        case AUTOMOTIVE:
+          st.setString(pos, "Automotive");
+          break;
+        case EDUCATION:
+          st.setString(pos, "Education");
+          break;
+        case LAW:
+          st.setString(pos, "Law");
+          break;
+        case HOTEL:
+          st.setString(pos, "Hotel");
+          break;
+        case TRAVEL:
+          st.setString(pos, "Travel");
+          break;
+        case ENERGY:
+          st.setString(pos, "Energy");
+          break;
+        case ENVIRONMENT:
+          st.setString(pos, "Environment");
+          break;
+        case TRANSPORTATION:
+          st.setString(pos, "Transportation");
+          break;
+        default:
+          st.setString(pos, "Other");
+      }
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+    return st;
   }
   private static class Account //Might make this into a seperate file later, but for
                                //now ill keep it as a private class
