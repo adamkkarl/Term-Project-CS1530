@@ -35,6 +35,26 @@ public class sharklineJDBC
     INVESTOR,
     BUSINESS;
   }
+  public enum Industry
+  {
+    INDUSTRIAL,
+    HEALTH,
+    SOFTWARE_TECH,
+    ENTERTAINMENT,
+    FOOD,
+    FINANCE,
+    MARKETING,
+    AUTOMOTIVE,
+    EDUCATION,
+    LAW,
+    HOTEL,
+    TRAVEL,
+    ENERGY,
+    ENVIRONMENT,
+    TRANSPORTATION,
+    OTHER;
+  }
+
 
   //You'll need to fill this out for your own server MySQL for it
   //To work on your machine
@@ -48,9 +68,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = "";
-      password = "";
-      String url = "";
+      username = "root";
+      password = "@Junotheroman6";
+      String url = "jdbc:mysql://localhost/sharklinedb";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -65,6 +85,11 @@ public class sharklineJDBC
         System.out.println("Invalid email!");
       if(findAccount("DROP TABLE") == null)
         System.out.println("SQL Error!");
+
+      if(verifyAccount("Microsoft@ms.com") == 1)
+        System.out.println("Microsoft verified!");
+      else
+        System.out.println("Account already verified or no account found!");
     }
     catch(Exception e)
     {
@@ -129,6 +154,40 @@ public class sharklineJDBC
       return null;
     }
   }
+  /***
+  * verifyAccount searches through the database to update account with given email
+  * to set verified to 1 (or true)
+  *
+  * @param email the email we use to search the database to update verification
+  * @return number of rows affected; >1 if update sucessful, 0 otherwise
+  *
+  */
+  public static int verifyAccount(String email)
+  {
+    try
+    {
+      PreparedStatement st =
+      dbcon.prepareStatement("UPDATE accounts SET verification = 1 WHERE account_email = ? AND verification = 0");
+      st.setString(1, email);
+
+      int isUpdated = st.executeUpdate();
+      dbcon.commit();
+      st.close();
+      return isUpdated;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return 0;
+    }
+  }
   private static class Account //Might make this into a seperate file later, but for
                                //now ill keep it as a private class
   {
@@ -139,5 +198,20 @@ public class sharklineJDBC
     public String img_path;
     public Type accountType;
 
+  }
+  private static class BusinessAccount
+  {
+    public String business_email;
+    public String business_name;
+    public String description;
+    public String businessAbstract;
+    public String logo_path;
+    public String size;
+    public int year;
+    public int investment_ask;
+    public int equity_offer;
+    public String website;
+    public String ceoName;
+    public Industry businessIndustry;
   }
 }
