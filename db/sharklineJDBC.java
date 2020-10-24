@@ -253,9 +253,22 @@ public class sharklineJDBC
       return false;
     }
   }
-  public static boolean updateBusinessAccount(String description, String abs, String logo, Size size, int year,
-                                              int investmentAsk, int equityOffer, String website, String ceoName,
+  public static boolean updateBusinessAccount(String email, String description,
+                                              String abs, String logo, Size size, int year,
+                                              int investmentAsk, int equityOffer,
+                                              String website, String ceoName,
                                               Industry industry)
+  {
+    return false;
+  }
+  public static boolean addInvestorAccount(Account account)
+  {
+    return false;
+  }
+  public static boolean updatedInvestorAccount(String email, String description,
+                                               String abs, int investmentRangeInit,
+                                               int investmentRangeEnd, String website,
+                                               String ceoName)
   {
     return false;
   }
