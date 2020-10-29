@@ -114,6 +114,53 @@ public class sharklineJDBC
   //----------------------------------------------------------------------------
 
   /**
+  * login method searches through database and matches email and password
+  * to entry in accounts table, returning integer based on result
+  *
+  * @param email the email we use to search the table for the tuple
+  * @param password the password for the account, must be matched
+  *
+  * @return -1 for account not found (password incorrect, email not found, etc)
+  *         0 for account found but not verified, 1 for investor account found,
+  *         2 for business account found
+  */
+  public static int login(String email, String password)
+  {
+    try
+    {
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM accounts" +
+      " WHERE account_email = ? AND account_password = ?");
+      st.setString(1, email);
+      st.setString(2, password);
+
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return -1;
+
+      if(result.getInt("verification") == 0)
+        return 0;
+
+      if(result.getString("type").equals("Investor"))
+        return 1;
+      else
+        return 2;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
+  }
+
+  /**
   * findAccount searches through account table to find matching tuple
   * with given email
   *
