@@ -1,3 +1,5 @@
+
+
 //Group 13 JDBC Code
 //Sharkline Website
 
@@ -70,15 +72,16 @@ public class sharklineJDBC
   private static String password;
   private static String url;
   private static Connection dbcon;
+  
 
   public static void main(String[] args)
   {
     try
     {
       // FILL THESE OUT !!!
-      username = ""
-      password = ""
-      String url = ""
+      username = "";
+      password = "";
+      String url = "";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -88,7 +91,7 @@ public class sharklineJDBC
       //Make sure to add some test data in the database or the ResultSets won't
       //have anything in them!
       Account test = findAccount("fraudulentEmail@hotmail.com");
-      System.out.println(test.getName());
+      System.out.println(test.accountName);
       if(findAccount("gaghksagkhj") == null)
         System.out.println("Invalid email!");
       if(findAccount("DROP TABLE") == null)
@@ -103,10 +106,6 @@ public class sharklineJDBC
         System.out.println("Microsoft added to business accounts!");
       else
         System.out.println("Account not added!");
-      if(login("googleHQ@gmail.com", "myPassword") == 2)
-        System.out.println("Google account login!");
-      else
-        System.out.println("Google account login fail!");
     }
     catch(Exception e)
     {
@@ -160,37 +159,9 @@ public class sharklineJDBC
 
         e1 = e1.getNextException();
       }
+      //Can't return false
+      //return false;
       return -1;
-    }
-  }
-
-  /**
-  * addAccount method inserts the created account into the database
-  *
-  * @param account includes all data necessary to create an account
-  *
-  * @return true if sucessfully added, false if otherwise
-  *
-  */
-  public static boolean addAccount(Account account)
-  {
-    try
-    {
-      PreparedStatement st = dbcon.prepareStatement("INSERT INTO accounts"
-      + "VALUES()");
-      return false;
-    }
-    catch(SQLException e1)
-    {
-      while(e1 != null)
-      {
-        System.out.println("Message = " + e1.getMessage());
-        System.out.println("SQLErrorCode = " + e1.getErrorCode());
-        System.out.println("SQLState = " + e1.getSQLState());
-
-        e1 = e1.getNextException();
-      }
-      return false;
     }
   }
 
@@ -199,9 +170,9 @@ public class sharklineJDBC
   * with given email
   *
   * @param email the email we use to search the table for the tuple
-  *
   * @return      Account object with all data associated with account tuple,
   *              EXCEPT PASSWORD, returns null otherwise
+  *
   *
   */
   public static Account findAccount(String email)
@@ -219,18 +190,18 @@ public class sharklineJDBC
       //parsing data from account table into relevenat fields into Account object
       //EXCEPT PASSWORD
       Account retrievedAccount = new Account();
-      retrievedAccount.accountEmail = email;
-      retrievedAccount.accountName = result.getString("account_name");
-      retrievedAccount.imgPath = result.getString("img_proof");
+      retrievedAccount.setEmail(email);
+      retrievedAccount.setName(result.getString("account_name"));
+      retrievedAccount.setImagePath(result.getString("img_proof"));
       if(result.getString("type").equals("Investor"))
-        retrievedAccount.accountType = Type.INVESTOR;
+        retrievedAccount.setType(Type.INVESTOR);
       else
-        retrievedAccount.accountType = Type.BUSINESS;
+        retrievedAccount.setType(Type.BUSINESS);
 
       if(result.getInt("verification") == 0)
-        retrievedAccount.isVerified = false;
+        retrievedAccount.checkVerified( false);
       else
-        retrievedAccount.isVerified = true;
+        retrievedAccount.checkVerified(true);
 
       st.close();
       return retrievedAccount;
@@ -309,8 +280,8 @@ public class sharklineJDBC
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL," +
                             "NULL, NULL, NULL, NULL, ?)");
-      st.setString(1, account.getEmail());
-      st.setString(2, account.getName());
+      st.setString(1, account.accountEmail);
+      st.setString(2, account.accountName);
       if(setIndustry(st, industry, 3) == null)
         return isAdded;
 
@@ -433,4 +404,5 @@ public class sharklineJDBC
     }
     return st;
   }
+
 }
