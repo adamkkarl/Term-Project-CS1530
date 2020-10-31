@@ -76,9 +76,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = "";
-      password = "";
-      String url = "";
+      username = ""
+      password = ""
+      String url = ""
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -88,7 +88,7 @@ public class sharklineJDBC
       //Make sure to add some test data in the database or the ResultSets won't
       //have anything in them!
       Account test = findAccount("fraudulentEmail@hotmail.com");
-      System.out.println(test.accountName);
+      System.out.println(test.getName());
       if(findAccount("gaghksagkhj") == null)
         System.out.println("Invalid email!");
       if(findAccount("DROP TABLE") == null)
@@ -103,6 +103,10 @@ public class sharklineJDBC
         System.out.println("Microsoft added to business accounts!");
       else
         System.out.println("Account not added!");
+      if(login("googleHQ@gmail.com", "myPassword") == 2)
+        System.out.println("Google account login!");
+      else
+        System.out.println("Google account login fail!");
     }
     catch(Exception e)
     {
@@ -156,6 +160,36 @@ public class sharklineJDBC
 
         e1 = e1.getNextException();
       }
+      return -1;
+    }
+  }
+
+  /**
+  * addAccount method inserts the created account into the database
+  *
+  * @param account includes all data necessary to create an account
+  *
+  * @return true if sucessfully added, false if otherwise
+  *
+  */
+  public static boolean addAccount(Account account)
+  {
+    try
+    {
+      PreparedStatement st = dbcon.prepareStatement("INSERT INTO accounts"
+      + "VALUES()");
+      return false;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
       return false;
     }
   }
@@ -165,9 +199,9 @@ public class sharklineJDBC
   * with given email
   *
   * @param email the email we use to search the table for the tuple
+  *
   * @return      Account object with all data associated with account tuple,
   *              EXCEPT PASSWORD, returns null otherwise
-  *
   *
   */
   public static Account findAccount(String email)
@@ -275,8 +309,8 @@ public class sharklineJDBC
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL," +
                             "NULL, NULL, NULL, NULL, ?)");
-      st.setString(1, account.accountEmail);
-      st.setString(2, account.accountName);
+      st.setString(1, account.getEmail());
+      st.setString(2, account.getName());
       if(setIndustry(st, industry, 3) == null)
         return isAdded;
 
@@ -398,31 +432,5 @@ public class sharklineJDBC
       return null;
     }
     return st;
-  }
-  private static class Account //Might make this into a seperate file later, but for
-                               //now ill keep it as a private class
-  {
-    public String accountEmail;
-    public String accountName;
-    public String accountPassword;
-    public boolean isVerified;
-    public String imgPath;
-    public Type accountType;
-
-  }
-  private static class BusinessAccount
-  {
-    public String businessEmail;
-    public String businessName;
-    public String description;
-    public String businessAbstract;
-    public String logoPath;
-    public Size size;
-    public int year;
-    public int investmentAsk;
-    public int equityOffer;
-    public String website;
-    public String ceoName;
-    public Industry businessIndustry;
   }
 }
