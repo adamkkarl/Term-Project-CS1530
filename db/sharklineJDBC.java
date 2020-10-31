@@ -42,9 +42,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = "";
-      password = "";
-      String url = "";
+      username = "root";
+      password = "@Junotheroman6";
+      String url = "jdbc:mysql://localhost/sharklinedb";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -73,6 +73,12 @@ public class sharklineJDBC
         System.out.println("Google account login!");
       else
         System.out.println("Google account login fail!");
+
+      Account addTest = new Account("fakeemail@fake.com", "fake",
+                              "fakepw", false, "fake/fake;", Type.BUSINESS);
+      if(addAccount(addTest))
+        System.out.println("test added!");
+
     }
     catch(Exception e)
     {
@@ -142,9 +148,32 @@ public class sharklineJDBC
   {
     try
     {
+      boolean isAdded = false;
       PreparedStatement st = dbcon.prepareStatement("INSERT INTO accounts"
-      + "VALUES()");
-      return false;
+      + "VALUES(?, ?, ?, ?, ?, ?)");
+      st.setString(1, account.getEmail());
+      st.setString(2, account.getPassword());
+      st.setString(3, account.getName());
+
+      if(account.getType() == Type.INVESTOR)
+        st.setString(4, "Investor");
+      else
+        st.setString(4, "Business");
+
+      if(account.checkVerified())
+        st.setInt(5, 1);
+      else
+        st.setInt(5, 0);
+
+      st.setString(6, account.getImgPath());
+
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+
+      return isAdded;
     }
     catch(SQLException e1)
     {
@@ -184,7 +213,6 @@ public class sharklineJDBC
 
       //parsing data from account table into relevenat fields into Account object
       //EXCEPT PASSWORD
-      System.out.println("Is this working");
       Account retrievedAccount = new Account();
       retrievedAccount.setEmail(email);
       retrievedAccount.setName(result.getString("account_name"));

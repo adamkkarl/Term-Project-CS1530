@@ -39,7 +39,7 @@ public class Account
   {
     return isVerified;
   }
-  public String getImagePath()
+  public String getImgPath()
   {
     return imgPath;
   }
@@ -70,6 +70,8 @@ public class Account
   public boolean setImgPath(String img)
   {
     imgPath = img;
+    if(imgPath == null)
+      return true;
     return imgPath.equals(img);
   }
   public boolean setType(Type type)
