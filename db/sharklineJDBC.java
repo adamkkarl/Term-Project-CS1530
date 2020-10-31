@@ -329,15 +329,121 @@ public class sharklineJDBC
   }
   public static boolean updateBusinessAccount(Business account)
   {
-    return false;
-  }
+    try
+    {
+       PreparedStatement st =
+      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+                            "(?, ?, NULL, NULL, NULL, NULL, NULL," +
+                            "NULL, NULL, NULL, NULL, ?)");
+      
+          
+      st.setString(1,account.getBusinessEmail());
+      st.setString(2, account.getBusinessName()); 
+      st.setString(3, account.getDescription());
+      st.setString(4, account.getBusinessAbstract());
+      st.setString(5, account.getLogoPath());
+      st.setString(6, account.getSize());
+      st.setString(7, account.getYear());
+      st.setString(8, account.getInvestmentAsk());
+      st.setString(9, account.getEquityOffer());
+      st.setString(10, account.getWebsite());
+      st.setString(11, account.getCeoName());
+      st.setString(12, account.getBusinessIndustry());   
+      }
+    
+      catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
+}
+    
+  
+
+  /**
+  * addInvestorAccount adds an account which has been verified into the
+  * business_accounts table. To update the other attributes, call
+  * updateInvestorAccount()
+  *
+  * @param account the account which has information about investor account
+  *                (use findAccount method to get account)
+  * @return true if account is verified, the email and name are unique, and
+  *         argument given for industry is valid, false if otherwise
+*/
   public static boolean addInvestorAccount(Account account)
   {
-    return false;
+    try
+    {
+      boolean isAdded = false;
+      if(!account.checkVerified())
+        return isAdded;
+
+      PreparedStatement st =
+      dbcon.prepareStatement("INSERT INTO investor_accounts VALUES" +
+                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+      st.setString(1, account.getEmail());
+      st.setString(2, account.getName());
+      
+
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+      return isAdded;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
   }
   public static boolean updatedInvestorAccount(Investor account)
   {
-    return false;
+    try
+    {
+       PreparedStatement st =
+      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+      
+          
+      st.setString(1,account.getInvestorEmail());
+      st.setString(2, account.getInvestorName()); 
+      st.setString(3, account.getInvestorDescription());
+      st.setString(4, account.getInvestorAbstract());
+      st.setString(5, account.getInvestmentRangeInit());
+      st.setString(6, account.getInvestmentRangeEnd());
+      st.setString(7, account.getWebsite());
+      st.setString(8, account.getCeoName());
+    
+      }
+    
+      catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
   }
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
