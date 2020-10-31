@@ -220,13 +220,13 @@ public class sharklineJDBC
       //EXCEPT PASSWORD
       System.out.println("Is this working");
       Account retrievedAccount = new Account();
-      retrievedAccount.accountEmail = email;
-      retrievedAccount.accountName = result.getString("account_name");
-      retrievedAccount.imgPath = result.getString("img_proof");
+      retrievedAccount.setEmail(email);
+      retrievedAccount.setName(result.getString("account_name"));
+      retrievedAccount.setImgPath(result.getString("img_proof"));
       if(result.getString("type").equals("Investor"))
-        retrievedAccount.accountType = Type.INVESTOR;
+        retrievedAccount.setType(Type.INVESTOR);
       else
-        retrievedAccount.accountType = Type.BUSINESS;
+        retrievedAccount.setType(Type.BUSINESS);
 
       if(result.getInt("verification") == 0)
         retrievedAccount.isVerified = false;
