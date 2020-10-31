@@ -327,11 +327,24 @@ public class sharklineJDBC
       return false;
     }
   }
+   /**
+  * updateBusinessAccount updates an account(with secondary attributes) which has been verified into the
+  * business_accounts table.
+  *
+  * @param account the account which has information about business account
+  *                (use findAccount method to get account)
+  * @return true if account is verified, the email and name are unique, and
+  *        false if otherwise
+  */
   public static boolean updateBusinessAccount(Business account)
   {
     try
     {
-       PreparedStatement st =
+      boolean isAdded = false;
+      if(!account.checkVerified())
+        return isAdded;
+      
+      PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL," +
                             "NULL, NULL, NULL, NULL, ?)");
@@ -348,7 +361,14 @@ public class sharklineJDBC
       st.setString(9, account.getEquityOffer());
       st.setString(10, account.getWebsite());
       st.setString(11, account.getCeoName());
-      st.setString(12, account.getBusinessIndustry());   
+      st.setString(12, account.getBusinessIndustry());
+      
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+      return isAdded;
       }
     
       catch(SQLException e1)
@@ -412,10 +432,22 @@ public class sharklineJDBC
       return false;
     }
   }
-  public static boolean updatedInvestorAccount(Investor account)
+    /**
+  * updateInvestorAccount updates an account(with secondary attributes) which has been verified into the
+  * investor_accounts table.
+  *
+  * @param account the account which has information about investor account
+  *                (use findAccount method to get account)
+  * @return true if account is verified, the email and name are unique, and
+  *        false if otherwise
+  */
+  public static boolean updateInvestorAccount(Investor account)
   {
     try
-    {
+    {      
+       boolean isAdded = false;
+      if(!account.checkVerified())
+        return isAdded;
        PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
@@ -430,6 +462,13 @@ public class sharklineJDBC
       st.setString(7, account.getWebsite());
       st.setString(8, account.getCeoName());
     
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+      return isAdded;
+      
       }
     
       catch(SQLException e1)
