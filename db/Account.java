@@ -1,10 +1,5 @@
-public static class Account
+public class Account
 {
-  public enum Type
-  {
-    INVESTOR,
-    BUSINESS;
-  }
   private String accountEmail;
   private String accountName;
   private String accountPassword;
@@ -12,9 +7,13 @@ public static class Account
   private String imgPath;
   private Type accountType;
 
+  public Account()
+  {
+
+  }
   public Account(String accountEmail, String accountName,
-                 String accountPassword, boolean isVerified
-                 String imgPath, Type accountType)
+      String accountPassword, boolean isVerified,
+      String imgPath, Type accountType)
   {
     this.accountEmail = accountEmail;
     this.accountName = accountName;
@@ -40,7 +39,7 @@ public static class Account
   {
     return isVerified;
   }
-  public boolean getImagePath()
+  public String getImagePath()
   {
     return imgPath;
   }
@@ -68,7 +67,7 @@ public static class Account
     isVerified = true;
     return isVerified;
   }
-  public boolean setImagePath(String img)
+  public boolean setImgPath(String img)
   {
     imgPath = img;
     return imgPath.equals(img);

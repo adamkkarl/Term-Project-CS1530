@@ -30,40 +30,6 @@ import java.time.LocalDateTime;
 **/
 public class sharklineJDBC
 {
-  public enum Type
-  {
-    INVESTOR,
-    BUSINESS;
-  }
-  public enum Industry
-  {
-    INDUSTRIAL,
-    HEALTH,
-    SOFTWARE_TECH,
-    ENTERTAINMENT,
-    FOOD,
-    FINANCE,
-    MARKETING,
-    AUTOMOTIVE,
-    EDUCATION,
-    LAW,
-    HOTEL,
-    TRAVEL,
-    ENERGY,
-    ENVIRONMENT,
-    TRANSPORTATION,
-    OTHER;
-  }
-  public enum Size
-  {
-    ONE_TO_TEN,
-    ELEVEN_TO_THIRTY,
-    THIRTYONE_TO_ONEHUNDRED,
-    ONEHUNDREDANDONE_TO_TWOHUNDRED,
-    TWOHUNDREDPLUS;
-  }
-
-
   //You'll need to fill this out for your own server MySQL for it
   //To work on your machine
   private static String username;
@@ -76,9 +42,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = ""
-      password = ""
-      String url = ""
+      username = "root";
+      password = "@Junotheroman6";
+      String url = "jdbc:mysql://localhost/sharklinedb";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -228,10 +194,8 @@ public class sharklineJDBC
       else
         retrievedAccount.setType(Type.BUSINESS);
 
-      if(result.getInt("verification") == 0)
-        retrievedAccount.isVerified = false;
-      else
-        retrievedAccount.isVerified = true;
+      if(result.getInt("verification") == 1)
+        retrievedAccount.verify();
 
       st.close();
       return retrievedAccount;
@@ -303,7 +267,7 @@ public class sharklineJDBC
     try
     {
       boolean isAdded = false;
-      if(!account.isVerified)
+      if(!account.checkVerified())
         return isAdded;
 
       PreparedStatement st =

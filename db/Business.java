@@ -1,161 +1,187 @@
-import jdbcdemo.sharklineJDBC.*;
-
-
 public class Business {
 
-private String businessEmail;
-private String businessName;
-private String description;
-private String businessAbstract;
-private String logoPath;
-private Size size;
-private int year;
-private int investmentAsk;
-private int equityOffer;
-private String website;
-private String ceoName;
-private Industry businessIndustry;	
+	public enum Industry
+	{
+	  INDUSTRIAL,
+	  HEALTH,
+	  SOFTWARE_TECH,
+	  ENTERTAINMENT,
+	  FOOD,
+	  FINANCE,
+	  MARKETING,
+	  AUTOMOTIVE,
+	  EDUCATION,
+	  LAW,
+	  HOTEL,
+	  TRAVEL,
+	  ENERGY,
+	  ENVIRONMENT,
+	  TRANSPORTATION,
+	  OTHER;
+	}
 
-	
-public Business(String businessEmail, String businessName,
-		String description, String businessAbstract, String logoPath,
-		Size size, int year, int investmentAsk, int equityOffer,
-		String website, String ceoName, Industry businessIndustry) {
-	
-	this.businessEmail = businessEmail;
-	this.businessName = businessName;
-	this.description = description;
-	this.businessAbstract = businessAbstract;
-	this.logoPath = logoPath;
-	this.size = size;
-	this.year = year;
-	this.investmentAsk = investmentAsk;
-	this.equityOffer = equityOffer;
-	this.website = website;
-	this.ceoName = ceoName;
-	this.businessIndustry = businessIndustry;
-	
-	
-}
+	public enum Size
+	{
+	  ONE_TO_TEN,
+	  ELEVEN_TO_THIRTY,
+	  THIRTYONE_TO_ONEHUNDRED,
+	  ONEHUNDREDANDONE_TO_TWOHUNDRED,
+	  TWOHUNDREDPLUS;
+	}
 
-
-public String getBusinessEmail() {
-	return businessEmail;
-}
-
-
-public void setBusinessEmail(String businessEmail) {
-	this.businessEmail = businessEmail;
-}
+	private String businessEmail;
+	private String businessName;
+	private String description;
+	private String businessAbstract;
+	private String logoPath;
+	private Size size;
+	private int year;
+	private int investmentAsk;
+	private int equityOffer;
+	private String website;
+	private String ceoName;
+	private Industry businessIndustry;
 
 
-public String getBusinessName() {
-	return businessName;
-}
+	public Business(String businessEmail, String businessName,
+			String description, String businessAbstract, String logoPath,
+			Size size, int year, int investmentAsk, int equityOffer,
+			String website, String ceoName, Industry businessIndustry) {
+
+		this.businessEmail = businessEmail;
+		this.businessName = businessName;
+		this.description = description;
+		this.businessAbstract = businessAbstract;
+		this.logoPath = logoPath;
+		this.size = size;
+		this.year = year;
+		this.investmentAsk = investmentAsk;
+		this.equityOffer = equityOffer;
+		this.website = website;
+		this.ceoName = ceoName;
+		this.businessIndustry = businessIndustry;
 
 
-public void setBusinessName(String businessName) {
-	this.businessName = businessName;
-}
+	}
 
 
-public String getDescription() {
-	return description;
-}
+	public String getBusinessEmail() {
+		return businessEmail;
+	}
 
 
-public void setDescription(String description) {
-	this.description = description;
-}
+	public void setBusinessEmail(String businessEmail) {
+		this.businessEmail = businessEmail;
+	}
 
 
-public String getBusinessAbstract() {
-	return businessAbstract;
-}
+	public String getBusinessName() {
+		return businessName;
+	}
 
 
-public void setBusinessAbstract(String businessAbstract) {
-	this.businessAbstract = businessAbstract;
-}
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
+	}
 
 
-public String getLogoPath() {
-	return logoPath;
-}
+	public String getDescription() {
+		return description;
+	}
 
 
-public void setLogoPath(String logoPath) {
-	this.logoPath = logoPath;
-}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 
-public Size getSize() {
-	return size;
-}
+	public String getBusinessAbstract() {
+		return businessAbstract;
+	}
 
 
-public void setSize(Size size) {
-	this.size = size;
-}
+	public void setBusinessAbstract(String businessAbstract) {
+		this.businessAbstract = businessAbstract;
+	}
 
 
-public int getYear() {
-	return year;
-}
+	public String getLogoPath() {
+		return logoPath;
+	}
 
 
-public void setYear(int year) {
-	this.year = year;
-}
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
 
 
-public int getInvestmentAsk() {
-	return investmentAsk;
-}
+	public Size getSize() {
+		return size;
+	}
 
 
-public void setInvestmentAsk(int investmentAsk) {
-	this.investmentAsk = investmentAsk;
-}
+	public void setSize(Size size) {
+		this.size = size;
+	}
 
 
-public int getEquityOffer() {
-	return equityOffer;
-}
+	public int getYear() {
+		return year;
+	}
 
 
-public void setEquityOffer(int equityOffer) {
-	this.equityOffer = equityOffer;
-}
+	public void setYear(int year) {
+		this.year = year;
+	}
 
 
-public String getWebsite() {
-	return website;
-}
+	public int getInvestmentAsk() {
+		return investmentAsk;
+	}
 
 
-public void setWebsite(String website) {
-	this.website = website;
-}
+	public void setInvestmentAsk(int investmentAsk) {
+		this.investmentAsk = investmentAsk;
+	}
 
 
-public String getCeoName() {
-	return ceoName;
-}
+	public int getEquityOffer() {
+		return equityOffer;
+	}
 
 
-public void setCeoName(String ceoName) {
-	this.ceoName = ceoName;
-}
+	public void setEquityOffer(int equityOffer) {
+		this.equityOffer = equityOffer;
+	}
 
 
-public Industry getBusinessIndustry() {
-	return businessIndustry;
-}
+	public String getWebsite() {
+		return website;
+	}
 
 
-public void setBusinessIndustry(Industry businessIndustry) {
-	this.businessIndustry = businessIndustry;
-}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+
+	public String getCeoName() {
+		return ceoName;
+	}
+
+
+	public void setCeoName(String ceoName) {
+		this.ceoName = ceoName;
+	}
+
+
+	public Industry getBusinessIndustry() {
+		return businessIndustry;
+	}
+
+
+	public void setBusinessIndustry(Industry businessIndustry) {
+		this.businessIndustry = businessIndustry;
+	}
 
 }
