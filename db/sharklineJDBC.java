@@ -218,6 +218,7 @@ public class sharklineJDBC
 
       //parsing data from account table into relevenat fields into Account object
       //EXCEPT PASSWORD
+      System.out.println("Is this working");
       Account retrievedAccount = new Account();
       retrievedAccount.accountEmail = email;
       retrievedAccount.accountName = result.getString("account_name");
