@@ -50,16 +50,22 @@ public class Account
   public boolean setEmail(String email)
   {
     accountEmail = email;
+    if(email == null)
+      return false;
     return accountEmail.equals(email);
   }
   public boolean setName(String name)
   {
     accountName = name;
+    if(name == null)
+      return false;
     return accountName.equals(name);
   }
   public boolean setPassword(String password)
   {
     accountPassword = password;
+    if(password == null)
+      return false;
     return accountPassword.equals(password);
   }
   public boolean verify()
