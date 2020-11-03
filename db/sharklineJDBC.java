@@ -42,9 +42,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = "root";
-      password = "@Junotheroman6";
-      String url = "jdbc:mysql://localhost/sharklinedb";
+      username = "";
+      password = "";
+      String url = "";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -343,15 +343,15 @@ public class sharklineJDBC
       boolean isAdded = false;
       if(!account.checkVerified())
         return isAdded;
-      
+
       PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL," +
                             "NULL, NULL, NULL, NULL, ?)");
-      
-          
+
+
       st.setString(1,account.getBusinessEmail());
-      st.setString(2, account.getBusinessName()); 
+      st.setString(2, account.getBusinessName());
       st.setString(3, account.getDescription());
       st.setString(4, account.getBusinessAbstract());
       st.setString(5, account.getLogoPath());
@@ -362,7 +362,7 @@ public class sharklineJDBC
       st.setString(10, account.getWebsite());
       st.setString(11, account.getCeoName());
       st.setString(12, account.getBusinessIndustry());
-      
+
       if(st.executeUpdate() >= 1)
         isAdded = true;
 
@@ -370,7 +370,7 @@ public class sharklineJDBC
       st.close();
       return isAdded;
       }
-    
+
       catch(SQLException e1)
     {
       while(e1 != null)
@@ -384,8 +384,8 @@ public class sharklineJDBC
       return false;
     }
 }
-    
-  
+
+
 
   /**
   * addInvestorAccount adds an account which has been verified into the
@@ -410,7 +410,7 @@ public class sharklineJDBC
                             "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
       st.setString(1, account.getEmail());
       st.setString(2, account.getName());
-      
+
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -444,33 +444,33 @@ public class sharklineJDBC
   public static boolean updateInvestorAccount(Investor account)
   {
     try
-    {      
+    {
        boolean isAdded = false;
       if(!account.checkVerified())
         return isAdded;
        PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
-      
-          
+
+
       st.setString(1,account.getInvestorEmail());
-      st.setString(2, account.getInvestorName()); 
+      st.setString(2, account.getInvestorName());
       st.setString(3, account.getInvestorDescription());
       st.setString(4, account.getInvestorAbstract());
       st.setString(5, account.getInvestmentRangeInit());
       st.setString(6, account.getInvestmentRangeEnd());
       st.setString(7, account.getWebsite());
       st.setString(8, account.getCeoName());
-    
+
       if(st.executeUpdate() >= 1)
         isAdded = true;
 
       dbcon.commit();
       st.close();
       return isAdded;
-      
+
       }
-    
+
       catch(SQLException e1)
     {
       while(e1 != null)
