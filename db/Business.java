@@ -107,6 +107,9 @@ public class Business {
 
 	public boolean setDescription(String desc) {
 		description = desc;
+		if(description == null){
+			return true;
+		}
 		return description.equals(desc);
 		
 	}
@@ -119,6 +122,9 @@ public class Business {
 
 	public boolean setBusinessAbstract(String abstract) {
 		businessAbstract = abstract;
+		if(businessAbstract == null){
+			return true;
+		}
 		return businessAbstract.equals(abstract);
 	}
 
@@ -130,6 +136,9 @@ public class Business {
 
 	public boolean setLogoPath(String logo) {
 		logoPath = logo;
+		if(logoPath == null){
+			return true;
+		}
 		return logoPath.equals(logo);
 		
 	}
@@ -142,6 +151,9 @@ public class Business {
 
 	public boolean setSize(Size s) {
 		size = s;
+		if(size == null){
+			return true;
+		}
 		return size.equals(s);
 		
 	}
@@ -154,6 +166,11 @@ public class Business {
 
 	public boolean setYear(int y) {
 		year = y;
+		if(year > 0){
+			return true;
+		}else{
+			return false;
+		}
 		return year.equals(y);
 	}
 
@@ -165,6 +182,11 @@ public class Business {
 
 	public boolean setInvestmentAsk(int ask) {
 		investmentAsk = ask;
+		if(investmentAsk > 0){
+			return true;
+		}else{
+			return false;
+		}
 		return investmentAsk.equals(ask);
 	}
 
@@ -176,6 +198,11 @@ public class Business {
 
 	public boolean setEquityOffer(int offer) {
 		equityOffer = offer;
+		if(equityOffer > 0){
+			return true;
+		}else{
+			return false;
+		}
 		return equityOffer.equals(offer);
 	}
 
@@ -187,6 +214,9 @@ public class Business {
 
 	public boolean setWebsite(String site) {
 		website = site;
+		if(website == null){
+			return true;
+		}
 		return website.equals(site);
 	}
 
@@ -198,6 +228,9 @@ public class Business {
 
 	public boolean setCeoName(String name) {
 		ceoName = name;
+		if(ceoName == null){
+			return true;
+		}
 		return ceoName.equals(name);
 	}
 
