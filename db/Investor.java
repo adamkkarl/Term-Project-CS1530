@@ -1,55 +1,85 @@
 
 
 public class Investor {
-private String investor_email;
-private String investor_name;
-private String investor_description;
-private int investment_Range_Init;
-private int investment_Range_End;
+private String investorEmail;
+private String investorName;
+private String description;
+private int investmentRangeInit;
+private int investmentRangeEnd;
 private String website;
-private String name_CEO;
+private String ceoName;
+
+public Investor(String investorEmail, String investorName, String description, int investmentRangeInit,
+				int investmentRangeEnd, String website, String ceoName){
+
+	this.investorEmail = investorEmail;
+	this.investorName = investorName;
+	this.description = description;
+	this.investmentRangeInit = investmentRangeInit;
+	this.investmentRangeEnd = investmentRangeEnd;
+	this.website = website;
+	this.ceoName = ceoName;
+
+}
+public Investor(){
+
+	
+}
 
 public String getInvestorEmail() {
-	return investor_email;
+	return investorEmail;
 }
-public void setInvestorEmail(String investor_email) {
-	this.investor_email = investor_email;
+public boolean setInvestorEmail(String email) {
+	investorEmail = email;
+	if(investorEmail == null){
+		return false;
+	} 
+	return investorEmail.equals(email);
 }
 public String getInvestorName() {
-	return investor_name;
+	return investorName;
 }
-public void setInvestorName(String investor_name) {
-	this.investor_name = investor_name;
+public boolean setInvestorName(String name) {
+	investorName = name;
+	if(investorName == null){
+		return false;
+	}
+	return investorName.equals(name);
 }
 public String getInvestorDescription() {
-	return investor_description;
+	return description;
 }
-public void setInvestorDescription(String investor_description) {
-	this.investor_description = investor_description;
+public boolean setInvestorDescription(String desc) {
+	description = desc;
+	return description.equals(desc);
 }
 public int getInvestmentRangeInit() {
-	return investment_Range_Init;
+	return investmentRangeInit;
 }
-public void setInvestmentRangeInit(int investment_Range_Init) {
-	this.investment_Range_Init = investment_Range_Init;
+public boolean setInvestmentRangeInit(int init) {
+	investmentRangeInit = init;
+	return investmentRangeInit.equals(init);
 }
 public int getInvestmentRangeEnd() {
-	return investment_Range_End;
+	return investmentRangeEnd;
 }
-public void setInvestmentRangeEnd(int investment_Range_End) {
-	this.investment_Range_End = investment_Range_End;
+public boolean setInvestmentRangeEnd(int end) {
+	investmentRangeEnd = end;
+	return investmentRangeEnd.equals(end);
 }
 public String getWebsite(){
 	return website;
 }
-public void setWebsite(String website){
-	this.website = website;
+public boolean setWebsite(String site){
+	website = site;
+	return website.equals(site);
 }
 public String getCeoName(){
-	return name_CEO;
+	return nameCEO;
 }
-public void setCeoName(String name_CEO){
-	this.name_CEO = name_CEO
+public boolean setCeoName(String name){
+	ceoName = name;
+	return ceoName.equals(name);
 }
 
 
