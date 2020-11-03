@@ -14,8 +14,8 @@ VALUES ('googleHQ@gmail.com', 'myPassword',  'Google', 'Business', 1, null);
 INSERT INTO business_accounts
 VALUES ('googleHQ@gmail.com', 'Google',
 'We are a tech company with a main focus on search engine optimization and cloud computing.',
-'Cloud computing and search engine since 1998',
-null, '200+', 1998, 10000000, 1, 'https://www.google.com', 'Sundar Pichai', 'Software/Tech');
+'Google is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, and cloud computing.',
+null, '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('uberOfficial@gmail.com', '12341234', 'Uber', 'Business', 1, null);
@@ -23,7 +23,7 @@ INSERT INTO business_accounts
 VALUES ('uberOfficial@gmail.com', 'Uber',
 'We are a company that uses smartphone apps to connect riders with drivers.',
 'Tech + transportation company since 2009',
-null, '200+', 2009, 1000000, 5, 'https://www.uber.com', 'Dara Khosrowshahi', 'Transportation');
+null, '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
 
 # TODO TEMPLATE FOR COMPANY PROJECTS
 INSERT INTO company_project
@@ -31,6 +31,32 @@ VALUES ('googleHQ@gmail.com', 'Google Self Driving Car', 'Lorem ipsum dolor sit 
 Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
 Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc,
 blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt');
+
+INSERT INTO accounts
+VALUES ('walmart@gmail.com', 'qwertyuiop', 'Walmart', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('walmart@gmail.com', 'Walmart',
+'As of July 31, 2020, Walmart has 11,496 stores and clubs in 27 countries, operating under 56 different names. Walmart is the world\'s largest company by revenue, with $514.405 billion. It is also the largest private employer in the world with 2.2 million employees.',
+'Walmart Inc. is an American multinational retail corporation.',
+null, '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
+
+INSERT INTO accounts
+VALUES ('amazonHQ@gmail.com', 'bezos420', 'Amazon', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('amazonHQ@gmail.com', 'Amazon',
+'In 2017, Amazon acquired Whole Foods Market for $13.4 billion. In 2018, its two-day delivery service Amazon Prime surpassed 100 million subscribers worldwide. \nAmazon is known for its disruption of well-established industries through technological innovation and mass scale.',
+'Amazon is an American multinational technology company based in Seattle, Washington.',
+null, '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
+
+INSERT INTO accounts
+VALUES ('PrimantiBrosPittsburgh@gmail.com', 'bezos420', 'Primanti Brothers', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('PrimantiBrosPittsburgh@gmail.com', 'Primanti Brothers',
+'Founded in 1933 by Joe Primanti, Primanti Brothers (also known as Primanti Bros.) is most well knows as a cultural icon of Pittsburgh, Pennsylvania. During the 2007 James Beard Foundation Awards, Primanti\'s was named as one of "America\'s Classic" restaurants. \nThe chain is known for its signature sandwiches of grilled meat, melted cheese, an oil & vinegar-based coleslaw, tomato slices, and French fries between two thick slices of Italian bread.',
+'Primanti Brother is a chain of sandwich shops in the eastern United States.',
+null, '200+', 1933, 10000, 5, 'www.primantibros.com', 'Michael Chu', 'Food');
+
+
 
 # TEMPLATE FOR INVESTOR ACCOUNTS
 
