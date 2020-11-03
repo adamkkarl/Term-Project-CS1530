@@ -69,6 +69,46 @@ featuring tacos, wings, quesadillas and appetizer specials on certain days of th
 'Local pub within walking distance of Pitt\'s Cathedral of Learning.',
 null, '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
 
+INSERT INTO accounts
+VALUES ('admin@thirstyscholarpgh.com', 'pitt>psu', 'Thirsty Scholar', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('admin@thirstyscholarpgh.com', 'Thirsty Scholar',
+'Having opened in June 2017 in the former location of the Pitt Campus Bookstore, 
+Thirsty Scholar provides an enjoyable atmosphere – perfect for unwinding after work, going out with friends, 
+or simply grabbing that burger and wings you’ve been craving. \n\n
+Thirsty Scholar has incredible, mouth-watering food options,  with ‘Daily Grille Specials’ for only $6 – 
+featuring tacos, wings, quesadillas and appetizer specials on certain days of the week.',
+'Local pub within walking distance of Pitt\'s Cathedral of Learning.',
+null, '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
+
+INSERT INTO accounts
+VALUES ('business@starship.xyz', 'robotsrule', 'Starship Technologies', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('business@starship.xyz', 'Starship Technologies',
+'Launched in 2014 by Skype co-founders, Ahti Heinla and Janus Friis, Starship Technologies 
+today operates in several cities across the world. Our business headquarters are in 
+San Francisco with our main engineering office in Estonia. \n\n
+Starship robots are advanced devices that can carry items within a 4-mile (6km) radius. 
+Our delivery platform enables a new era of instant delivery that works around your schedule 
+at much lower costs. \n\n
+We believe our robots will revolutionise food and package deliveries, offering people 
+convenient new services that improve everyday life. Our proven ability to harness technology 
+combined with our experience providing services to millions of people make this a reality.\n\n
+We surpassed 500,000 deliveries in August 2020.',
+'Autonomous delivery robotics company founded in 2014 by Skype co-founders, Ahti Heinla and Janus Friis',
+null, '11-30', 2014, 15000, 5, 'www.starship.xyz', 'Ahti Heinla', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('piadaHQ@gmail.com', 'piadaAdmin1234', 'Piada Italian Street Food', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('piadaHQ@gmail.com', 'Piada Italian Street Food',
+'Chris Doody, owner of the company, is a co-founder of the Bravo Brio Restaurant Group chain.
+He sold his stake to investors in 2006 and launched the Piada concept around the Italian 
+"wrap-like sandwich" known as a Piada or Piadina, a street food he sampled in northern Italy. \n\n
+We have 22 locations in Ohio, two in Indiana, one in Kentucky, three in Minnesota, eight in Texas, and two in Pennsylvania. ',
+'Piada Italian Street Food is a fast casual Italian cuisine restaurant chain with 38 locations in six states',
+null, '11-30', 2017, 12000, 15, 'mypiada.com', 'Chris Doodyr', 'Food');
+
 
 
 # TODO TEMPLATE FOR COMPANY PROJECTS
