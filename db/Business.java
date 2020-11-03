@@ -63,6 +63,10 @@ public class Business {
 
 
 	}
+	public Business(){
+
+		
+	}
 
 
 	public String getBusinessEmail() {
@@ -70,8 +74,14 @@ public class Business {
 	}
 
 
-	public void setBusinessEmail(String businessEmail) {
-		this.businessEmail = businessEmail;
+	public boolean setBusinessEmail(String email) {
+		businessEmail = email;
+		if(businessEmail == null){
+			return false;
+		}
+		return businessEmail.equals(email);
+		
+
 	}
 
 
@@ -80,8 +90,13 @@ public class Business {
 	}
 
 
-	public void setBusinessName(String businessName) {
-		this.businessName = businessName;
+	public boolean setBusinessName(String name) {
+		businessName = name;
+		if(businessName == null){
+			return false;
+		}
+		return businessName.equals(name);
+		
 	}
 
 
@@ -90,8 +105,10 @@ public class Business {
 	}
 
 
-	public void setDescription(String description) {
-		this.description = description;
+	public boolean setDescription(String desc) {
+		description = desc;
+		return description.equals(desc);
+		
 	}
 
 
@@ -100,8 +117,9 @@ public class Business {
 	}
 
 
-	public void setBusinessAbstract(String businessAbstract) {
-		this.businessAbstract = businessAbstract;
+	public boolean setBusinessAbstract(String abstract) {
+		businessAbstract = abstract;
+		return businessAbstract.equals(abstract);
 	}
 
 
@@ -110,8 +128,10 @@ public class Business {
 	}
 
 
-	public void setLogoPath(String logoPath) {
-		this.logoPath = logoPath;
+	public boolean setLogoPath(String logo) {
+		logoPath = logo;
+		return logoPath.equals(logo);
+		
 	}
 
 
@@ -120,8 +140,10 @@ public class Business {
 	}
 
 
-	public void setSize(Size size) {
-		this.size = size;
+	public boolean setSize(Size s) {
+		size = s;
+		return size.equals(s);
+		
 	}
 
 
@@ -130,8 +152,9 @@ public class Business {
 	}
 
 
-	public void setYear(int year) {
-		this.year = year;
+	public boolean setYear(int y) {
+		year = y;
+		return year.equals(y);
 	}
 
 
@@ -140,8 +163,9 @@ public class Business {
 	}
 
 
-	public void setInvestmentAsk(int investmentAsk) {
-		this.investmentAsk = investmentAsk;
+	public boolean setInvestmentAsk(int ask) {
+		investmentAsk = ask;
+		return investmentAsk.equals(ask);
 	}
 
 
@@ -150,8 +174,9 @@ public class Business {
 	}
 
 
-	public void setEquityOffer(int equityOffer) {
-		this.equityOffer = equityOffer;
+	public boolean setEquityOffer(int offer) {
+		equityOffer = offer;
+		return equityOffer.equals(offer);
 	}
 
 
@@ -160,8 +185,9 @@ public class Business {
 	}
 
 
-	public void setWebsite(String website) {
-		this.website = website;
+	public boolean setWebsite(String site) {
+		website = site;
+		return website.equals(site);
 	}
 
 
@@ -170,8 +196,9 @@ public class Business {
 	}
 
 
-	public void setCeoName(String ceoName) {
-		this.ceoName = ceoName;
+	public boolean setCeoName(String name) {
+		ceoName = name;
+		return ceoName.equals(name);
 	}
 
 
@@ -180,8 +207,14 @@ public class Business {
 	}
 
 
-	public void setBusinessIndustry(Industry businessIndustry) {
-		this.businessIndustry = businessIndustry;
+	public boolean setBusinessIndustry(Industry busIn) {
+		businessIndustry = busIn;
+		if(businessIndustry == null){
+			return false;
+		}
+		return businessIndustry.equals(busIn);
+		
+
 	}
 
 }
