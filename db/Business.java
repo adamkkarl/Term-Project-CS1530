@@ -1,34 +1,5 @@
 public class Business {
 
-	public enum Industry
-	{
-	  INDUSTRIAL,
-	  HEALTH,
-	  SOFTWARE_TECH,
-	  ENTERTAINMENT,
-	  FOOD,
-	  FINANCE,
-	  MARKETING,
-	  AUTOMOTIVE,
-	  EDUCATION,
-	  LAW,
-	  HOTEL,
-	  TRAVEL,
-	  ENERGY,
-	  ENVIRONMENT,
-	  TRANSPORTATION,
-	  OTHER;
-	}
-
-	public enum Size
-	{
-	  ONE_TO_TEN,
-	  ELEVEN_TO_THIRTY,
-	  THIRTYONE_TO_ONEHUNDRED,
-	  ONEHUNDREDANDONE_TO_TWOHUNDRED,
-	  TWOHUNDREDPLUS;
-	}
-
 	private String businessEmail;
 	private String businessName;
 	private String description;
@@ -65,7 +36,7 @@ public class Business {
 	}
 	public Business(){
 
-		
+
 	}
 
 
@@ -80,7 +51,7 @@ public class Business {
 			return false;
 		}
 		return businessEmail.equals(email);
-		
+
 
 	}
 
@@ -96,7 +67,7 @@ public class Business {
 			return false;
 		}
 		return businessName.equals(name);
-		
+
 	}
 
 
@@ -108,7 +79,7 @@ public class Business {
 	public boolean setDescription(String desc) {
 		description = desc;
 		return description.equals(desc);
-		
+
 	}
 
 
@@ -131,7 +102,7 @@ public class Business {
 	public boolean setLogoPath(String logo) {
 		logoPath = logo;
 		return logoPath.equals(logo);
-		
+
 	}
 
 
@@ -143,7 +114,7 @@ public class Business {
 	public boolean setSize(Size s) {
 		size = s;
 		return size.equals(s);
-		
+
 	}
 
 
@@ -213,7 +184,7 @@ public class Business {
 			return false;
 		}
 		return businessIndustry.equals(busIn);
-		
+
 
 	}
 
