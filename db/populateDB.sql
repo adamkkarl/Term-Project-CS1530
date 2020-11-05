@@ -231,17 +231,38 @@ Tesla acquired SolarCity in 2016',
 null, '200+', 2003, 300000000, 1, 'www.tesla.com', 'Elon Musk', 'Software/Tech');
 
 INSERT INTO accounts
-VALUES ('tesla@contact.us', 'qwertyuiop2009', 'SeatGeek', 'Business', 1, null);
+VALUES ('seatgeek@contact.us', 'qwertyuiop2009', 'SeatGeek', 'Business', 1, null);
 INSERT INTO business_accounts
-VALUES ('tesla@contact.us', 'SeatGeek',
-'SeatGeek allows both mobile app and desktop users to browse events, view interactive color-coded seatmaps, complete purchases, and receive electronic or print tickets.\n
+VALUES ('seatgeek@contact.us', 'SeatGeek',
+'SeatGeek allows both mobile app and desktop users to browse events, view interactive color-coded seatmaps, complete purchases, and receive electronic or print tickets.
+Tickets are sorted using the company\'s DealScore algorithm which finds the combination of best available price and seat location for a particular event.\n
 SeatGeek was founded by Russell D\'Souza and Jack Groetzinger at DreamIT Ventures, an early stage startup accelerator program in Philadelphia and launched in September 
 2009 at TechCrunch50 where it was named by VentureBeat and CNET as one of the top 5 companies from the conference.[1] In May, the company had received $20k in seed 
 funding from DreamIT Ventures.\n
 On April 3, 2018, the Dallas Cowboys announced an agreement with SeatGeek to serve as the team\'s primary ticket office, replacing Ticketmaster. Darren Rovell reported 
 that the Cowboys received a 15% stake in the company.',
 'SeatGeek is a mobile-focused ticket platform that enables users to buy and sell tickets for live sports, concerts and theater events.',
-null, '200+', 2009, 10000000, 5, 'seatgeek.com', 'Clinton Smith', 'Software/Tech');
+null, '200+', 2009, 1000000, 5, 'seatgeek.com', 'Clinton Smith', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('duolingo@gmail.com', 'einszweidrei', 'Duolingo', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('duolingo@gmail.com', 'Duolingo',
+'The project was initiated at the end of 2009 in Pittsburgh by Carnegie Mellon University professor Luis von Ahn (creator of reCAPTCHA) and his graduate student Severin Hacker. 
+In 2013, Apple chose Duolingo as its iPhone App of the Year, the first time this honor had been awarded to an educational application.\n
+Duolingo has over 300 million registered users.',
+'Duolingo is Pittsburgh based company that focuses on language-learning through website and mobile apps.',
+null, '200+', 2009, 1000000, 6, 'www.duolingo.com', 'Luis von Ahn', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('instructure@gmail.com', 'canvas1234', 'Instructure', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('instructure@gmail.com', 'Instructure',
+'Canvas is a Web-based learning management system, and Canvas Network, a massive open online course (MOOC) platform. Instructure was founded in 2008 by two BYU graduate 
+students, Brian Whitmer and Devlin Daley, with initial funding from Mozy founder Josh Coates (currently the executive chairman of the Board) and Epic Ventures.\n
+In August 2020, 13 states across the United States confirmed a partnership with Instructure in order to adopt its Canvas LMS platform across the states’ educational institutions.',
+'Instructure is and educational technology company based in Utah. We are the publisher of Canvas.',
+null, '200+', 2009, 750000, 2, 'www.instructure.com', 'Dan Goldsmith', 'Software/Tech');
 
 
 
