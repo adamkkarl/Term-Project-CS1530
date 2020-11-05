@@ -70,18 +70,6 @@ featuring tacos, wings, quesadillas and appetizer specials on certain days of th
 null, '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
 
 INSERT INTO accounts
-VALUES ('admin@thirstyscholarpgh.com', 'pitt>psu', 'Thirsty Scholar', 'Business', 1, null);
-INSERT INTO business_accounts
-VALUES ('admin@thirstyscholarpgh.com', 'Thirsty Scholar',
-'Having opened in June 2017 in the former location of the Pitt Campus Bookstore, 
-Thirsty Scholar provides an enjoyable atmosphere – perfect for unwinding after work, going out with friends, 
-or simply grabbing that burger and wings you’ve been craving. \n\n
-Thirsty Scholar has incredible, mouth-watering food options,  with ‘Daily Grille Specials’ for only $6 – 
-featuring tacos, wings, quesadillas and appetizer specials on certain days of the week.',
-'Local pub within walking distance of Pitt\'s Cathedral of Learning.',
-null, '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
-
-INSERT INTO accounts
 VALUES ('business@starship.xyz', 'robotsrule', 'Starship Technologies', 'Business', 1, null);
 INSERT INTO business_accounts
 VALUES ('business@starship.xyz', 'Starship Technologies',
@@ -108,6 +96,31 @@ He sold his stake to investors in 2006 and launched the Piada concept around the
 We have 22 locations in Ohio, two in Indiana, one in Kentucky, three in Minnesota, eight in Texas, and two in Pennsylvania. ',
 'Piada Italian Street Food is a fast casual Italian cuisine restaurant chain with 38 locations in six states',
 null, '11-30', 2017, 12000, 15, 'mypiada.com', 'Chris Doodyr', 'Food');
+
+INSERT INTO accounts
+VALUES ('appleUS@gmail.com', 'stevejobs11', 'Apple', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('appleUS@gmail.com', 'Apple',
+'Apple was founded in April 1976 by American icons Steve Jobs and Steve Wozniak. \n
+The company\'s hardware products include the iPhone smartphone, the iPad tablet computer, the Mac personal computer, 
+the iPod portable media player, the Apple Watch smartwatch, the Apple TV digital media player, the AirPods wireless 
+earbuds and the HomePod smart speaker. Apple\'s software includes macOS, iOS, iPadOS, watchOS, and tvOS operating systems, 
+the iTunes media player, the Safari web browser, the Shazam music identifier and the iLife and iWork creativity and 
+productivity suites, as well as professional applications like Final Cut Pro, Logic Pro, and Xcode. Its online services 
+include the iTunes Store, the iOS App Store, Mac App Store, Apple Music, Apple TV+, iMessage, and iCloud. Other services 
+include Apple Store, Genius Bar, AppleCare, Apple Pay, Apple Pay Cash, and Apple Card. \n
+Apple is considered one of the Big 5 Tech companies.',
+'Apple is an American multinational technology that designs, develops and sells consumer electronics, computer software, and online services.',
+null, '200+', 1976, 1000000000, 1, 'www.apple.com', 'Tim Cook', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('HelloGames@gmail.com', 'dontoverhypegames', 'Hello Games', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('HelloGames@gmail.com', 'Hello Games',
+'Hello Games Ltd is a British video game company based in Guildford, England. The company was founded by Sean Murray, Grant Duncan, 
+Ryan Doyle and David Ream in February 2008 and has developed the Joe Danger series, No Man\'s Sky, and The Last Campfire.',
+'Hello Games is an indie video game studio best known for No Man\'s Sky (2017) and The Last Campfire (2020).',
+null, '11-30', 2008, 50000, 5, 'hellogames.org', 'Seam Murray', 'Software/Tech');
 
 
 
