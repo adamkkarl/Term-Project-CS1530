@@ -120,16 +120,64 @@ VALUES ('HelloGames@gmail.com', 'Hello Games',
 'Hello Games Ltd is a British video game company based in Guildford, England. The company was founded by Sean Murray, Grant Duncan, 
 Ryan Doyle and David Ream in February 2008 and has developed the Joe Danger series, No Man\'s Sky, and The Last Campfire.',
 'Hello Games is an indie video game studio best known for No Man\'s Sky (2017) and The Last Campfire (2020).',
-null, '11-30', 2008, 50000, 5, 'hellogames.org', 'Seam Murray', 'Software/Tech');
+null, '11-30', 2008, 50000, 5, 'hellogames.org', 'Sean Murray', 'Software/Tech');
+
+
+INSERT INTO accounts
+VALUES ('YachtClubGames@gmail.com', 'shovelknight1337', 'Yacht Club Games', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('YachtClubGames@gmail.com', 'Yacht Club Games',
+'Yacht Club Games, LLC is an American independent video game development studio and publisher founded in 2011 by former WayForward 
+Technologies director Sean Velasco. The company announced their first title, Shovel Knight, on March 14, 2013, and released it on 
+June 26, 2014, after a successful Kickstarter campaign. In 2016, the company announced that it would start publishing games 
+from other companies, and that their first published game would be Azure Striker Gunvolt: Striker Pack, a compilation containing 
+Azure Striker Gunvolt and Azure Striker Gunvolt 2. The second will be Cyber Shadow, a game developed by Mechanical Head Studios.\n
+Yacht Club Games currently has 17 employees.',
+'Yacht Club Games is an indie games studio based in California. We are best known for Shovel Knight, released in 2013 after a successful 
+Kickstarter campaign.',
+null, '11-30', 2011, 10000, 10, 'yachtclubgames.com', 'Sean Velasco', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('zynga@corporate', 'casualgamersLUL', 'Zynga', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('zynga@corporate', 'Zynga',
+'Our mission statement is to "connect the world through games."\n
+Zynga launched its best-known game, FarmVille, on Facebook in June 2009, reaching 10 million daily active users (DAU) within six weeks. 
+As of August 2017, Zynga had 30 million monthly active users. In 2017 its most successful games were Zynga Poker and Words with Friends 
+2, with about 57 million games being played at any given moment;',
+'Zynga is an American social game developer focusing primarily on mobile and social networking platforms. We are best known for Farmville and Words With Friends',
+null, '200+', 2007, 20000000, 1, 'www.zynga.com', 'Frank Gibeau', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('Nicalis@aol.com', 'VVVVVV', 'Nicalis', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('Nicalis@aol.com', 'Nicalis',
+'Nicalis, Inc. is an American video game developer and publisher based in Santa Ana, California. The company focuses primarily on indie games and 
+has developed and published both original games as well as ports of existing games. Nicalis was founded in 2007 by Tyrone Rodriguez, a former editor for IGN. \n
+In 2017, Nicalis announced that they had acquired SuperVillain Studios and Cowboy Color. \n
+Additionally, we have co-published VVVVVV, Castle, and NightSky, among others',
+'Nicalis is a California based indie video game publisher best known for Cave Story, Ikaruga, and The Binding of Isaac: Rebirth (and Afterbirth+)',
+null, '31-50', 2007, 100000, 5, 'www.zynga.com', 'Tyrone Rodriguez', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('ZachBarth@gmail.com', 'zachattack926', 'Zachtronics', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('ZachBarth@gmail.com', 'Zachtronics',
+'Zachtronics was founded by Zach Barth, who serves as its lead designer.\n
+Zach\'s initial games were generally free browser games offered on his website. One of these was Infiniminer, the block-building precursor game of Minecraft by Mojang.
+We have also published SpaceChem, Infinifactory, TIS-100, Shenzehen I/O, Opus Magnum, and Exapunks.',
+'Zachtronics LLC is an American independent video game development studio, best known for their engineering puzzle games and programming games.',
+null, '1-10', 2000, 50000, 10, 'www.zachtronics.com', 'Zach Barth', 'Software/Tech');
 
 
 
-# TODO TEMPLATE FOR COMPANY PROJECTS
+
+# TEMPLATE FOR COMPANY PROJECTS
+
 INSERT INTO company_project
 VALUES ('googleHQ@gmail.com', 'Wayme - The Google Self Driving Car', 'Waymo began as the Google Self-Driving Car Project in 2009. 
 Fully self-driving vehicles hold the promise to improve road safety and offer new mobility options to millions of people. 
 Whether they’re helping people run errands, commute to work, or drop off kids at school, fully self-driving vehicles hold enormous potential to transform people’s lives.');
-
 
 
 # TEMPLATE FOR INVESTOR ACCOUNTS
