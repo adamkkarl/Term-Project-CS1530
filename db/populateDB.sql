@@ -213,10 +213,35 @@ VALUES ('NvidiaBusiness@gmail.com', 'Nvidia',
 'On May 6, 2016, Nvidia unveiled the first GPUs of the GeForce 10 series, the GTX 1080 and 1070.\n
 In addition to GPU manufacturing, Nvidia provides parallel processing capabilities to researchers and scientists that allow them to efficiently run high-performance 
 applications. They are deployed in supercomputing sites around the world.\n\n
-In May 2020, Nvidia\'s top scientists developed an open-source ventilator in order to address the shortage resulting from the global coronavirus pandemic.',
-'Nvidia designs GPUs for gaming and professional markets.\n
+In May 2020, Nvidia\'s top scientists developed an open-source ventilator in order to address the shortage resulting from the global coronavirus pandemic.\n
 Second website: developer.nvidia.com',
+'Nvidia designs GPUs for gaming and professional markets.',
 null, '200+', 2006, 30000000, 6, 'nvidia.com', 'Jensen Huang', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('tesla@contact.us', 'ElonTusk420', 'Tesla', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('tesla@contact.us', 'Tesla',
+'Founded in July 2003 by engineers Martin Eberhard and Marc Tarpenning as Tesla Motors, the company’s name is a tribute to inventor and electrical engineer Nikola Tesla. 
+Eberhard said he wanted to build "a car manufacturer that is also a technology company", with its core technologies as "the battery, the computer software, and the proprietary motor".\n
+Elon Musk, who has served as CEO since 2008, said in 2006 that "the overarching purpose of Tesla Motors...is to help expedite the move from a mine-and-burn hydrocarbon economy 
+towards a solar electric economy" and it would build a wide range of electric vehicles, including "affordably priced family cars", and co-market SolarCity solar panels to do so. 
+Tesla acquired SolarCity in 2016',
+'Tesla (formerly Tesla Motors) is an American electric vehicle and clean energy company based in Palo Alto, California.',
+null, '200+', 2003, 300000000, 1, 'www.tesla.com', 'Elon Musk', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('tesla@contact.us', 'qwertyuiop2009', 'SeatGeek', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('tesla@contact.us', 'SeatGeek',
+'SeatGeek allows both mobile app and desktop users to browse events, view interactive color-coded seatmaps, complete purchases, and receive electronic or print tickets.\n
+SeatGeek was founded by Russell D\'Souza and Jack Groetzinger at DreamIT Ventures, an early stage startup accelerator program in Philadelphia and launched in September 
+2009 at TechCrunch50 where it was named by VentureBeat and CNET as one of the top 5 companies from the conference.[1] In May, the company had received $20k in seed 
+funding from DreamIT Ventures.\n
+On April 3, 2018, the Dallas Cowboys announced an agreement with SeatGeek to serve as the team\'s primary ticket office, replacing Ticketmaster. Darren Rovell reported 
+that the Cowboys received a 15% stake in the company.',
+'SeatGeek is a mobile-focused ticket platform that enables users to buy and sell tickets for live sports, concerts and theater events.',
+null, '200+', 2009, 10000000, 5, 'seatgeek.com', 'Clinton Smith', 'Software/Tech');
 
 
 
@@ -242,9 +267,10 @@ INSERT INTO accounts
 VALUES ('citizensbank@gmail.com', 'cbinvestor', 'Citizens Bank', 'Investor', 1, null);
 INSERT INTO investor_accounts
 VALUES ('citizensbank@gmail.com', 'Citizens Bank',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-1000, 100000, 'www.citizensbank.com', 'Bruce Van Saun');
+'Citizens Bank operates more than 1,200 branches and approximately 3,200 ATMs across 11 states under the Citizens Bank brand.\n
+Citizens Bank ranks 24th on the List of largest banks in the United States. ',
+'Citizens Bank is an American bank headquartered in Rhode Island, which operates in the east coast of the US',
+100000, 2500000000, 'www.citizensbank.com', 'Bruce Van Saun');
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
