@@ -91,12 +91,12 @@ public class Business {
 	}
 
 
-	public boolean setBusinessAbstract(String abstract) {
-		businessAbstract = abstract;
+	public boolean setBusinessAbstract(String abs) {
+		businessAbstract = abs;
 		if(businessAbstract == null){
 			return true;
 		}
-		return businessAbstract.equals(abstract);
+		return businessAbstract.equals(abs);
 	}
 
 
@@ -139,10 +139,8 @@ public class Business {
 		year = y;
 		if(year > 0){
 			return true;
-		}else{
-			return false;
 		}
-		return year.equals(y);
+		return year == y;
 	}
 
 
@@ -155,10 +153,8 @@ public class Business {
 		investmentAsk = ask;
 		if(investmentAsk > 0){
 			return true;
-		}else{
-			return false;
 		}
-		return investmentAsk.equals(ask);
+		return investmentAsk == ask;
 	}
 
 
@@ -169,12 +165,10 @@ public class Business {
 
 	public boolean setEquityOffer(int offer) {
 		equityOffer = offer;
-		if(equityOffer > 0){
-			return true;
-		}else{
+		if(equityOffer <= 0){
 			return false;
 		}
-		return equityOffer.equals(offer);
+		return equityOffer == offer;
 	}
 
 

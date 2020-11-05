@@ -4,17 +4,19 @@ public class Investor {
 private String investorEmail;
 private String investorName;
 private String description;
+private String investorAbstract;
 private int investmentRangeInit;
 private int investmentRangeEnd;
 private String website;
 private String ceoName;
 
-public Investor(String investorEmail, String investorName, String description, int investmentRangeInit,
+public Investor(String investorEmail, String investorName, String description, String abs, int investmentRangeInit,
 				int investmentRangeEnd, String website, String ceoName){
 
 	this.investorEmail = investorEmail;
 	this.investorName = investorName;
 	this.description = description;
+	this.investorAbstract = abs;
 	this.investmentRangeInit = investmentRangeInit;
 	this.investmentRangeEnd = investmentRangeEnd;
 	this.website = website;
@@ -23,7 +25,7 @@ public Investor(String investorEmail, String investorName, String description, i
 }
 public Investor(){
 
-	
+
 }
 
 public String getInvestorEmail() {
@@ -34,7 +36,7 @@ public boolean setInvestorEmail(String email) {
 	investorEmail = email;
 	if(investorEmail == null){
 		return false;
-	} 
+	}
 	return investorEmail.equals(email);
 }
 
@@ -68,12 +70,10 @@ public int getInvestmentRangeInit() {
 
 public boolean setInvestmentRangeInit(int init) {
 	investmentRangeInit = init;
-	if(investmentRangeInit > 0){
-		return true;
-	}else{
+	if(investmentRangeInit <= 0){
 		return false;
 	}
-	return investmentRangeInit.equals(init);
+	return investmentRangeInit == init;
 }
 
 public int getInvestmentRangeEnd() {
@@ -81,13 +81,11 @@ public int getInvestmentRangeEnd() {
 }
 
 public boolean setInvestmentRangeEnd(int end) {
-	investmentRangeEnd = end; 
-	if(investmentRangeEnd > investmentRangeInit){
-		return true;
-	}else{
+	investmentRangeEnd = end;
+	if(investmentRangeEnd <= investmentRangeInit){
 		return false;
 	}
-	return investmentRangeInit.equals(init);
+	return investmentRangeEnd == end;
 }
 
 public String getWebsite(){
@@ -103,7 +101,7 @@ public boolean setWebsite(String site){
 }
 
 public String getCeoName(){
-	return nameCEO;
+	return ceoName;
 }
 
 public boolean setCeoName(String name){
@@ -114,11 +112,14 @@ public boolean setCeoName(String name){
 	return ceoName.equals(name);
 }
 
+public String getInvestorAbstract(){
+	return investorAbstract;
+}
 
-
-
-
-
-
-
+public boolean setInvestorAbstract(String abs){
+	investorAbstract = abs;
+	if(investorAbstract == null)
+		return true;
+	return investorAbstract.equals(abs);
+}
 }

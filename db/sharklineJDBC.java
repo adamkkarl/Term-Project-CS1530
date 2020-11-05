@@ -341,8 +341,6 @@ public class sharklineJDBC
     try
     {
       boolean isAdded = false;
-      if(!account.checkVerified())
-        return isAdded;
 
       PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
@@ -355,13 +353,13 @@ public class sharklineJDBC
       st.setString(3, account.getDescription());
       st.setString(4, account.getBusinessAbstract());
       st.setString(5, account.getLogoPath());
-      st.setString(6, account.getSize());
-      st.setString(7, account.getYear());
-      st.setString(8, account.getInvestmentAsk());
-      st.setString(9, account.getEquityOffer());
+      setSize(st, account.getSize(), 6);
+      st.setInt(7, account.getYear());
+      st.setInt(8, account.getInvestmentAsk());
+      st.setInt(9, account.getEquityOffer());
       st.setString(10, account.getWebsite());
       st.setString(11, account.getCeoName());
-      st.setString(12, account.getBusinessIndustry());
+      setIndustry(st, account.getBusinessIndustry(), 12);
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -383,9 +381,7 @@ public class sharklineJDBC
       }
       return false;
     }
-}
-
-
+  }
 
   /**
   * addInvestorAccount adds an account which has been verified into the
@@ -432,7 +428,8 @@ public class sharklineJDBC
       return false;
     }
   }
-    /**
+
+  /**
   * updateInvestorAccount updates an account(with secondary attributes) which has been verified into the
   * investor_accounts table.
   *
@@ -446,10 +443,8 @@ public class sharklineJDBC
     try
     {
        boolean isAdded = false;
-      if(!account.checkVerified())
-        return isAdded;
        PreparedStatement st =
-      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
                             "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
 
 
@@ -457,8 +452,8 @@ public class sharklineJDBC
       st.setString(2, account.getInvestorName());
       st.setString(3, account.getInvestorDescription());
       st.setString(4, account.getInvestorAbstract());
-      st.setString(5, account.getInvestmentRangeInit());
-      st.setString(6, account.getInvestmentRangeEnd());
+      st.setInt(5, account.getInvestmentRangeInit());
+      st.setInt(6, account.getInvestmentRangeEnd());
       st.setString(7, account.getWebsite());
       st.setString(8, account.getCeoName());
 
@@ -484,6 +479,50 @@ public class sharklineJDBC
       return false;
     }
   }
+
+  /**
+  *
+  *
+  * WIP
+  *
+  */
+  /*
+  public static Business findBusinessAccount(String name)
+  {
+    try
+    {
+      Business returnAccount;
+      PreparedStatement st =
+      new PreparedStatement("SELECT * FROM business_accounts WHERE business_name = ?");
+
+      st.setString(1, name);
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+      returnAccount = new Business();
+
+      returnAccount.setBusinessEmail(result.getString("business_email"));
+      returnAccount.setBusinessName(result.getString("business_name"));
+      returnAccount.setBusinessAbstract(result.getString("business_abstract"));
+      returnAccount.setDescription(result.getString("business_description"));
+      returnAccount.setLogoPath(result.getString("logo"));
+      returnAccount.setSize();
+
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+  /*
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries
@@ -548,6 +587,46 @@ public class sharklineJDBC
           break;
         default:
           st.setString(pos, "Other");
+      }
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+    return st;
+  }
+  private static PreparedStatement setSize(PreparedStatement st, Size size, int pos)
+  {
+    try
+    {
+      switch(size)
+      {
+        case ONE_TO_TEN:
+          st.setString(pos, "1-10");
+          break;
+        case ELEVEN_TO_THIRTY:
+          st.setString(pos, "11-30");
+          break;
+        case THIRTYONE_TO_FIFTY:
+          st.setString(pos, "31-50");
+          break;
+        case FIFTYONE_TO_ONEHUNDRED:
+          st.setString(pos, "51-100");
+          break;
+        case ONEHUNDREDANDONE_TO_TWOHUNDRED:
+          st.setString(pos, "101-200");
+          break;
+        case TWOHUNDREDPLUS:
+          st.setString(pos, "200+");
+          break;
       }
     }
     catch(SQLException e1)
