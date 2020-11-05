@@ -169,6 +169,54 @@ We have also published SpaceChem, Infinifactory, TIS-100, Shenzehen I/O, Opus Ma
 'Zachtronics LLC is an American independent video game development studio, best known for their engineering puzzle games and programming games.',
 null, '1-10', 2000, 50000, 10, 'www.zachtronics.com', 'Zach Barth', 'Software/Tech');
 
+INSERT INTO accounts
+VALUES ('DevolverDigitalOfficial@gmail.com', 'DodgeRoll!', 'Devolver Digital', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('DevolverDigitalOfficial@gmail.com', 'Devolver Digital',
+'The company was founded in June 2009 by Mike Wilson, Harry Miller and Rick Stults, alongside business partners Nigel Lowrie and Graeme Struthers. 
+The three founders had previously operated Gathering of Developers and Gamecock Media Group, which published games on developer-friendly terms, 
+but due to the high cost associated with releasing retail games saw themselves acquired and dissolved by larger companies. To avoid this, Devolver 
+Digital instead turned to digital distribution channels.\n\n
+Devolver Digital started by publishing high-definition remakes of games in the Serious Sam series of games. After success with these remakes and 
+spin-off games based on the series, Devolver Digital began publishing games from other, smaller independent studios, one of the first being their 
+breakout title, Hotline Miami. As of January 2020, Devolver Digital employs 20 people. ',
+'Devolver Digital Inc. is an American video game publisher based in Austin, Texas, specializing in the publishing of indie games such as Enter the Gungeon.',
+null, '11-30', 2009, 50000, 4, 'devolverdigital.com', 'Fork Parker', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('thatgamecompany@contact.us', 'staycalmandrelax', 'thatgamecompany', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('thatgamecompany@contact.us', 'thatgamecompany',
+'thatgamecompany is an American independent video game development company founded by University of Southern California 
+students Jenova Chen and Kellee Santiago in 2006.\n
+We have released  Flow (2007), Flower (2009), Journey (2012), and Sky: Children of the Light(2019). Journey is commonly regarded as a masterpiece of emotional, atmospheric storytelling.\n
+Austin Wintory was nominated for a Grammy Award in 2013 for Best Score Soundtrack for Journey, the first such nomination for a full video game score',
+'thatgamecompany is the indie video game company behind Journey and Sky: Children of the Light.',
+null, '11-30', 2006, 30000, 5, 'thatgamecompany.com', 'Jenova Chen', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('IntelBusiness@gmail.com', 'amdsucks', 'Intel', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('IntelBusiness@gmail.com', 'Intel',
+'Intel supplies microprocessors for computer system manufacturers such as Apple, Lenovo, HP, and Dell. Intel also manufactures motherboard chipsets, network interface 
+controllers and integrated circuits, flash memory, graphics chips, embedded processors and other devices related to communications and computing.\n
+Intel Corporation was founded on July 18, 1968 by semiconductor pioneers Robert Noyce and Gordon Moore (of Moore\'s law), and is associated with the executive leadership 
+and vision of Andrew Grove. The company\'s name was conceived as portmanteau of the words integrated and electronics, with co-founder Noyce having been a key inventor 
+of the integrated circuit (the microchip).',
+'Intel is the world\'s highest valued semiconductor chip manufacturer and developed the x86 series of microprocessors.',
+null, '200+', 2006, 30000000, 6, '	intel.com', 'Bob Swan', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('NvidiaBusiness@gmail.com', 'GeForceRTX3070', 'Nvidia', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('NvidiaBusiness@gmail.com', 'Nvidia',
+'On May 6, 2016, Nvidia unveiled the first GPUs of the GeForce 10 series, the GTX 1080 and 1070.\n
+In addition to GPU manufacturing, Nvidia provides parallel processing capabilities to researchers and scientists that allow them to efficiently run high-performance 
+applications. They are deployed in supercomputing sites around the world.\n\n
+In May 2020, Nvidia\'s top scientists developed an open-source ventilator in order to address the shortage resulting from the global coronavirus pandemic.',
+'Nvidia designs GPUs for gaming and professional markets.\n
+Second website: developer.nvidia.com',
+null, '200+', 2006, 30000000, 6, 'nvidia.com', 'Jensen Huang', 'Software/Tech');
 
 
 
