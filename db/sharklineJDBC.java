@@ -628,6 +628,110 @@ public class sharklineJDBC
       return null;
     }
   }
+ /**
+  * addConnection adds both business and investor emails along with the date connection was made as an
+  * entry in the database
+  *
+  * @param userCon a UserConnection object
+  *             
+  * @return true object if a connection is added, null
+  *         if otherwise
+  *
+  */
+  public static boolean addConnection(UserConnection userCon)
+  {
+    try
+    {
+       boolean isAdded = false;
+       PreparedStatement st =
+       dbcon.prepareStatement("INSERT INTO account_connections VALUES" +
+                            "(?, ?, ?, ?)");
+
+
+      st.setString(1,userCon.getBusinessEmail());
+      st.setString(2,userCon.getInvestorEmail());
+      st.setString(4, userCon.getDate());
+      
+
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+      return isAdded;
+
+      }
+
+      catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
+
+  }
+
+   /**
+  * removeConnection retrieves the connection id with business and investor emails and 
+  *  removes the corresponding row in the database
+  *
+  * @param userCon a UserConnection object
+  *             
+  * @return true object if a connection is found and removed, null
+  *         if otherwise
+  *
+  */
+
+  public static boolean removeConnection(UserConnection userCon)
+  {
+    try
+    {
+       boolean isAdded = false;
+       PreparedStatement pr = dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? AND investor_email = ?");
+       pr.setString(1, userCon.getBusinessEmail());
+       pr.setString(2, userCon.getInvestorEmail());
+
+       ResultSet result = pr.executeQuery();
+       if(!(result.next()))
+        return false;
+
+       int connectionID = result.getInt("connection_id");
+       pr.close();
+
+       PreparedStatement st =
+       dbcon.prepareStatement("DELETE FROM account_connections WHERE connection_ID = ?");
+       st.setInt(1, connectionID);
+      
+
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+      return isAdded;
+
+      }
+
+      catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
+
+  }
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries
