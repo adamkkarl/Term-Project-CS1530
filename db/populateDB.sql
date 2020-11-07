@@ -43,7 +43,7 @@ VALUES ('amazonHQ@gmail.com', 'Amazon',
 In 2018, its two-day delivery service Amazon Prime surpassed 100 million subscribers worldwide. 
 \nAmazon is known for its disruption of well-established industries through technological innovation and mass scale.',
 'Amazon is an American multinational retail and technology company based in Seattle, Washington.',
-null, '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
+'https://imgur.com/a/G5jzAd1', '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
 
 INSERT INTO accounts
 VALUES ('PrimantiBrosPA@gmail.com', 'bezos420', 'Primanti Brothers', 'Business', 1, null);
