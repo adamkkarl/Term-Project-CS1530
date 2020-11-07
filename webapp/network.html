@@ -6,7 +6,7 @@
     <title>SharkLine</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
+    <script src="main.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -47,20 +47,7 @@
     <button class="btn" type="submit">Search</button>
 </form>
 <!-- TODO: need to add filter button and suggestions header -->
-<div class="suggestions">
-  <script>
-  $(funtion() {
-    var html = '';
-    var i;
-    for (i = 0; i < 4; i++) {
-      html = 
-      "<div id='items-list' class='row row-cols-1 row-cols-md-3'> <div class='card'> <div class='card center' style='width: 12rem;'> <img src='https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5f4ebe0c87612dab4f12a597%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D292%26cropX2%3D3684%26cropY1%3D592%26cropY2%3D3987' class='card-img-top' alt='...'> </img> <div class='card-body'> <h5 class='card-title'>Bill Gates</h5> <a href='#' class='btn btn-primary'>Connect</a> </div> </div> </div> </div>";
-    }
-    $('#result').html(html);
-  })
-  </script>
-  <div id='result'></div>
-</div>
+    <script>suggestion();</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>

@@ -36,6 +36,15 @@ form {
     color: blue;
 }
 
+.card{
+  width: 12rem;
+}
+
+.image{
+  height: 10rem;
+  padding-top: 10px;
+}
+
 .btn, .btn:hover, .btn:focus{
     border-radius: 25px;
     padding: 10px;
@@ -102,7 +111,8 @@ form {
   }
 
   .suggestions{
-    display: flex; 
+    display: flex;
+    margin-left: 12rem;
   }
 
   #items-list{
