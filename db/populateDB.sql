@@ -15,7 +15,7 @@ INSERT INTO business_accounts
 VALUES ('googleHQ@gmail.com', 'Google',
 'We are a tech company with a main focus on search engine optimization and cloud computing.',
 'Google is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, and cloud computing.',
-null, '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
+'https://imgur.com/a/C144UvW', '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('uberOfficial@gmail.com', '12341234', 'Uber', 'Business', 1, null);
@@ -23,7 +23,7 @@ INSERT INTO business_accounts
 VALUES ('uberOfficial@gmail.com', 'Uber',
 'We are a company that uses smartphone apps to connect riders with drivers.',
 'Tech + transportation company since 2009',
-null, '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
+'https://imgur.com/a/G3r3iyQ', '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
 
 INSERT INTO accounts
 VALUES ('walmart@gmail.com', 'qwertyuiop', 'Walmart', 'Business', 1, null);
@@ -33,7 +33,7 @@ VALUES ('walmart@gmail.com', 'Walmart',
 Walmart is the world\'s largest company by revenue, with $514.405 billion. 
 It is also the largest private employer in the world with 2.2 million employees.',
 'Walmart Inc. is an American multinational retail corporation.',
-null, '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
+'https://imgur.com/a/PiZhfIj', '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
 
 INSERT INTO accounts
 VALUES ('amazonHQ@gmail.com', 'bezos420', 'Amazon', 'Business', 1, null);
@@ -43,7 +43,7 @@ VALUES ('amazonHQ@gmail.com', 'Amazon',
 In 2018, its two-day delivery service Amazon Prime surpassed 100 million subscribers worldwide. 
 \nAmazon is known for its disruption of well-established industries through technological innovation and mass scale.',
 'Amazon is an American multinational retail and technology company based in Seattle, Washington.',
-null, '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
+'https://imgur.com/a/PbsOi9f', '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
 
 INSERT INTO accounts
 VALUES ('PrimantiBrosPA@gmail.com', 'bezos420', 'Primanti Brothers', 'Business', 1, null);
@@ -55,7 +55,7 @@ Primanti\'s was named as one of "America\'s Classic" restaurants. \n\n
 The chain is known for its signature sandwiches of grilled meat, melted cheese, an oil & vinegar-based coleslaw, 
 tomato slices, and French fries between two thick slices of Italian bread.',
 'Primanti Brother is a chain of sandwich shops in the eastern United States.',
-null, '200+', 1933, 10000, 5, 'www.primantibros.com', 'Michael Chu', 'Food');
+'https://imgur.com/a/RTwCjXY', '200+', 1933, 10000, 5, 'www.primantibros.com', 'Michael Chu', 'Food');
 
 INSERT INTO accounts
 VALUES ('admin@thirstyscholarpgh.com', 'pitt>psu', 'Thirsty Scholar', 'Business', 1, null);
@@ -67,7 +67,7 @@ or simply grabbing that burger and wings you’ve been craving. \n\n
 Thirsty Scholar has incredible, mouth-watering food options,  with ‘Daily Grille Specials’ for only $6 – 
 featuring tacos, wings, quesadillas and appetizer specials on certain days of the week.',
 'Local pub within walking distance of Pitt\'s Cathedral of Learning.',
-null, '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
+'https://imgur.com/a/WcSZlTx', '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
 
 INSERT INTO accounts
 VALUES ('business@starship.xyz', 'robotsrule', 'Starship Technologies', 'Business', 1, null);
@@ -84,7 +84,7 @@ convenient new services that improve everyday life. Our proven ability to harnes
 combined with our experience providing services to millions of people make this a reality.\n\n
 We surpassed 500,000 deliveries in August 2020.',
 'Autonomous delivery robotics company founded in 2014 by Skype co-founders, Ahti Heinla and Janus Friis',
-null, '11-30', 2014, 15000, 5, 'www.starship.xyz', 'Ahti Heinla', 'Software/Tech');
+'https://imgur.com/a/jdUR0gw', '11-30', 2014, 15000, 5, 'www.starship.xyz', 'Ahti Heinla', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('piadaHQ@gmail.com', 'piadaAdmin1234', 'Piada Italian Street Food', 'Business', 1, null);
@@ -95,7 +95,7 @@ He sold his stake to investors in 2006 and launched the Piada concept around the
 "wrap-like sandwich" known as a Piada or Piadina, a street food he sampled in northern Italy. \n\n
 We have 22 locations in Ohio, two in Indiana, one in Kentucky, three in Minnesota, eight in Texas, and two in Pennsylvania. ',
 'Piada Italian Street Food is a fast casual Italian cuisine restaurant chain with 38 locations in six states',
-null, '11-30', 2017, 12000, 15, 'mypiada.com', 'Chris Doodyr', 'Food');
+'https://imgur.com/a/jPPl5SS', '11-30', 2017, 12000, 15, 'mypiada.com', 'Chris Doodyr', 'Food');
 
 INSERT INTO accounts
 VALUES ('appleUS@gmail.com', 'stevejobs11', 'Apple', 'Business', 1, null);
@@ -111,7 +111,7 @@ include the iTunes Store, the iOS App Store, Mac App Store, Apple Music, Apple T
 include Apple Store, Genius Bar, AppleCare, Apple Pay, Apple Pay Cash, and Apple Card. \n
 Apple is considered one of the Big 5 Tech companies.',
 'Apple is an American multinational technology that designs, develops and sells consumer electronics, computer software, and online services.',
-null, '200+', 1976, 1000000000, 1, 'www.apple.com', 'Tim Cook', 'Software/Tech');
+'https://imgur.com/arfZaEN', '200+', 1976, 1000000000, 1, 'www.apple.com', 'Tim Cook', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('HelloGames@gmail.com', 'dontoverhypegames', 'Hello Games', 'Business', 1, null);
