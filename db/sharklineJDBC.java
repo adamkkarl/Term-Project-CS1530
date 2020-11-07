@@ -486,19 +486,19 @@ public class sharklineJDBC
   * WIP
   *
   */
-  /*
   public static Business findBusinessAccount(String name)
   {
     try
     {
       Business returnAccount;
       PreparedStatement st =
-      new PreparedStatement("SELECT * FROM business_accounts WHERE business_name = ?");
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE business_name = ?");
 
       st.setString(1, name);
       ResultSet result = st.executeQuery();
       if(!(result.next()))
         return null;
+
       returnAccount = new Business();
 
       returnAccount.setBusinessEmail(result.getString("business_email"));
@@ -506,8 +506,16 @@ public class sharklineJDBC
       returnAccount.setBusinessAbstract(result.getString("business_abstract"));
       returnAccount.setDescription(result.getString("business_description"));
       returnAccount.setLogoPath(result.getString("logo"));
-      returnAccount.setSize();
+      returnAccount.setSize(getSize(result.getString("size")));
+      returnAccount.setYear(result.getInt("year"));
+      returnAccount.setInvestmentAsk(result.getInt("investment_ask"));
+      returnAccount.setEquityOffer(result.getInt("equity_offer"));
+      returnAccount.setWebsite(result.getString("website"));
+      returnAccount.setCeoName(result.getString("name_CEO"));
+      returnAccount.setBusinessIndustry(getIndustry(result.getString("industry")));
 
+      st.close();
+      return returnAccount;
     }
     catch(SQLException e1)
     {
@@ -522,7 +530,6 @@ public class sharklineJDBC
       return null;
     }
   }
-  /*
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries
@@ -555,11 +562,17 @@ public class sharklineJDBC
         case FOOD:
           st.setString(pos, "Food");
           break;
+        case RETAIL:
+          st.setString(pos, "Retail");
+          break;
         case FINANCE:
           st.setString(pos, "Finance");
           break;
         case MARKETING:
           st.setString(pos, "Marketing");
+          break;
+        case SALES:
+          st.setString(pos, "Sales");
           break;
         case AUTOMOTIVE:
           st.setString(pos, "Automotive");
@@ -642,5 +655,69 @@ public class sharklineJDBC
       return null;
     }
     return st;
+  }
+  private static Size getSize(String size)
+  {
+    Size returnSize;
+
+    if(size.equals("1-10"))
+      returnSize = Size.ONE_TO_TEN;
+    else if(size.equals("11-30"))
+      returnSize = Size.ELEVEN_TO_THIRTY;
+    else if(size.equals("31-50"))
+      returnSize = Size.THIRTYONE_TO_FIFTY;
+    else if(size.equals("51-100"))
+      returnSize = Size.FIFTYONE_TO_ONEHUNDRED;
+    else if(size.equals("101-200"))
+      returnSize = Size.ONEHUNDREDANDONE_TO_TWOHUNDRED;
+    else if(size.equals("200+"))
+      returnSize = Size.TWOHUNDREDPLUS;
+    else
+      returnSize = null;
+
+    return returnSize;
+  }
+  private static Industry getIndustry(String industry)
+  {
+    Industry returnIndustry;
+
+    if(industry.equals("Industrial"))
+      returnIndustry = Industry.INDUSTRIAL;
+    else if(industry.equals("Health"))
+      returnIndustry = Industry.HEALTH;
+    else if(industry.equals("Software/Tech"))
+      returnIndustry = Industry.SOFTWARE_TECH;
+    else if(industry.equals("Entertainment"))
+      returnIndustry = Industry.ENTERTAINMENT;
+    else if(industry.equals("Food"))
+      returnIndustry = Industry.FOOD;
+    else if(industry.equals("Retail"))
+      returnIndustry = Industry.RETAIL;
+    else if(industry.equals("Finance"))
+      returnIndustry = Industry.FINANCE;
+    else if(industry.equals("Marketing"))
+      returnIndustry = Industry.MARKETING;
+    else if(industry.equals("Sales"))
+      returnIndustry = Industry.SALES;
+    else if(industry.equals("Automotive"))
+      returnIndustry = Industry.AUTOMOTIVE;
+    else if(industry.equals("Education"))
+      returnIndustry = Industry.EDUCATION;
+    else if(industry.equals("Law"))
+      returnIndustry = Industry.LAW;
+    else if(industry.equals("Hotel"))
+      returnIndustry = Industry.HOTEL;
+    else if(industry.equals("Travel"))
+      returnIndustry = Industry.TRAVEL;
+    else if(industry.equals("Energy"))
+      returnIndustry = Industry.ENERGY;
+    else if(industry.equals("Environment"))
+      returnIndustry = Industry.ENVIRONMENT;
+    else if(industry.equals("Transportation"))
+      returnIndustry = Industry.TRANSPORTATION;
+    else
+      returnIndustry = Industry.OTHER;
+
+    return returnIndustry;
   }
 }
