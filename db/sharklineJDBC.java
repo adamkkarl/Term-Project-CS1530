@@ -481,12 +481,16 @@ public class sharklineJDBC
   }
 
   /**
+  * findBusinessAccount searches by name of Business to locate
+  * entry in database
   *
-  *
-  * WIP
+  * @param name the string of the name associated to the business
+  *             account we are trying to find
+  * @return Business account object if an account is found, null
+  *         if otherwise
   *
   */
-  public static Business findBusinessAccount(String name)
+  public static Business findBusinessAccountByName(String name)
   {
     try
     {
@@ -516,6 +520,100 @@ public class sharklineJDBC
 
       st.close();
       return returnAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  public static Business findBusinessAccountByEmail(String email)
+  {
+    try
+    {
+      Business returnAccount;
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE business_email = ?");
+
+      st.setString(1, email);
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+
+      returnAccount = new Business();
+
+      returnAccount.setBusinessEmail(result.getString("business_email"));
+      returnAccount.setBusinessName(result.getString("business_name"));
+      returnAccount.setBusinessAbstract(result.getString("business_abstract"));
+      returnAccount.setDescription(result.getString("business_description"));
+      returnAccount.setLogoPath(result.getString("logo"));
+      returnAccount.setSize(getSize(result.getString("size")));
+      returnAccount.setYear(result.getInt("year"));
+      returnAccount.setInvestmentAsk(result.getInt("investment_ask"));
+      returnAccount.setEquityOffer(result.getInt("equity_offer"));
+      returnAccount.setWebsite(result.getString("website"));
+      returnAccount.setCeoName(result.getString("name_CEO"));
+      returnAccount.setBusinessIndustry(getIndustry(result.getString("industry")));
+
+      st.close();
+      return returnAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  public static ArrayList<Business> findBusinessesByIndustry(Industry industry)
+  {
+    try
+    {
+      ArrayList businesses = new ArrayList<Business>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE industry = ?");
+      setIndustry(st, industry, 1);
+
+      ResultSet result = st.executeQuery();
+      while(result.next())
+      {
+        Business account = new Business();
+
+        account.setBusinessEmail(result.getString("business_email"));
+        account.setBusinessName(result.getString("business_name"));
+        account.setBusinessAbstract(result.getString("business_abstract"));
+        account.setDescription(result.getString("business_description"));
+        account.setLogoPath(result.getString("logo"));
+        account.setSize(getSize(result.getString("size")));
+        account.setYear(result.getInt("year"));
+        account.setInvestmentAsk(result.getInt("investment_ask"));
+        account.setEquityOffer(result.getInt("equity_offer"));
+        account.setWebsite(result.getString("website"));
+        account.setCeoName(result.getString("name_CEO"));
+        account.setBusinessIndustry(getIndustry(result.getString("industry")));
+
+        businesses.add(account);
+      }
+      if(businesses.size() == 0)
+        return null;
+
+      st.close();
+      return businesses;
     }
     catch(SQLException e1)
     {
