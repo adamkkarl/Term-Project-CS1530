@@ -1,0 +1,138 @@
+main {
+    padding-top: 52px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+.input_section{
+    border-radius: 25px;
+    padding: 10px;
+    width: 350px;
+}
+
+.signin_button{
+    border-radius: 25px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    width: 350px;
+}
+
+#forgot {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    background: none;
+    color: blue;
+}
+
+.card{
+  width: 12rem;
+}
+
+.image{
+  height: 10rem;
+  padding-top: 10px;
+}
+
+.btn, .btn:hover, .btn:focus{
+    border-radius: 25px;
+    padding: 10px;
+    background-color: rgb(0, 89, 255);
+    color: white;
+    border: none;
+    width: 80px;
+    text-decoration: none;
+    outline: none;
+}
+
+.logo{
+    margin-right: 30px;
+}
+
+.search{
+    border-radius: 25px;
+    padding: 10px;
+    width: 400px;
+}
+
+.form-control{
+    min-width: 300px;
+    height: 50px;
+}
+
+.form-inline{
+    padding-top: 20px;
+}
+
+.sidenav {
+    width: 165px;
+    position: fixed;
+    z-index: 1;
+    top: 200px;
+    left: 20px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    /* color: rgb(0, 107, 182); */
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #064579;
+  }
+  
+  .main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 24px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .suggestions{
+    display: flex;
+    margin-left: 12rem;
+  }
+
+  #items-list{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 0.5;
+    justify-content: center;
+    padding:15px 25px 0 25px; 
+    margin: 0px;
+}
+
+.col{
+    max-width: 250px;
+    min-width: 10px;
+}
+
+.row{
+    display: flex;
+}
+
+.column{
+    flex: 33.33%;
+}
