@@ -15,7 +15,7 @@ INSERT INTO business_accounts
 VALUES ('googleHQ@gmail.com', 'Google',
 'We are a tech company with a main focus on search engine optimization and cloud computing.',
 'Google is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, and cloud computing.',
-null, '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
+'https://imgur.com/a/71k73HH', '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('uberOfficial@gmail.com', '12341234', 'Uber', 'Business', 1, null);
@@ -23,7 +23,7 @@ INSERT INTO business_accounts
 VALUES ('uberOfficial@gmail.com', 'Uber',
 'We are a company that uses smartphone apps to connect riders with drivers.',
 'Tech + transportation company since 2009',
-null, '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
+'https://imgur.com/a/T6DWG0F', '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
 
 INSERT INTO accounts
 VALUES ('walmart@gmail.com', 'qwertyuiop', 'Walmart', 'Business', 1, null);
@@ -33,7 +33,7 @@ VALUES ('walmart@gmail.com', 'Walmart',
 Walmart is the world\'s largest company by revenue, with $514.405 billion. 
 It is also the largest private employer in the world with 2.2 million employees.',
 'Walmart Inc. is an American multinational retail corporation.',
-null, '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
+'https://imgur.com/a/yvZWmlH', '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
 
 INSERT INTO accounts
 VALUES ('amazonHQ@gmail.com', 'bezos420', 'Amazon', 'Business', 1, null);
