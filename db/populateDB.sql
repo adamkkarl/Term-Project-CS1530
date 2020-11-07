@@ -264,6 +264,27 @@ In August 2020, 13 states across the United States confirmed a partnership with 
 'Instructure is and educational technology company based in Utah. We are the publisher of Canvas.',
 null, '200+', 2009, 750000, 2, 'www.instructure.com', 'Dan Goldsmith', 'Software/Tech');
 
+INSERT INTO accounts
+VALUES ('info@surveyauto.com', 'surveysurveysurvey', 'SurveyAuto', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('info@surveyauto.com', 'SurveyAuto',
+'Our machine learning platform utilizes Satellite Imagery and Hyperspectral imagery to identify houses, buildings, farm lands, water bodies and road structures. 
+Combining this data with publicly available maps, we are able to zoom-in to exact survey targets without the need for an expensive on-ground micro-census or a pre-survey. \n\n
+We are currently backed by the Bill and Melinda Gates Foundation',
+'SurveyAuto is an online survey platform to democratize data using machine learning algorithms to analyze the quality of results.',
+null, '11-30', 2018, 125000, 15, 'surveyauto.com', 'Umar Saif', 'Software/Tech');
+
+INSERT INTO accounts
+VALUES ('team@snackpass.co', 'snacksNsavings', 'Snackpass', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('team@snackpass.co',  'Snackpass',
+'Why wait in line when you can simply order your food on your phone and pick your order when you get to the restaurant? It is even better than the ‘drive-in’ 
+concept because you don’t have to wait for even a minute.\n
+Before Snackpass, the restaurant owners were worried about the customers not collecting their orders. With Snackpass, they don’t have to fear anything. 
+As soon as a customer places an order, the app automatically deducts money from his wallet. Simple, right?\n
+Snackpass is now used in multiple universities across the US and is backed by some of the bigshots of the tech industry.',
+'Snackpass is the best new way for customers to quickly order takeout meals at a discount.',
+null, '11-30', 2019, 115000, 10, 'www.snackpass.co', 'Kevin Tan', 'Software/Tech');
 
 
 # TEMPLATE FOR COMPANY PROJECTS
