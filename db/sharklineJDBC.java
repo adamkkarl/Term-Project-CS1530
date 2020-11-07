@@ -480,6 +480,110 @@ public class sharklineJDBC
     }
   }
 
+  public static Investor findInvestorAccountByName(String name)
+  {
+    try
+    {
+      Investor returnAccount;
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investor_name = ?");
+
+      st.setString(1, name);
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+
+      returnAccount = new Investor();
+
+      returnAccount.setInvestorEmail(result.getString("investor_email"));
+      returnAccount.setInvestorName(result.getString("investor_name"));
+      returnAccount.setInvestorDescription(result.getString("investor_description"));
+      returnAccount.setInvestorAbstract(result.getString("investor_abstract"));
+      returnAccount.setInvestmentRangeInit(result.getInt("investor_range_init"));
+      returnAccount.setInvestmentRangeEnd(result.getInt("investor_range_end"));
+      returnAccount.setWebsite(result.getString("website"));
+      returnAccount.setCeoName(result.getString("name_CEO"));
+
+      st.close();
+      return returnAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  public static Investor findInvestorAccountByEmail(String email)
+  {
+    try
+    {
+      Investor returnAccount;
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investor_email = ?");
+
+      st.setString(1, email);
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+
+      returnAccount = new Investor();
+
+      returnAccount.setInvestorEmail(result.getString("investor_email"));
+      returnAccount.setInvestorName(result.getString("investor_name"));
+      returnAccount.setInvestorDescription(result.getString("investor_description"));
+      returnAccount.setInvestorAbstract(result.getString("investor_abstract"));
+      returnAccount.setInvestmentRangeInit(result.getInt("investor_range_init"));
+      returnAccount.setInvestmentRangeEnd(result.getInt("investor_range_end"));
+      returnAccount.setWebsite(result.getString("website"));
+      returnAccount.setCeoName(result.getString("name_CEO"));
+
+      st.close();
+      return returnAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+  public static ArrayList<Investor> findInvestorsByRange(int init, int end)
+  {
+    try
+    {
+      ArrayList investors = new ArrayList<Investor>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE ");
+
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
   /**
   * findBusinessAccount searches by name of Business to locate
   * entry in database
