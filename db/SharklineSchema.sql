@@ -65,8 +65,8 @@ CREATE TABLE investor_accounts (
     investor_name VARCHAR(50) NOT NULL,
     investor_description VARCHAR(1000),
     investor_abstract VARCHAR(200),
-    investment_Range_Init INT UNSIGNED CHECK (investment_Range_Init >= 1000),
-    investment_Range_End INT UNSIGNED CHECK (investment_Range_End > 0),
+    investment_range_init INT UNSIGNED CHECK (investment_range_init >= 1000),
+    investment_range_end INT UNSIGNED CHECK (investment_range_end > 0),
     website VARCHAR(2083),
     name_CEO VARCHAR(50),
 
