@@ -42,9 +42,9 @@ public class sharklineJDBC
     try
     {
       // FILL THESE OUT !!!
-      username = "";
-      password = "";
-      String url = "";
+      username = "root";
+      password = "@Junotheroman6";
+      String url = "jdbc:mysql://localhost/sharklinedb";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
       dbcon = DriverManager.getConnection(url, username, password);
@@ -79,6 +79,12 @@ public class sharklineJDBC
       if(addAccount(addTest))
         System.out.println("test added!");
 
+      ArrayList<Investor> investors = findInvestorsByAsk(100000);
+      for(int i = 0; i < investors.size(); i++)
+      {
+        System.out.println(investors.get(i).getInvestorName());
+      }
+
     }
     catch(Exception e)
     {
@@ -97,8 +103,8 @@ public class sharklineJDBC
   * @param password the password for the account, must be matched
   *
   * @return -1 for account not found (password incorrect, email not found, etc)
-  *         0 for account found but not verified, 1 for investor account found,
-  *         2 for business account found
+  *         0 for account found but not verified, 1 for investor account found AND verified,
+  *         2 for business account found AND verified
   */
   public static int login(String email, String password)
   {
@@ -150,7 +156,7 @@ public class sharklineJDBC
     {
       boolean isAdded = false;
       PreparedStatement st = dbcon.prepareStatement("INSERT INTO accounts"
-      + "VALUES(?, ?, ?, ?, ?, ?)");
+      + " VALUES(?, ?, ?, ?, ?, ?)");
       st.setString(1, account.getEmail());
       st.setString(2, account.getPassword());
       st.setString(3, account.getName());
@@ -561,14 +567,42 @@ public class sharklineJDBC
       return null;
     }
   }
-  public static ArrayList<Investor> findInvestorsByRange(int init, int end)
+  public static ArrayList<Investor> findInvestorsByAsk(int ask)
   {
     try
     {
+      if(ask < 1000)
+        return null;
+
       ArrayList investors = new ArrayList<Investor>();
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE ");
+      dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investment_range_init <= ?"
+                           + " AND investment_range_end >= ?");
+      st.setInt(1, ask);
+      st.setInt(2, ask);
 
+      ResultSet result = st.executeQuery();
+
+      while(result.next())
+      {
+        Investor account = new Investor();
+
+        account.setInvestorEmail(result.getString("investor_email"));
+        account.setInvestorName(result.getString("investor_name"));
+        account.setInvestorDescription(result.getString("investor_description"));
+        account.setInvestorAbstract(result.getString("investor_abstract"));
+        account.setInvestmentRangeInit(result.getInt("investment_range_init"));
+        account.setInvestmentRangeEnd(result.getInt("investment_range_end"));
+        account.setWebsite(result.getString("website"));
+        account.setCeoName(result.getString("name_CEO"));
+
+        investors.add(account);
+      }
+      st.close();
+      if(investors.size() == 0)
+        return null;
+
+      return investors;
     }
     catch(SQLException e1)
     {
@@ -737,7 +771,7 @@ public class sharklineJDBC
   * entry in the database
   *
   * @param userCon a UserConnection object
-  *             
+  *
   * @return true object if a connection is added, null
   *         if otherwise
   *
@@ -749,13 +783,13 @@ public class sharklineJDBC
        boolean isAdded = false;
        PreparedStatement st =
        dbcon.prepareStatement("INSERT INTO account_connections VALUES" +
-                            "(?, ?, ?, ?)");
+                            " (?, ?, ?, ?)");
 
 
       st.setString(1,userCon.getBusinessEmail());
       st.setString(2,userCon.getInvestorEmail());
       st.setString(4, userCon.getDate());
-      
+
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -782,11 +816,11 @@ public class sharklineJDBC
   }
 
    /**
-  * removeConnection retrieves the connection id with business and investor emails and 
+  * removeConnection retrieves the connection id with business and investor emails and
   *  removes the corresponding row in the database
   *
   * @param userCon a UserConnection object
-  *             
+  *
   * @return true object if a connection is found and removed, null
   *         if otherwise
   *
@@ -811,7 +845,7 @@ public class sharklineJDBC
        PreparedStatement st =
        dbcon.prepareStatement("DELETE FROM account_connections WHERE connection_ID = ?");
        st.setInt(1, connectionID);
-      
+
 
       if(st.executeUpdate() >= 1)
         isAdded = true;

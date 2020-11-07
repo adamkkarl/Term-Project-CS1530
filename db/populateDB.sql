@@ -312,7 +312,7 @@ VALUES ('citizensbank@gmail.com', 'Citizens Bank',
 'Citizens Bank operates more than 1,200 branches and approximately 3,200 ATMs across 11 states under the Citizens Bank brand.\n
 Citizens Bank ranks 24th on the List of largest banks in the United States. ',
 'Citizens Bank is an American bank headquartered in Rhode Island, which operates in the east coast of the US',
-100000, 2500000000, 'www.citizensbank.com', 'Bruce Van Saun');
+100000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
