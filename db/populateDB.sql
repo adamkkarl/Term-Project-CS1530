@@ -323,9 +323,17 @@ VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE(
 
 # TEMPLATE FOR chatlog
 INSERT INTO chat_log
-VALUES (1, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, my name is John and I\'m interested in investing.');
+VALUES (1, DATE_SUB(NOW(), interval 6 hour), 1, 'Hi, my name is John and I\'m interested in investing.');
 INSERT INTO chat_log
-VALUES (1, NOW(), 0, 'Hi John, we can do 1% for $10,000,000.');
+VALUES (1, DATE_SUB(NOW(), interval 5 hour), 0, 'Hi John, we can do 1% for $10,000,000.');
+INSERT INTO chat_log
+VALUES (1, DATE_SUB(NOW(), interval 4 hour), 1, 'If you look at my profile you can see my assets. With that in mind can you do 1% for $7,500,000?');
+INSERT INTO chat_log
+VALUES (1, DATE_SUB(NOW(), interval 3 hour), 0, 'How about $8,250,000?');
+INSERT INTO chat_log
+VALUES (1, DATE_SUB(NOW(), interval 2 hour), 1, 'Okay I can do that');
+INSERT INTO chat_log
+VALUES (1, DATE_SUB(NOW(), interval 1 hour), 0, 'We\'ll get our legal team in touch with you to finalize the deal.');
 
 INSERT INTO chat_log
 VALUES (2, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, we are Citizen\'s Bank and we are interested in investing.');
