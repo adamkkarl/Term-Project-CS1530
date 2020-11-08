@@ -12,18 +12,19 @@ public class login extends HttpServlet
 	String h1;
 	String message;
 	String emailKey = "email";
-	String emailValue = "fraudulentEmail@hotmail.com";
+	String emailValue;
 	String passwordKey = "password";
-	String passwordValue = "password";
+	String passwordValue;
 	String jdbcUsername = "root";
 	String jdbcPassword = "grenadine@2020";
 	String jdbcURL = "jdbc:mysql://localhost/sharklinedb";
 	Connection jdbcConnection;
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		HttpSession session = request.getSession(true);
-					
+		emailValue = request.getParameter("email");
+		passwordValue = request.getParameter("password");
+		
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
@@ -62,11 +63,11 @@ public class login extends HttpServlet
 			"</head>\n" +
 			"<body>\n" +
 			"<h1>" + h1 + "</h1>" +
-			"<p>" + message + "</p>" +
+			"<p>" + message + "</p>\n" +
 			"</body>\n" +
 			"</html>";
 			
-			out.println(output);
+			out.print(output);
 	}
 	
 	/**
