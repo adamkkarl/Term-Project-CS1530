@@ -6,6 +6,7 @@ public class UserConnection
 private String businessEmail;
 private String investorEmail;
 private String date;
+private int connectionID;
 
 
 public UserConnection(){
@@ -28,6 +29,10 @@ public String getBusinessEmail()
 public String getInvestorEmail()
 {
 	return investorEmail;
+}
+public int getConnectionID()
+{
+	return connectionID;
 }
 
 public void setDate(){
@@ -52,6 +57,9 @@ public boolean setInvestorEmail(String email)
 	if(email == null)
 		return false;
 	return investorEmail.equals(email);
+}
+public void setConnectionID(int conID){
+	connectionID = conID;
 }
 
 

@@ -3,17 +3,26 @@ import java.time.LocalDateTime;
 
 public class ChatLog
 {
+	private String businessEmail;
+	private String investorEmail;
 	private String dateTime;
 	private int sender;
 	private String message;
-
-
+	
 
 	public ChatLog()
 	{
 
 	}
 
+	public String getBusinessEmail()
+	{
+		return businessEmail;
+	}
+	public String getInvestorEmail()
+	{
+		return investorEmail;
+	}
 	public String getDateTime()
 	{
 		return dateTime;
@@ -26,6 +35,23 @@ public class ChatLog
 	{
 		return message;
 	}
+	public boolean setBusinessEmail(String email)
+	{
+		businessEmail = email;
+		if(email == null)
+			return false;
+		return businessEmail.equals(email);
+
+	}
+	public boolean setInvestorEmail(String email)
+	{
+		investorEmail = email;
+		if(email == null)
+			return false;
+		return investorEmail.equals(email);
+
+	}
+
 	public void setDateTime()
 	{
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy'T'HH:mm:ss");

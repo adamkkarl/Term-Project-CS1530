@@ -830,7 +830,7 @@ public class sharklineJDBC
   {
     try
     {
-       boolean isAdded = false;
+       boolean isRemoved = false;
        PreparedStatement pr = dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? AND investor_email = ?");
        pr.setString(1, userCon.getBusinessEmail());
        pr.setString(2, userCon.getInvestorEmail());
@@ -841,6 +841,7 @@ public class sharklineJDBC
 
        int connectionID = result.getInt("connection_id");
        pr.close();
+       userCon.setConnectionID(connectionID);
 
        PreparedStatement st =
        dbcon.prepareStatement("DELETE FROM account_connections WHERE connection_ID = ?");
@@ -848,11 +849,11 @@ public class sharklineJDBC
 
 
       if(st.executeUpdate() >= 1)
-        isAdded = true;
+        isRemoved = true;
 
       dbcon.commit();
       st.close();
-      return isAdded;
+      return isRemoved;
 
       }
 
@@ -870,6 +871,61 @@ public class sharklineJDBC
     }
 
   }
+   /**
+  * storeMessageInfo adds connection id, date & time, determines sender, and stores message contents in db
+  *  
+  *
+  * @param chat a ChatLog object
+  *
+  * @return true if connection is found and information is stored, false
+  *         if otherwise
+  *
+  */
+  public static boolean storeMessageInfo(ChatLog chat)
+  {
+    try
+    {
+      boolean isStored = false;
+      PreparedStatement pr = dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? AND investor_email = ?");
+      pr.setString(1, chat.getBusinessEmail());
+      pr.setString(2, chat.getInvestorEmail());
+
+      ResultSet result = pr.executeQuery();
+       if(!(result.next()))
+        return false;
+
+       int connectionID = result.getInt("connection_id");
+       pr.close();
+
+      PreparedStatement st = dbcon.prepareStatement("INSERT INTO chat_log VALUES" +
+                                                      " (?,?,?,?");
+      st.setInt(1, connectionID);
+      st.setString(2, chat.getDateTime());
+      st.setInt(3, chat.getSender());
+      st.setString(4, chat.getMessage());
+
+      if(st.executeUpdate() >= 1)
+        isStored = true;
+
+      dbcon.commit();
+      st.close();
+      return isStored;
+
+
+    }catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
+  }
+
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries
