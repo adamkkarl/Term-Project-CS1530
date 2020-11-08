@@ -17,13 +17,13 @@
         <!-- if we want the form to sent the data from the form to 
             the server then write: action=(double quotes)/action_page.php(double quotes) -->
         <button onclick="displayHelp()">I Need Help</button>
-        <form>
-            <p id="usernamehelp">Please enter your username in the field. This is the name you use to log into the system.</p>
-            <label for="username">Username:</label>
-            <input type="text" class="input_section" id="username" placeholder="Username" name="username"><br><br>
+        <form method="post" action="login">
+            <p id="emailhelp">Please enter your email in the field. This is the email you use to log into the system.</p>
+            <label for="email">Email Address:</label>
+            <input required type="email" class="input_section" id="email" placeholder="Email" name="email"><br><br>
             <p id="passwordhelp">Please enter the password you used to create your account. If you forget what your password is, please click the "Forgot Password" button below.</p>
             <label for="passwrd">Password:</label>
-            <input type="password" class="input_section" id="password" placeholder="Password" name="password"><br><br>
+            <input required type="password" class="input_section" id="password" placeholder="Password" name="password"><br><br>
             <input type="submit" class="signin_button" value="Sign In">
         </form>
         <button id="forgot" class="center" onclick="sayhello">Forgot Password</button>
