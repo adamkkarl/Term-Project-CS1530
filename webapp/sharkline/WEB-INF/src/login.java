@@ -55,7 +55,9 @@ public class login extends HttpServlet
 		
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			
+
+			if ( loginValue == -1 || loginValue == 0)
+			{
 		String output =
 			"<!doctype html>\n" +
 			"<head>\n" +
@@ -68,6 +70,7 @@ public class login extends HttpServlet
 			"</html>";
 			
 			out.print(output);
+			}
 	}
 	
 	/**
