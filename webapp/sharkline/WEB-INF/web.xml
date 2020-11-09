@@ -16,6 +16,16 @@
 <url-pattern>/login</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>mynetwork</servlet-name>
+<servlet-class>mynetwork</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>mynetwork</servlet-name>
+<url-pattern>/mynetwork</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>

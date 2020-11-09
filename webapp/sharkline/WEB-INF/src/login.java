@@ -11,6 +11,7 @@ public class login extends HttpServlet
 	String title;
 	String h1;
 	String message;
+	String output;
 	String emailKey = "email";
 	String emailValue;
 	String passwordKey = "password";
@@ -20,6 +21,7 @@ public class login extends HttpServlet
 	String jdbcURL = "jdbc:mysql://localhost/sharklinedb";
 	Connection jdbcConnection;
 	
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		emailValue = request.getParameter("email");
@@ -58,7 +60,7 @@ public class login extends HttpServlet
 
 			if ( loginValue == -1 || loginValue == 0)
 			{
-		String output =
+		output =
 			"<!doctype html>\n" +
 			"<head>\n" +
 			"<title>" + title + "</title>\n" +
@@ -70,6 +72,15 @@ public class login extends HttpServlet
 			"</html>";
 			
 			out.print(output);
+			}
+			
+			if ( loginValue == 1 )
+			{
+				Investor account = findInvestorAccountByEmail(emailValue);
+				HttpSession session = request.getSession();
+				session.setAttribute("investor_account", account);
+				RequestDispatcher rd = request.getRequestDispatcher("mynetwork");
+				rd.forward(request, response);
 			}
 	}
 	
@@ -117,6 +128,47 @@ public class login extends HttpServlet
         e1 = e1.getNextException();
       }
       return -1;
+    }
+  }
+  
+  public Investor findInvestorAccountByEmail(String email)
+  {
+    try
+    {
+      Investor returnAccount;
+      PreparedStatement st =
+      jdbcConnection.prepareStatement("SELECT * FROM investor_accounts WHERE investor_email = ?");
+
+      st.setString(1, email);
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+
+      returnAccount = new Investor();
+
+      returnAccount.setInvestorEmail(result.getString("investor_email"));
+      returnAccount.setInvestorName(result.getString("investor_name"));
+      returnAccount.setInvestorDescription(result.getString("investor_description"));
+      returnAccount.setInvestorAbstract(result.getString("investor_abstract"));
+      returnAccount.setInvestmentRangeInit(result.getInt("investment_range_init"));
+      returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
+      returnAccount.setWebsite(result.getString("website"));
+      returnAccount.setCeoName(result.getString("name_CEO"));
+
+      st.close();
+      return returnAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
     }
   }
 }

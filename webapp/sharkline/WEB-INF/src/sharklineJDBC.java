@@ -43,7 +43,7 @@ public class sharklineJDBC
     {
       // FILL THESE OUT !!!
       username = "root";
-      password = "@Junotheroman6";
+      password = "grenadine@2020";
       String url = "jdbc:mysql://localhost/sharklinedb";
 
       Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
@@ -84,7 +84,8 @@ public class sharklineJDBC
       {
         System.out.println(investors.get(i).getInvestorName());
       }
-
+      Investor testInvestor = findInvestorAccountByEmail("johnsmith@gmail.com");
+      System.out.println(testInvestor.getInvestorName());
     }
     catch(Exception e)
     {
@@ -505,8 +506,8 @@ public class sharklineJDBC
       returnAccount.setInvestorName(result.getString("investor_name"));
       returnAccount.setInvestorDescription(result.getString("investor_description"));
       returnAccount.setInvestorAbstract(result.getString("investor_abstract"));
-      returnAccount.setInvestmentRangeInit(result.getInt("investor_range_init"));
-      returnAccount.setInvestmentRangeEnd(result.getInt("investor_range_end"));
+      returnAccount.setInvestmentRangeInit(result.getInt("investment_range_init"));
+      returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
       returnAccount.setWebsite(result.getString("website"));
       returnAccount.setCeoName(result.getString("name_CEO"));
 
@@ -546,8 +547,8 @@ public class sharklineJDBC
       returnAccount.setInvestorName(result.getString("investor_name"));
       returnAccount.setInvestorDescription(result.getString("investor_description"));
       returnAccount.setInvestorAbstract(result.getString("investor_abstract"));
-      returnAccount.setInvestmentRangeInit(result.getInt("investor_range_init"));
-      returnAccount.setInvestmentRangeEnd(result.getInt("investor_range_end"));
+      returnAccount.setInvestmentRangeInit(result.getInt("investment_range_init"));
+      returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
       returnAccount.setWebsite(result.getString("website"));
       returnAccount.setCeoName(result.getString("name_CEO"));
 
@@ -873,7 +874,7 @@ public class sharklineJDBC
   }
    /**
   * storeMessageInfo adds connection id, date & time, determines sender, and stores message contents in db
-  *  
+  *
   *
   * @param chat a ChatLog object
   *
