@@ -91,6 +91,13 @@ public class sharklineJDBC
     {
       e.printStackTrace();
     }
+	
+	ArrayList<Business> businesses = findBusinessesByIndustry(Industry.RETAIL);
+	
+	for (int i = 0; i < businesses.size(); i++ )
+	{
+		System.out.println(businesses.get(i).getBusinessName());
+	}
   }
   //Database Query Methods begin here
   //(try to follow comment style of findAccount method)
@@ -739,7 +746,7 @@ public class sharklineJDBC
         account.setDescription(result.getString("business_description"));
         account.setLogoPath(result.getString("logo"));
         account.setSize(getSize(result.getString("size")));
-        account.setYear(result.getInt("year"));
+        account.setYear(result.getInt("established"));
         account.setInvestmentAsk(result.getInt("investment_ask"));
         account.setEquityOffer(result.getInt("equity_offer"));
         account.setWebsite(result.getString("website"));
