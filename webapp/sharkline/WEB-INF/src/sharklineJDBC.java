@@ -91,6 +91,13 @@ public class sharklineJDBC
     {
       e.printStackTrace();
     }
+	
+	ArrayList<Business> businesses = findBusinessesByIndustry(Industry.RETAIL);
+	
+	for (int i = 0; i < businesses.size(); i++ )
+	{
+		System.out.println(businesses.get(i).getBusinessName());
+	}
   }
   //Database Query Methods begin here
   //(try to follow comment style of findAccount method)
