@@ -26,6 +26,16 @@
 <url-pattern>/mynetwork</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>logout</servlet-name>
+<servlet-class>logout</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>logout</servlet-name>
+<url-pattern>/logout</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>
