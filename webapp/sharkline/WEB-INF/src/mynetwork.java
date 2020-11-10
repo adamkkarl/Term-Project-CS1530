@@ -80,7 +80,7 @@ output =
         "<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">" +
           "<a class=\"dropdown-item\" href=\"#\">Edit Profile</a>" +
           "<a class=\"dropdown-item\" href=\"#\">Settings</a>" +
-          "<a class=\"dropdown-item\" href=\"#\">Logout</a>" +
+          "<a class=\"dropdown-item\" href=\"logout\">Logout</a>" +
         "</div>" +
       "</li>" +
     "</ul>" +
