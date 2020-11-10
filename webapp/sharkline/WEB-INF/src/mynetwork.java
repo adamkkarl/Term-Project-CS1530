@@ -99,10 +99,16 @@ if ( searchValue != null )
 	
 	if ( businesses.size() >= 1 )
 	{
+		output +=
+		"<h2>Search Results</h2>" +
+		"<table class=\"center\">" +
+		"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
 	for (int i = 0; i < businesses.size(); i++ )
 	{
-		output += "<p>" + businesses.get(i).getBusinessName() + "</p><br/>";
+		output +=
+		"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>" + businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath() + "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
 	}
+	output += "</table>";
 	}
 }
 
