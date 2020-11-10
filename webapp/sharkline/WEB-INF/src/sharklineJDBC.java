@@ -217,6 +217,9 @@ public class sharklineJDBC
   {
     try
     {
+      if(email.equals("") || email == null)
+        return null;
+      
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM accounts WHERE account_email= ?");
       st.setString(1, email);
@@ -657,7 +660,7 @@ public class sharklineJDBC
       returnAccount.setDescription(result.getString("business_description"));
       returnAccount.setLogoPath(result.getString("logo"));
       returnAccount.setSize(getSize(result.getString("size")));
-      returnAccount.setYear(result.getInt("year"));
+      returnAccount.setYear(result.getInt("established"));
       returnAccount.setInvestmentAsk(result.getInt("investment_ask"));
       returnAccount.setEquityOffer(result.getInt("equity_offer"));
       returnAccount.setWebsite(result.getString("website"));
@@ -702,7 +705,7 @@ public class sharklineJDBC
       returnAccount.setDescription(result.getString("business_description"));
       returnAccount.setLogoPath(result.getString("logo"));
       returnAccount.setSize(getSize(result.getString("size")));
-      returnAccount.setYear(result.getInt("year"));
+      returnAccount.setYear(result.getInt("established"));
       returnAccount.setInvestmentAsk(result.getInt("investment_ask"));
       returnAccount.setEquityOffer(result.getInt("equity_offer"));
       returnAccount.setWebsite(result.getString("website"));
@@ -784,6 +787,29 @@ public class sharklineJDBC
   *         if otherwise
   *
   */
+  public static ArrayList<UserConnection> findConnections(Type accountType, String email)
+  {
+    ArrayList connections = new ArrayList<UserConnection>();
+    PreparedStatement st;
+    if(accountType == Type.BUSINESS)
+    {
+      st = dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ?");
+      st.setString(1, email);
+    }
+    else
+    {
+      st.dbcon.prepareStatement("SELECT * FROM account_connections WHERE investor_email = ?");
+      st.setString(1, email);
+    }
+    ResultSet result = st.executeQuery();
+
+    while(result.next())
+    {
+      UserConnection connect = new UserConnection();
+
+
+    }
+  }
   public static boolean addConnection(UserConnection userCon)
   {
     try
