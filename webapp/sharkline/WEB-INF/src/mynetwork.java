@@ -93,17 +93,20 @@ output =
 
 if ( searchValue != null )
 {
-	searchValue = searchValue.toUpperCase();
-	Industry industry = Industry.valueOf(searchValue);
+	Industry industry = getIndustry(searchValue);
 	ArrayList<Business> businesses = findBusinessesByIndustry(industry);
 	
+	if ( businesses == null )
+	{
+		output += "<h2>0 Search Results Found</h2>";
+	}
 	if ( businesses.size() >= 1 )
 	{
 		output +=
 		"<h2>Search Results</h2>" +
 		"<table class=\"center\">" +
 		"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
-	for (int i = 0; i < businesses.size(); i++ )
+	for ( int i = 0; i < businesses.size(); i++ )
 	{
 		output +=
 		"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>" + businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath() + "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
@@ -296,7 +299,7 @@ public ArrayList<Business> findBusinessesByIndustry(Industry industry)
   private static Size getSize(String size)
   {
     Size returnSize;
-
+if ( size == null ) { return null; }
     if(size.equals("1-10"))
       returnSize = Size.ONE_TO_TEN;
     else if(size.equals("11-30"))
