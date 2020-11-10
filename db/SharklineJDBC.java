@@ -37,13 +37,20 @@ public class SharklineJDBC
 
   public SharklineJDBC()
   {
-    String username = "root";
-    String password = "root";
-    String url = "jdbc:mysql://localhost/sharklinedb";
+    try
+    {
+      String username = "root";
+      String password = "root";
+      String url = "jdbc:mysql://localhost/sharklinedb";
 
-    Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-    dbcon = DriverManager.getConnection(url, username, password);
-    dbcon.setAutoCommit(false);
+      Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+      dbcon = DriverManager.getConnection(url, username, password);
+      dbcon.setAutoCommit(false);
+    }
+    catch(Exception e)
+    {
+      e.printStackTrace();
+    }
   }
 
   //Database Query Methods begin here
