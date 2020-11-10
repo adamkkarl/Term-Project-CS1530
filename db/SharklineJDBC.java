@@ -28,70 +28,24 @@ import java.time.LocalDateTime;
 *
 * If you have any questions, just ask me (Quinn) in the discord or something.
 **/
-public class sharklineJDBC
+public class SharklineJDBC
 {
   //You'll need to fill this out for your own server MySQL for it
   //To work on your machine
-  private static String username;
-  private static String password;
-  private static String url;
-  private static Connection dbcon;
 
-  public static void main(String[] args)
+  private Connection dbcon;
+
+  public SharklineJDBC()
   {
-    try
-    {
-      // FILL THESE OUT !!!
-      username = "root";
-      password = "@Junotheroman6";
-      String url = "jdbc:mysql://localhost/sharklinedb";
+    String username = "root";
+    String password = "root";
+    String url = "jdbc:mysql://localhost/sharklinedb";
 
-      Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-      dbcon = DriverManager.getConnection(url, username, password);
-      dbcon.setAutoCommit(false);
-
-      //Test your written JDBC methods bellow here.
-      //Make sure to add some test data in the database or the ResultSets won't
-      //have anything in them!
-      Account test = findAccount("fraudulentEmail@hotmail.com");
-      System.out.println(test.getName());
-      if(findAccount("gaghksagkhj") == null)
-        System.out.println("Invalid email!");
-      if(findAccount("DROP TABLE") == null)
-        System.out.println("SQL Error!");
-
-      if(verifyAccount("Microsoft@ms.com"))
-        System.out.println("Microsoft verified!");
-      else
-        System.out.println("Account already verified or no account found!");
-
-      if(addBusinessAccount(findAccount("Microsoft@ms.com"), Industry.SOFTWARE_TECH))
-        System.out.println("Microsoft added to business accounts!");
-      else
-        System.out.println("Account not added!");
-      if(login("googleHQ@gmail.com", "myPassword") == 2)
-        System.out.println("Google account login!");
-      else
-        System.out.println("Google account login fail!");
-
-      Account addTest = new Account("fakeemail@fake.com", "fake",
-                              "fakepw", false, "fake/fake;", Type.BUSINESS);
-      if(addAccount(addTest))
-        System.out.println("test added!");
-
-      ArrayList<Investor> investors = findInvestorsByAsk(100000);
-      for(int i = 0; i < investors.size(); i++)
-      {
-        System.out.println(investors.get(i).getInvestorName());
-      }
-      Investor testInvestor = findInvestorAccountByEmail("johnsmith@gmail.com");
-      System.out.println(testInvestor.getInvestorName());
-    }
-    catch(Exception e)
-    {
-      e.printStackTrace();
-    }
+    Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+    dbcon = DriverManager.getConnection(url, username, password);
+    dbcon.setAutoCommit(false);
   }
+
   //Database Query Methods begin here
   //(try to follow comment style of findAccount method)
   //----------------------------------------------------------------------------
@@ -107,7 +61,7 @@ public class sharklineJDBC
   *         0 for account found but not verified, 1 for investor account found AND verified,
   *         2 for business account found AND verified
   */
-  public static int login(String email, String password)
+  public int login(String email, String password)
   {
     try
     {
@@ -151,7 +105,7 @@ public class sharklineJDBC
   * @return true if sucessfully added, false if otherwise
   *
   */
-  public static boolean addAccount(Account account)
+  public boolean addAccount(Account account)
   {
     try
     {
@@ -206,7 +160,7 @@ public class sharklineJDBC
   *              EXCEPT PASSWORD, returns null otherwise
   *
   */
-  public static Account findAccount(String email)
+  public Account findAccount(String email)
   {
     try
     {
@@ -256,7 +210,7 @@ public class sharklineJDBC
   * @return true if update successful, false if otherwise
   *
   */
-  public static boolean verifyAccount(String email)
+  public boolean verifyAccount(String email)
   {
     try
     {
@@ -297,7 +251,7 @@ public class sharklineJDBC
   * @return true if account is verified, the email and name are unique, and
   *         argument given for industry is valid, false if otherwise
   */
-  public static boolean addBusinessAccount(Account account, Industry industry)
+  public boolean addBusinessAccount(Account account, Industry industry)
   {
     try
     {
@@ -343,7 +297,7 @@ public class sharklineJDBC
   * @return true if account is verified, the email and name are unique, and
   *        false if otherwise
   */
-  public static boolean updateBusinessAccount(Business account)
+  public boolean updateBusinessAccount(Business account)
   {
     try
     {
@@ -400,7 +354,7 @@ public class sharklineJDBC
   * @return true if account is verified, the email and name are unique, and
   *         argument given for industry is valid, false if otherwise
 */
-  public static boolean addInvestorAccount(Account account)
+  public boolean addInvestorAccount(Account account)
   {
     try
     {
@@ -445,7 +399,7 @@ public class sharklineJDBC
   * @return true if account is verified, the email and name are unique, and
   *        false if otherwise
   */
-  public static boolean updateInvestorAccount(Investor account)
+  public boolean updateInvestorAccount(Investor account)
   {
     try
     {
@@ -487,7 +441,7 @@ public class sharklineJDBC
     }
   }
 
-  public static Investor findInvestorAccountByName(String name)
+  public Investor findInvestorAccountByName(String name)
   {
     try
     {
@@ -528,7 +482,7 @@ public class sharklineJDBC
     }
   }
 
-  public static Investor findInvestorAccountByEmail(String email)
+  public Investor findInvestorAccountByEmail(String email)
   {
     try
     {
@@ -568,7 +522,7 @@ public class sharklineJDBC
       return null;
     }
   }
-  public static ArrayList<Investor> findInvestorsByAsk(int ask)
+  public ArrayList<Investor> findInvestorsByAsk(int ask)
   {
     try
     {
@@ -629,7 +583,7 @@ public class sharklineJDBC
   *         if otherwise
   *
   */
-  public static Business findBusinessAccountByName(String name)
+  public Business findBusinessAccountByName(String name)
   {
     try
     {
@@ -650,7 +604,7 @@ public class sharklineJDBC
       returnAccount.setDescription(result.getString("business_description"));
       returnAccount.setLogoPath(result.getString("logo"));
       returnAccount.setSize(getSize(result.getString("size")));
-      returnAccount.setYear(result.getInt("year"));
+      returnAccount.setYear(result.getInt("established"));
       returnAccount.setInvestmentAsk(result.getInt("investment_ask"));
       returnAccount.setEquityOffer(result.getInt("equity_offer"));
       returnAccount.setWebsite(result.getString("website"));
@@ -674,7 +628,7 @@ public class sharklineJDBC
     }
   }
 
-  public static Business findBusinessAccountByEmail(String email)
+  public Business findBusinessAccountByEmail(String email)
   {
     try
     {
@@ -695,7 +649,7 @@ public class sharklineJDBC
       returnAccount.setDescription(result.getString("business_description"));
       returnAccount.setLogoPath(result.getString("logo"));
       returnAccount.setSize(getSize(result.getString("size")));
-      returnAccount.setYear(result.getInt("year"));
+      returnAccount.setYear(result.getInt("established"));
       returnAccount.setInvestmentAsk(result.getInt("investment_ask"));
       returnAccount.setEquityOffer(result.getInt("equity_offer"));
       returnAccount.setWebsite(result.getString("website"));
@@ -719,14 +673,14 @@ public class sharklineJDBC
     }
   }
 
-  public static ArrayList<Business> findBusinessesByIndustry(Industry industry)
+  public ArrayList<Business> findBusinessesByIndustry(Industry industry)
   {
     try
     {
       ArrayList businesses = new ArrayList<Business>();
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM business_accounts WHERE industry = ?");
-      setIndustry(st, industry, 1);
+      st = setIndustry(st, industry, 1);
 
       ResultSet result = st.executeQuery();
       while(result.next())
@@ -739,7 +693,7 @@ public class sharklineJDBC
         account.setDescription(result.getString("business_description"));
         account.setLogoPath(result.getString("logo"));
         account.setSize(getSize(result.getString("size")));
-        account.setYear(result.getInt("year"));
+        account.setYear(result.getInt("established"));
         account.setInvestmentAsk(result.getInt("investment_ask"));
         account.setEquityOffer(result.getInt("equity_offer"));
         account.setWebsite(result.getString("website"));
@@ -777,7 +731,7 @@ public class sharklineJDBC
   *         if otherwise
   *
   */
-  public static boolean addConnection(UserConnection userCon)
+  public boolean addConnection(UserConnection userCon)
   {
     try
     {
@@ -827,7 +781,7 @@ public class sharklineJDBC
   *
   */
 
-  public static boolean removeConnection(UserConnection userCon)
+  public boolean removeConnection(UserConnection userCon)
   {
     try
     {
@@ -882,7 +836,7 @@ public class sharklineJDBC
   *         if otherwise
   *
   */
-  public static boolean storeMessageInfo(ChatLog chat)
+  public boolean storeMessageInfo(ChatLog chat)
   {
     try
     {
@@ -938,7 +892,7 @@ public class sharklineJDBC
   * @return the PreparedStatement st with industry set at position pos, null
   *         if otherwise
   */
-  private static PreparedStatement setIndustry(PreparedStatement st, Industry industry, int pos)
+  private PreparedStatement setIndustry(PreparedStatement st, Industry industry, int pos)
   {
     try
     {
@@ -1013,7 +967,7 @@ public class sharklineJDBC
     }
     return st;
   }
-  private static PreparedStatement setSize(PreparedStatement st, Size size, int pos)
+  private PreparedStatement setSize(PreparedStatement st, Size size, int pos)
   {
     try
     {
@@ -1053,9 +1007,11 @@ public class sharklineJDBC
     }
     return st;
   }
-  private static Size getSize(String size)
+  private Size getSize(String size)
   {
     Size returnSize;
+    if(size == null)
+      return null;
 
     if(size.equals("1-10"))
       returnSize = Size.ONE_TO_TEN;
@@ -1074,7 +1030,7 @@ public class sharklineJDBC
 
     return returnSize;
   }
-  private static Industry getIndustry(String industry)
+  private Industry getIndustry(String industry)
   {
     Industry returnIndustry;
 
