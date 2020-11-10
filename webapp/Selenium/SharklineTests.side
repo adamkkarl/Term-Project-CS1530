@@ -1,0 +1,411 @@
+{
+  "id": "b6655666-d56a-49c3-a596-32b4e747fd11",
+  "version": "2.0",
+  "name": "Sharkline",
+  "url": "http://localhost:8080/sharkline/",
+  "tests": [{
+    "id": "3fd65c8e-816d-4949-88c8-3b4004c475f5",
+    "name": "LOGIN-CONTAINS-EMAIL",
+    "commands": [{
+      "id": "0047027c-8b55-4a7a-8a87-da81615f706f",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/sharkline/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37695519-69d0-409a-82b9-2c020d85ebde",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=email",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "580dc1e1-43f9-44c8-b935-17f6757bfabd",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='login']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": "Please enter your email in the field. This is the email you use to log into the system.\\nEmail Address:\\n\\nPlease enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.\\nPassword:"
+    }]
+  }, {
+    "id": "7a712294-88ca-43ae-9324-7b2d25b35d21",
+    "name": "LOGIN-CONTAINS-PASSWORD",
+    "commands": [{
+      "id": "f91c220f-a8aa-451c-a879-5d45d53f28bf",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/sharkline/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e3e1d090-6dac-4b0e-a589-f7a6032a48eb",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='login']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": "Please enter your email in the field. This is the email you use to log into the system.\\nEmail Address:\\n\\nPlease enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.\\nPassword:"
+    }, {
+      "id": "13439538-94d3-4388-9d56-452e2abac511",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "b2100e9e-a5f9-4e5f-bac2-798a387f795d",
+    "name": "LOGIN-SUCCESSFUL-INVESTOR",
+    "commands": [{
+      "id": "0dbb7a7e-219c-4761-84d4-b33fa1960316",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/sharkline/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8fc521b7-8dad-4125-a844-dec46d2c8a34",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "johnsmith@gmail.com"
+    }, {
+      "id": "eeddd54d-635c-4336-bdab-1cd6d3bcfda2",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "yankees1990"
+    }, {
+      "id": "7ab9a388-aacd-45b3-8df1-b5465b396dd1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.signin_button",
+      "targets": [
+        ["css=.signin_button", "css:finder"],
+        ["xpath=//input[@value='Sign In']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1ac11207-97b3-4150-b35b-1cfbfd6252bf",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "SharkLine - John Smith",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "94b0d808-c937-4bab-815e-f5306d284a23",
+    "name": "LOGIN-FORGOT-PASSWORD-PRESENT",
+    "commands": [{
+      "id": "0e18efce-eab4-420b-9b74-56b79e845f33",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/sharkline/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6c2254d1-1349-4547-b379-bfe13c7ffe3a",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=forgot",
+      "targets": [
+        ["id=forgot", "id"],
+        ["css=#forgot", "css:finder"],
+        ["xpath=//button[@id='forgot']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Forgot Password')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c8972afa-589b-4435-89d8-8e74f1f5843e",
+      "comment": "",
+      "command": "click",
+      "target": "id=forgot",
+      "targets": [
+        ["id=forgot", "id"],
+        ["css=#forgot", "css:finder"],
+        ["xpath=//button[@id='forgot']", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Forgot Password')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f8908fa8-186c-49cc-adcf-c60c0d3d27d8",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Forgot password?",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "950851df-b6c3-4de3-9747-fe4f7fe55cee",
+    "name": "LOGIN-SUCCESFUL-BUSINESS",
+    "commands": [{
+      "id": "bf8bb54f-a33c-4641-b0c2-11251416bd55",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/sharkline/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "caa28bdc-8d40-4c9b-a2e2-b3b402bd9769",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "amazonHQ@gmail.com"
+    }, {
+      "id": "e06fdee0-d429-406d-af91-a037274b5da3",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "bezos420"
+    }, {
+      "id": "794b96e4-12fb-4152-98a0-f9bd4db4d9f5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.signin_button",
+      "targets": [
+        ["css=.signin_button", "css:finder"],
+        ["xpath=//input[@value='Sign In']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd6d0368-eccb-4a41-9306-a250bc42cf21",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "SharkLine - Jeff Bezos",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a0ee9122-c84f-4064-8084-53e9c586d8ac",
+    "name": "LOGIN-CONTAINS-HELP-BUTTON",
+    "commands": [{
+      "id": "a48579e8-a6e7-4429-af31-f22b694e96e3",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/sharkline/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d011776-8da3-4383-9d8b-12525aa52b37",
+      "comment": "",
+      "command": "click",
+      "target": "id=emailhelp",
+      "targets": [
+        ["id=emailhelp", "id"],
+        ["css=#emailhelp", "css:finder"],
+        ["xpath=//p[@id='emailhelp']", "xpath:attributes"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter your email in the field. This is the email you use to log into the system.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e5c8037c-c195-4b91-a050-d7d4c72c6580",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "id=emailhelp",
+      "targets": [
+        ["id=emailhelp", "id"],
+        ["css=#emailhelp", "css:finder"],
+        ["xpath=//p[@id='emailhelp']", "xpath:attributes"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter your email in the field. This is the email you use to log into the system.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "37fd8fc8-86bd-448e-9fa2-324ae95e8e7d",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordhelp",
+      "targets": [
+        ["id=passwordhelp", "id"],
+        ["css=#passwordhelp", "css:finder"],
+        ["xpath=//p[@id='passwordhelp']", "xpath:attributes"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9316fe9-2f89-43ef-bee4-0e10cd1a7ad6",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordhelp",
+      "targets": [
+        ["id=passwordhelp", "id"],
+        ["css=#passwordhelp", "css:finder"],
+        ["xpath=//p[@id='passwordhelp']", "xpath:attributes"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d4c440c-9bbc-47b4-b8b2-7e1195031a5a",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordhelp",
+      "targets": [
+        ["id=passwordhelp", "id"],
+        ["css=#passwordhelp", "css:finder"],
+        ["xpath=//p[@id='passwordhelp']", "xpath:attributes"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8de2699b-56aa-420d-98cd-5a38e62d35ad",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "id=passwordhelp",
+      "targets": [
+        ["id=passwordhelp", "id"],
+        ["css=#passwordhelp", "css:finder"],
+        ["xpath=//p[@id='passwordhelp']", "xpath:attributes"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e18ed9e0-0fdb-42c4-98cd-647df4ab3ce6",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='login']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "69a95654-8894-4156-bb3d-01c204ba7f14",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=//button[@onclick='displayHelp()']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'I Need Help')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a1c9e70-bf77-49d4-8549-3fb3f5721039",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=//button[@onclick='displayHelp()']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'I Need Help')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "19470a74-3339-4a47-a1d1-3f36b69d24a3",
+      "comment": "",
+      "command": "click",
+      "target": "id=emailhelp",
+      "targets": [
+        ["id=emailhelp", "id"],
+        ["css=#emailhelp", "css:finder"],
+        ["xpath=//p[@id='emailhelp']", "xpath:attributes"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter your email in the field. This is the email you use to log into the system.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8232fc55-6c16-4163-9ec4-77fc48fa0a8f",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=emailhelp",
+      "targets": [
+        ["id=emailhelp", "id"],
+        ["css=#emailhelp", "css:finder"],
+        ["xpath=//p[@id='emailhelp']", "xpath:attributes"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter your email in the field. This is the email you use to log into the system.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "076616e2-ba31-430e-9205-0f6af7bbba34",
+      "comment": "",
+      "command": "click",
+      "target": "id=passwordhelp",
+      "targets": [
+        ["id=passwordhelp", "id"],
+        ["css=#passwordhelp", "css:finder"],
+        ["xpath=//p[@id='passwordhelp']", "xpath:attributes"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "61d1a2f7-333c-4448-9d2d-38aee0509ae3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=passwordhelp",
+      "targets": [
+        ["id=passwordhelp", "id"],
+        ["css=#passwordhelp", "css:finder"],
+        ["xpath=//p[@id='passwordhelp']", "xpath:attributes"],
+        ["xpath=//p[2]", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the password you used to create your account. If you forget what your password is, please click the \"Forgot Password\" button below.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3af59673-7b71-4a6c-8260-12b04115b6c1",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/sharkline/"],
+  "plugins": []
+}
