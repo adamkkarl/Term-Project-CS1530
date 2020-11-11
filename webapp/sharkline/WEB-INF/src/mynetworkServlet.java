@@ -6,7 +6,7 @@ import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-public class mynetwork extends HttpServlet
+public class mynetworkServlet extends HttpServlet
 {
 	String output;
 	String name;
@@ -14,28 +14,18 @@ public class mynetwork extends HttpServlet
 	String jdbcPassword = "grenadine@2020";
 	String jdbcURL = "jdbc:mysql://localhost/sharklinedb";
 	Connection jdbcConnection;
-	Investor account;
-	
+	SharklineJDBC SQLCommands;
+	Account account;
+
 	@Override
 public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 {
 	HttpSession session = request.getSession();
-	account = (Investor)session.getAttribute("investor_account");
-	name = account.getInvestorName();
+	SQLCommands = new SharklineJDBC();
+	account = (Account)session.getAttribute("account");
+	name = account.getName();
 	String searchValue = request.getParameter("searchval");
-	
-	try
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-			jdbcConnection.setAutoCommit(false);
-		}
-		
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
+
 	response.setContentType("text/html");
 PrintWriter out = response.getWriter();
 
@@ -86,32 +76,66 @@ output =
     "</ul>" +
   "</div>" +
 "</nav>" +
-"<form class=\"form-inline center\" method=\"post\" action=\"mynetwork\">" +
+"<form class=\"form-inline center\" method=\"post\" action=\"mynetworkServlet\">" +
     "<input class=\"form-control search\" type=\"text\" id=\"searchval\" name=\"searchval\" placeholder=\"Search\" aria-label=\"Search\">" +
     "<button class=\"btn\" type=\"submit\">Search</button>" +
 "</form>";
 
-if ( searchValue != null )
+if(account.getType() == Type.INVESTOR)
 {
-	Industry industry = getIndustry(searchValue);
-	ArrayList<Business> businesses = findBusinessesByIndustry(industry);
-	
-	if ( businesses == null )
+	if ( searchValue != null )
 	{
-		output += "<h2>0 Search Results Found</h2>";
+		Industry industry = getIndustry(searchValue);
+		ArrayList<Business> businesses = SQLCommands.findBusinessesByIndustry(industry);
+
+		if ( businesses == null )
+		{
+			output += "<h2>0 Search Results Found</h2>";
+		}
+		if ( businesses.size() >= 1 )
+		{
+			output +=
+			"<h2>Search Results</h2>" +
+			"<table class=\"center\">" +
+			"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
+			for ( int i = 0; i < businesses.size(); i++ )
+			{
+				output +=
+				"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>"
+				+ businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath()
+				+ "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
+			}
+			output += "</table>";
+		}
 	}
-	if ( businesses.size() >= 1 )
+}
+else if(account.getType() == Type.BUSINESS)
+{
+	if(searchValue != null && isNumeric(searchValue))
 	{
-		output +=
-		"<h2>Search Results</h2>" +
-		"<table class=\"center\">" +
-		"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
-	for ( int i = 0; i < businesses.size(); i++ )
-	{
-		output +=
-		"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>" + businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath() + "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
-	}
-	output += "</table>";
+		searchValue = searchValue.trim();
+		int ask = Integer.parseInt(searchValue);
+		ArrayList<Investor> investors = SQLCommands.findInvestorsByAsk(ask);
+		if(investors == null)
+		{
+			output += "<h2>0 Search Results Found</h2>";
+		}
+		if(investors.size() >= 1)
+		{
+			output +=
+			"<h2>Search Results</h2>" +
+			"<table class=\"center\">" +
+			"<tr><th>Investor Name</th><th>Abstract</th><th>Investment Range</th><th>Website</th></tr>";
+			for(int i = 0; i < investors.size(); i++)
+			{
+				output +=
+				"<tr><td>" + investors.get(i).getInvestorName() + "</td>" +
+				"<td>" + investors.get(i).getInvestorAbstract() + "</td>" +
+				"<td>" + investors.get(i).getInvestmentRangeInit() + " - " + investors.get(i).getInvestmentRangeEnd() + "</td>" +
+				"<td>" + investors.get(i).getWebsite() + "</td></tr>";
+			}
+			output += "</table>";
+		}
 	}
 }
 
@@ -121,55 +145,6 @@ output +=
 out.print(output);
 }
 
-public ArrayList<Business> findBusinessesByIndustry(Industry industry)
-  {
-    try
-    {
-      ArrayList businesses = new ArrayList<Business>();
-      PreparedStatement st =
-      jdbcConnection.prepareStatement("SELECT * FROM business_accounts WHERE industry = ?");
-      setIndustry(st, industry, 1);
-
-      ResultSet result = st.executeQuery();
-      while(result.next())
-      {
-        Business account = new Business();
-
-        account.setBusinessEmail(result.getString("business_email"));
-        account.setBusinessName(result.getString("business_name"));
-        account.setBusinessAbstract(result.getString("business_abstract"));
-        account.setDescription(result.getString("business_description"));
-        account.setLogoPath(result.getString("logo"));
-        account.setSize(getSize(result.getString("size")));
-        account.setYear(result.getInt("established"));
-        account.setInvestmentAsk(result.getInt("investment_ask"));
-        account.setEquityOffer(result.getInt("equity_offer"));
-        account.setWebsite(result.getString("website"));
-        account.setCeoName(result.getString("name_CEO"));
-        account.setBusinessIndustry(getIndustry(result.getString("industry")));
-
-        businesses.add(account);
-      }
-      if(businesses.size() == 0)
-        return null;
-
-      st.close();
-      return businesses;
-    }
-    catch(SQLException e1)
-    {
-      while (e1 != null)
-      {
-        System.out.println("Message = " + e1.getMessage());
-        System.out.println("SQLErrorCode = " + e1.getErrorCode());
-        System.out.println("SQLState = " + e1.getSQLState());
-
-        e1 = e1.getNextException();
-      }
-      return null;
-    }
-  }
-  
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries
@@ -360,4 +335,13 @@ if ( size == null ) { return null; }
 
     return returnIndustry;
   }
+	private boolean isNumeric(String number)
+	{
+		for(char c : number.toCharArray())
+		{
+			if(!Character.isDigit(c))
+				return false;
+		}
+		return true;
+	}
 }
