@@ -157,7 +157,7 @@ has developed and published both original games as well as ports of existing gam
 In 2017, Nicalis announced that they had acquired SuperVillain Studios and Cowboy Color. \n
 Additionally, we have co-published VVVVVV, Castle, and NightSky, among others',
 'Nicalis is a California based indie video game publisher best known for Cave Story, Ikaruga, and The Binding of Isaac: Rebirth (and Afterbirth+)',
-'https://imgur.com/C2P3Qeq.png', '31-50', 2007, 100000, 5, 'www.zynga.com', 'Tyrone Rodriguez', 'Software/Tech');
+'https://imgur.com/C2P3Qeq.jpg', '31-50', 2007, 100000, 5, 'www.zynga.com', 'Tyrone Rodriguez', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('ZachBarth@gmail.com', 'zachattack926', 'Zachtronics', 'Business', 1, null);
