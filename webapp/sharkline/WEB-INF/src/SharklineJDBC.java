@@ -210,6 +210,7 @@ public class SharklineJDBC
       return null;
     }
   }
+
   /***
   * verifyAccount searches through the database to update account with given email
   * to set verified attribute accounts table to 1 (or true)
@@ -249,6 +250,7 @@ public class SharklineJDBC
       return false;
     }
   }
+
   /**
   * addBusinessAccount adds an account which has been verified into the
   * business_accounts table. To update the other attributes, call
@@ -297,6 +299,7 @@ public class SharklineJDBC
       return false;
     }
   }
+
    /**
   * updateBusinessAccount updates an account(with secondary attributes) which has been verified into the
   * business_accounts table.
@@ -450,6 +453,14 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findInvestorAccountByName queries investor_accounts for an exact match
+  * to investor_name
+  *
+  * @param String name the name of the investor
+  *
+  * @return null if no such investor account exists, otherwise return the investor object
+  */
   public Investor findInvestorAccountByName(String name)
   {
     try
@@ -491,6 +502,14 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findInvestorAccountByEmail queries investor_accounts for an exact match
+  * to investor_email
+  *
+  * @param String name the email to search
+  *
+  * @return null if no such investor account exists, otherwise return the investor object
+  */
   public Investor findInvestorAccountByEmail(String email)
   {
     try
@@ -531,6 +550,16 @@ public class SharklineJDBC
       return null;
     }
   }
+
+  /**
+  * findInvestorsByAsk queries investor_accounts for any investor whos stated
+  * investing range is within 10% of the asking price
+  *
+  * @param int ask, the investment amount
+  *
+  * @return null if no such investor account exists, otherwise return
+  * an arraylist of all investor objects
+  */
   public ArrayList<Investor> findInvestorsByAsk(int ask)
   {
     try
@@ -583,8 +612,8 @@ public class SharklineJDBC
   }
 
   /**
-  * findBusinessAccount searches by name of Business to locate
-  * entry in database
+  * findBusinessAccountByName searches by name of Business to locate
+  * entry in database. Must be exact match.
   *
   * @param name the string of the name associated to the business
   *             account we are trying to find
@@ -637,6 +666,14 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findBusinessAccountByEmail queries business_accounts for an exact email match
+  *
+  * @param String email, the email to search for
+  *
+  * @return null if no such investor account exists, otherwise return
+  * the business object
+  */
   public Business findBusinessAccountByEmail(String email)
   {
     try
@@ -682,6 +719,15 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findBusinessesByIndustry queries business_accounts for any businesses in
+  * the given field
+  *
+  * @param Industry industry, the industry to search
+  *
+  * @return null if no such investor account exists, otherwise return an array list
+  * containing each matching business
+  */
   public ArrayList<Business> findBusinessesByIndustry(Industry industry)
   {
     try
@@ -731,6 +777,15 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findBusinessesByLikeName queries business_accounts for any businesses with a
+  * name that contains the given substring
+  *
+  * @param String name, the substring to search for
+  *
+  * @return null if no such investor account exists, otherwise return an array list
+  * containing each matching business
+  */
   public ArrayList<Business> findBusinessesByLikeName(String name)
   {
     try
@@ -840,7 +895,6 @@ public class SharklineJDBC
   *         if otherwise
   *
   */
-
   public boolean removeConnection(UserConnection userCon)
   {
     try
@@ -1132,10 +1186,5 @@ public class SharklineJDBC
       returnIndustry = Industry.OTHER;
 
     return returnIndustry;
-  }
-
-
-  public static void main(String[] args) {
-    System.out.println("test");
   }
 }
