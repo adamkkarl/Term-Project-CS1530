@@ -34,14 +34,18 @@ public int getConnectionID()
 {
 	return connectionID;
 }
-public void setDate(String newDate){
-	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+public boolean setDate(String newDate){
+	if(newDate == null)
+		return true;
+	date = newDate
 
+	return date.equals(newDate);
 }
-public void setDate(){
+public boolean setDate(){
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	LocalDateTime now = LocalDateTime.now();
 	date = dtf.format(now).toString();
+	return true;
 }
 public String getDate(){
 	return date;
