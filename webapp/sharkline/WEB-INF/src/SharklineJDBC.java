@@ -228,8 +228,9 @@ public class SharklineJDBC
       st.setString(1, email);
       //int isUpdated returns number of rows affected, although it should only
       //ever affect one row (as email is primary key so we cant have repeats)
-      if(st.executeUpdate() >= 1);
+      if(st.executeUpdate() >= 1){
         isUpdated = true;
+      }
 
       dbcon.commit();
       st.close();
@@ -537,7 +538,7 @@ public class SharklineJDBC
       if(ask < 1000)
         return null;
 
-      ArrayList investors = new ArrayList<Investor>();
+      ArrayList<Investor> investors = new ArrayList<Investor>();
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investment_range_init <= ?"
                            + " AND investment_range_end >= ?");
@@ -685,7 +686,7 @@ public class SharklineJDBC
   {
     try
     {
-      ArrayList businesses = new ArrayList<Business>();
+      ArrayList<Business> businesses = new ArrayList<Business>();
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM business_accounts WHERE industry = ?");
       st = setIndustry(st, industry, 1);
@@ -729,6 +730,57 @@ public class SharklineJDBC
       return null;
     }
   }
+
+  public ArrayList<Business> findBusinessesByLikeName(String name)
+  {
+    try
+    {
+      ArrayList<Business> businesses = new ArrayList<Business>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE name LIKE ?");
+      st.setString(1, "%" + name + "%");
+
+      ResultSet result = st.executeQuery();
+      while(result.next())
+      {
+        Business account = new Business();
+
+        account.setBusinessEmail(result.getString("business_email"));
+        account.setBusinessName(result.getString("business_name"));
+        account.setBusinessAbstract(result.getString("business_abstract"));
+        account.setDescription(result.getString("business_description"));
+        account.setLogoPath(result.getString("logo"));
+        account.setSize(getSize(result.getString("size")));
+        account.setYear(result.getInt("established"));
+        account.setInvestmentAsk(result.getInt("investment_ask"));
+        account.setEquityOffer(result.getInt("equity_offer"));
+        account.setWebsite(result.getString("website"));
+        account.setCeoName(result.getString("name_CEO"));
+        account.setBusinessIndustry(getIndustry(result.getString("industry")));
+
+        businesses.add(account);
+      }
+      if(businesses.size() == 0)
+        return null;
+
+      st.close();
+      return businesses;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+
  /**
   * addConnection adds both business and investor emails along with the date connection was made as an
   * entry in the database
