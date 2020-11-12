@@ -29,7 +29,7 @@ public class firstTimeSetupServlet extends HttpServlet
       "<body>" +
         "<h2>Please complete your first time setup for your account</h2>" +
       "</body>" +
-      "</html>"
+      "</html>";
     }
   }
 }
