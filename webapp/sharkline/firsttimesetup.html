@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h2>Please complete your first time setup for your account</h2>
+  <label for="industry_select">Select Industry</label><br>
+  <form method="post" action="firstTimeSetupServlet">
+      <select required id ="industry_select" name="industry_select">
+          <option value="industrial">Industrial</option>
+          <option value="health">Health</option>
+          <option value="software/tech">Software/Tech</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="food">Food</option>
+          <option value="finance">Finance</option>
+          <option value="retail">Retail</option>
+          <option value="marketing">Marketing</option>
+          <option value="sales">Sales</option>
+          <option value="automotive">Automotive</option>
+          <option value="education">Education</option>
+          <option value="law">Law</option>
+          <option value="hotel">Hotel</option>
+          <option value="travel">Travel</option>
+          <option value="energy">Energy</option>
+          <option value="environment">Environment</option>
+          <option value="transportation">Transportation</option>
+          <option value="other">Other</option>
+      </select><br><br>
+      <label for="size">Number of Employees</label><br>
+      <select id="size" name = "size">
+          <option value="1-10">1-10</option>
+          <option value="11-30">11-30</option>
+          <option value="31-50">31-50</option>
+          <option value="51-100">51-100</option>
+          <option value="101-200">101-200</option>
+          <option value="200+">200+</option>
+      </select><br><br>
+      <label for="website">Website URL</label><br>
+      <input class="input_section" placeholder="Website" name="website"><br><br>
+      <label for="ceo_name">CEO/President Name</label><br>
+      <input class="input_section" placeholder="CEO Name" name="ceo_name"><br><br>
+      <label for="investment_ask">Investment</label><br>
+      <input type="number" class="input_section" placeholder="Investment Ask" min=0 name="investment_ask"><br><br>
+      <label for="established">Established Year</label><br>
+      <input type="number" class="input_section" placeholder="Established" max=2020 min=0 name="established"><br><br>
+      <input type="submit" class="complete_setup" value="Complete Setup">
+  </form>
+</body>
+</html>

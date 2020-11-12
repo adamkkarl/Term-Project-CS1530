@@ -68,16 +68,15 @@ public class loginServlet extends HttpServlet
 			{
 				Account account = SQLCommands.findAccount(emailValue);
 				HttpSession session = request.getSession();
+				session.setAttribute("account", account);
 
 				if(SQLCommands.findInvestorAccountByEmail(emailValue) == null)
 				{
-					session.setAttribute("account", account);
 					RequestDispatcher rd = request.getRequestDispatcher("firstTimeSetupServlet");
 					rd.forward(request, response);
 				}
 				else
 				{
-					session.setAttribute("account", account);
 					RequestDispatcher rd = request.getRequestDispatcher("mynetworkServlet");
 					rd.forward(request, response);
 				}
@@ -86,19 +85,18 @@ public class loginServlet extends HttpServlet
 			{
 				Account account = SQLCommands.findAccount(emailValue);
 				HttpSession session = request.getSession();
-				
+				session.setAttribute("account", account);
+
 				if(SQLCommands.findBusinessAccountByEmail(emailValue) == null)
 				{
-					session.setAttribute("account", account);
 					RequestDispatcher rd = request.getRequestDispatcher("firstTimeSetupServlet");
-					rd.forward(request, response);
 				}
 				else
 				{
-					session.setAttribute("account", account);
 					RequestDispatcher rd = request.getRequestDispatcher("mynetworkServlet");
-					rd.forward(request, response);
 				}
+
+				rd.forward(request, response);
 			}
 	}
 }
