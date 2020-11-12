@@ -74,13 +74,16 @@ CREATE TABLE investor_accounts (
 );
 
 # account_connections table refers to currently matched companies
-# and investors on the website.
+# and investors on the website. The connected attribute shows if
+# the user has accepted the request or if it is still pending.
 
 CREATE TABLE account_connections (
     business_email VARCHAR(50) NOT NULL,
     investor_email VARCHAR(50) NOT NULL,
 	connection_id int NOT NULL UNIQUE AUTO_INCREMENT,
     date_connected DATE,
+		connected TINYINT DEFAULT 0,
+		sender TINYINT DEFAULT 1, # 0= sent by business, 1 = sent by investor
 
     PRIMARY KEY(business_email, investor_email),
     FOREIGN KEY (business_email) REFERENCES business_accounts(business_email),
