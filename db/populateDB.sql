@@ -303,7 +303,7 @@ INSERT INTO investor_accounts
 VALUES ('johnsmith@gmail.com', 'John Smith',
 'Independently wealthy investor based in San Jose, CA.',
 'Pitt 2010, currently living in CA.',
-1000, 100000, 'www.johnsmithinvesting.com', null);
+'https://imgur.com/Zy90G8k.jpg', 1000, 100000, 'www.johnsmithinvesting.com', null);
 
 INSERT INTO accounts
 VALUES ('citizensbank@gmail.com', 'cbinvestor', 'Citizens Bank', 'Investor', 1, null);
@@ -312,7 +312,7 @@ VALUES ('citizensbank@gmail.com', 'Citizens Bank',
 'Citizens Bank operates more than 1,200 branches and approximately 3,200 ATMs across 11 states under the Citizens Bank brand.\n
 Citizens Bank ranks 24th on the List of largest banks in the United States. ',
 'Citizens Bank is an American bank headquartered in Rhode Island, which operates in the east coast of the US',
-100000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
+'https://imgur.com/RXe0DLX.png', 100000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
