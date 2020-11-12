@@ -82,7 +82,7 @@ CREATE TABLE account_connections (
     investor_email VARCHAR(50) NOT NULL,
 	connection_id int NOT NULL UNIQUE AUTO_INCREMENT,
     date_connected DATE,
-		connected TINYINT DEFAULT 0,
+		connected TINYINT DEFAULT 0, # 1 if accepted, 0 otherwise
 		sender TINYINT DEFAULT 1, # 0= sent by business, 1 = sent by investor
 
     PRIMARY KEY(business_email, investor_email),

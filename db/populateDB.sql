@@ -316,10 +316,10 @@ Citizens Bank ranks 24th on the List of largest banks in the United States. ',
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
-VALUES ('googleHQ@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'));
+VALUES ('googleHQ@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), null, null);
 
 INSERT INTO account_connections
-VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE('11,5,2020','%d,%m,%Y'));
+VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE('11,5,2020','%d,%m,%Y'), null, null);
 
 # TEMPLATE FOR chatlog
 INSERT INTO chat_log
