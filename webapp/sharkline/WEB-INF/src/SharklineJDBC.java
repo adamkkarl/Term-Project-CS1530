@@ -542,8 +542,8 @@ public class SharklineJDBC
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investment_range_init <= ?"
                            + " AND investment_range_end >= ?");
-      st.setInt(1, ask);
-      st.setInt(2, ask);
+      st.setInt(1, (int) ask * .9);
+      st.setInt(2, (int) ask * 1.1);
 
       ResultSet result = st.executeQuery();
 
