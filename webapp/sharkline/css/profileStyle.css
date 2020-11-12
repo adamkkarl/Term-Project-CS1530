@@ -1,0 +1,53 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.profile {
+	display: grid;
+}
+.banner {
+	border-radius: 10px;
+	width: 80%;
+	height: 200px;
+	margin-top: 20px;
+	margin-bottom: 80px;
+	position: relative;
+}
+
+.profilePic {
+	border-radius: 100%;
+	height: 100px;
+	width: 100px;
+	margin-left: 200px;
+	margin-top: 180px; 
+	position: absolute;
+}
+
+.info {
+	margin-left: 175px;
+	padding-bottom: 40px;
+}
+
+.info .fas {
+	position: absolute;
+	margin-left: 70%;
+}
+
+.about, .previous {
+	width: 80%;
+	margin-left: 130px;
+	margin-bottom: 20px;
+	padding-top: 5px;
+	padding-left: 5px;
+	border: solid;
+	border-radius: 10px;
+	border-color: black;
+}
+
+.about .fas, .previous .fas {
+	position: absolute;
+	margin-left: 75%;
+}
