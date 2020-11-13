@@ -15,7 +15,7 @@ INSERT INTO business_accounts
 VALUES ('googleHQ@gmail.com', 'Google',
 'We are a tech company with a main focus on search engine optimization and cloud computing.',
 'Google is an American multinational technology company that specializes in Internet-related services and products, which include online advertising technologies, a search engine, and cloud computing.',
-'https://imgur.com/6ujCboB', '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
+'https://imgur.com/6ujCboB.png', '200+', 1998, 10000000, 1, 'www.google.com', 'Sundar Pichai', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('uberOfficial@gmail.com', '12341234', 'Uber', 'Business', 1, null);
@@ -23,7 +23,7 @@ INSERT INTO business_accounts
 VALUES ('uberOfficial@gmail.com', 'Uber',
 'We are a company that uses smartphone apps to connect riders with drivers.',
 'Tech + transportation company since 2009',
-'https://imgur.com/3BP6P16', '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
+'https://imgur.com/3BP6P16.png', '200+', 2009, 1000000, 5, 'www.uber.com', 'Dara Khosrowshahi', 'Transportation');
 
 INSERT INTO accounts
 VALUES ('walmart@gmail.com', 'qwertyuiop', 'Walmart', 'Business', 1, null);
@@ -33,7 +33,7 @@ VALUES ('walmart@gmail.com', 'Walmart',
 Walmart is the world\'s largest company by revenue, with $514.405 billion. 
 It is also the largest private employer in the world with 2.2 million employees.',
 'Walmart Inc. is an American multinational retail corporation.',
-'https://imgur.com/uFCahQ5', '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
+'https://imgur.com/uFCahQ5.png', '200+', 1962, 100000000, 1, 'www.walmart.com', 'Doug McMillon', 'Retail');
 
 INSERT INTO accounts
 VALUES ('amazonHQ@gmail.com', 'bezos420', 'Amazon', 'Business', 1, null);
@@ -43,7 +43,7 @@ VALUES ('amazonHQ@gmail.com', 'Amazon',
 In 2018, its two-day delivery service Amazon Prime surpassed 100 million subscribers worldwide. 
 \nAmazon is known for its disruption of well-established industries through technological innovation and mass scale.',
 'Amazon is an American multinational retail and technology company based in Seattle, Washington.',
-'https://imgur.com/gU9GfFW', '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
+'https://imgur.com/gU9GfFW.png', '200+', 1994, 100000000, 2, 'www.aboutamazon.com', 'Jeff Bezos', 'Retail');
 
 INSERT INTO accounts
 VALUES ('PrimantiBrosPA@gmail.com', 'bezos420', 'Primanti Brothers', 'Business', 1, null);
@@ -55,7 +55,7 @@ Primanti\'s was named as one of "America\'s Classic" restaurants. \n\n
 The chain is known for its signature sandwiches of grilled meat, melted cheese, an oil & vinegar-based coleslaw, 
 tomato slices, and French fries between two thick slices of Italian bread.',
 'Primanti Brother is a chain of sandwich shops in the eastern United States.',
-'https://imgur.com/ftvDo0B', '200+', 1933, 10000, 5, 'www.primantibros.com', 'Michael Chu', 'Food');
+'https://imgur.com/ftvDo0B.png', '200+', 1933, 10000, 5, 'www.primantibros.com', 'Michael Chu', 'Food');
 
 INSERT INTO accounts
 VALUES ('admin@thirstyscholarpgh.com', 'pitt>psu', 'Thirsty Scholar', 'Business', 1, null);
@@ -67,7 +67,7 @@ or simply grabbing that burger and wings you’ve been craving. \n\n
 Thirsty Scholar has incredible, mouth-watering food options,  with ‘Daily Grille Specials’ for only $6 – 
 featuring tacos, wings, quesadillas and appetizer specials on certain days of the week.',
 'Local pub within walking distance of Pitt\'s Cathedral of Learning.',
-'https://imgur.com/oWWIaTL', '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
+'https://imgur.com/oWWIaTL.png', '11-30', 2017, 12000, 15, 'thirstyscholarpgh.com', 'Mike Chizmar', 'Food');
 
 INSERT INTO accounts
 VALUES ('business@starship.xyz', 'robotsrule', 'Starship Technologies', 'Business', 1, null);
@@ -84,7 +84,7 @@ convenient new services that improve everyday life. Our proven ability to harnes
 combined with our experience providing services to millions of people make this a reality.\n\n
 We surpassed 500,000 deliveries in August 2020.',
 'Autonomous delivery robotics company founded in 2014 by Skype co-founders, Ahti Heinla and Janus Friis',
-'https://imgur.com/qoMXBjW', '11-30', 2014, 15000, 5, 'www.starship.xyz', 'Ahti Heinla', 'Software/Tech');
+'https://imgur.com/qoMXBjW.png', '11-30', 2014, 15000, 5, 'www.starship.xyz', 'Ahti Heinla', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('piadaHQ@gmail.com', 'piadaAdmin1234', 'Piada Italian Street Food', 'Business', 1, null);
@@ -95,7 +95,7 @@ He sold his stake to investors in 2006 and launched the Piada concept around the
 "wrap-like sandwich" known as a Piada or Piadina, a street food he sampled in northern Italy. \n\n
 We have 22 locations in Ohio, two in Indiana, one in Kentucky, three in Minnesota, eight in Texas, and two in Pennsylvania. ',
 'Piada Italian Street Food is a fast casual Italian cuisine restaurant chain with 38 locations in six states',
-'https://imgur.com/uSLfQOD', '11-30', 2017, 12000, 15, 'mypiada.com', 'Chris Doodyr', 'Food');
+'https://imgur.com/uSLfQOD.png', '11-30', 2017, 12000, 15, 'mypiada.com', 'Chris Doodyr', 'Food');
 
 INSERT INTO accounts
 VALUES ('appleUS@gmail.com', 'stevejobs11', 'Apple', 'Business', 1, null);
@@ -111,7 +111,7 @@ include the iTunes Store, the iOS App Store, Mac App Store, Apple Music, Apple T
 include Apple Store, Genius Bar, AppleCare, Apple Pay, Apple Pay Cash, and Apple Card. \n
 Apple is considered one of the Big 5 Tech companies.',
 'Apple is an American multinational technology that designs, develops and sells consumer electronics, computer software, and online services.',
-'https://imgur.com/dKBTaMF', '200+', 1976, 1000000000, 1, 'www.apple.com', 'Tim Cook', 'Software/Tech');
+'https://imgur.com/dKBTaMF.png', '200+', 1976, 1000000000, 1, 'www.apple.com', 'Tim Cook', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('HelloGames@gmail.com', 'dontoverhypegames', 'Hello Games', 'Business', 1, null);
@@ -120,7 +120,7 @@ VALUES ('HelloGames@gmail.com', 'Hello Games',
 'Hello Games Ltd is a British video game company based in Guildford, England. The company was founded by Sean Murray, Grant Duncan, 
 Ryan Doyle and David Ream in February 2008 and has developed the Joe Danger series, No Man\'s Sky, and The Last Campfire.',
 'Hello Games is an indie video game studio best known for No Man\'s Sky (2017) and The Last Campfire (2020).',
-'https://imgur.com/Ny3BKsx', '11-30', 2008, 50000, 5, 'hellogames.org', 'Sean Murray', 'Software/Tech');
+'https://imgur.com/Ny3BKsx.png', '11-30', 2008, 50000, 5, 'hellogames.org', 'Sean Murray', 'Software/Tech');
 
 
 INSERT INTO accounts
@@ -135,7 +135,7 @@ Azure Striker Gunvolt and Azure Striker Gunvolt 2. The second will be Cyber Shad
 Yacht Club Games currently has 17 employees.',
 'Yacht Club Games is an indie games studio based in California. We are best known for Shovel Knight, released in 2013 after a successful 
 Kickstarter campaign.',
-'https://imgur.com/IEGDOL1', '11-30', 2011, 10000, 10, 'yachtclubgames.com', 'Sean Velasco', 'Software/Tech');
+'https://imgur.com/IEGDOL1.png', '11-30', 2011, 10000, 10, 'yachtclubgames.com', 'Sean Velasco', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('zynga@corporate', 'casualgamersLUL', 'Zynga', 'Business', 1, null);
@@ -146,7 +146,7 @@ Zynga launched its best-known game, FarmVille, on Facebook in June 2009, reachin
 As of August 2017, Zynga had 30 million monthly active users. In 2017 its most successful games were Zynga Poker and Words with Friends 
 2, with about 57 million games being played at any given moment;',
 'Zynga is an American social game developer focusing primarily on mobile and social networking platforms. We are best known for Farmville and Words With Friends',
-'https://imgur.com/RggBpP6', '200+', 2007, 20000000, 1, 'www.zynga.com', 'Frank Gibeau', 'Software/Tech');
+'https://imgur.com/RggBpP6.png', '200+', 2007, 20000000, 1, 'www.zynga.com', 'Frank Gibeau', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('Nicalis@aol.com', 'VVVVVV', 'Nicalis', 'Business', 1, null);
@@ -157,7 +157,7 @@ has developed and published both original games as well as ports of existing gam
 In 2017, Nicalis announced that they had acquired SuperVillain Studios and Cowboy Color. \n
 Additionally, we have co-published VVVVVV, Castle, and NightSky, among others',
 'Nicalis is a California based indie video game publisher best known for Cave Story, Ikaruga, and The Binding of Isaac: Rebirth (and Afterbirth+)',
-'https://imgur.com/C2P3Qeq', '31-50', 2007, 100000, 5, 'www.zynga.com', 'Tyrone Rodriguez', 'Software/Tech');
+'https://imgur.com/C2P3Qeq.jpg', '31-50', 2007, 100000, 5, 'www.zynga.com', 'Tyrone Rodriguez', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('ZachBarth@gmail.com', 'zachattack926', 'Zachtronics', 'Business', 1, null);
@@ -167,7 +167,7 @@ VALUES ('ZachBarth@gmail.com', 'Zachtronics',
 Zach\'s initial games were generally free browser games offered on his website. One of these was Infiniminer, the block-building precursor game of Minecraft by Mojang.
 We have also published SpaceChem, Infinifactory, TIS-100, Shenzehen I/O, Opus Magnum, and Exapunks.',
 'Zachtronics LLC is an American independent video game development studio, best known for their engineering puzzle games and programming games.',
-'https://imgur.com/vj8PqCx', '1-10', 2000, 50000, 10, 'www.zachtronics.com', 'Zach Barth', 'Software/Tech');
+'https://imgur.com/vj8PqCx.png', '1-10', 2000, 50000, 10, 'www.zachtronics.com', 'Zach Barth', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('DevolverDigitalOfficial@gmail.com', 'DodgeRoll!', 'Devolver Digital', 'Business', 1, null);
@@ -181,7 +181,7 @@ Devolver Digital started by publishing high-definition remakes of games in the S
 spin-off games based on the series, Devolver Digital began publishing games from other, smaller independent studios, one of the first being their 
 breakout title, Hotline Miami. As of January 2020, Devolver Digital employs 20 people. ',
 'Devolver Digital Inc. is an American video game publisher based in Austin, Texas, specializing in the publishing of indie games such as Enter the Gungeon.',
-'https://imgur.com/322VdHu', '11-30', 2009, 50000, 4, 'devolverdigital.com', 'Fork Parker', 'Software/Tech');
+'https://imgur.com/322VdHu.png', '11-30', 2009, 50000, 4, 'devolverdigital.com', 'Fork Parker', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('thatgamecompany@contact.us', 'staycalmandrelax', 'thatgamecompany', 'Business', 1, null);
@@ -192,7 +192,7 @@ students Jenova Chen and Kellee Santiago in 2006.\n
 We have released  Flow (2007), Flower (2009), Journey (2012), and Sky: Children of the Light(2019). Journey is commonly regarded as a masterpiece of emotional, atmospheric storytelling.\n
 Austin Wintory was nominated for a Grammy Award in 2013 for Best Score Soundtrack for Journey, the first such nomination for a full video game score',
 'thatgamecompany is the indie video game company behind Journey and Sky: Children of the Light.',
-'https://imgur.com/Hig1xkp', '11-30', 2006, 30000, 5, 'thatgamecompany.com', 'Jenova Chen', 'Software/Tech');
+'https://imgur.com/Hig1xkp.png', '11-30', 2006, 30000, 5, 'thatgamecompany.com', 'Jenova Chen', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('IntelBusiness@gmail.com', 'amdsucks', 'Intel', 'Business', 1, null);
@@ -204,7 +204,7 @@ Intel Corporation was founded on July 18, 1968 by semiconductor pioneers Robert 
 and vision of Andrew Grove. The company\'s name was conceived as portmanteau of the words integrated and electronics, with co-founder Noyce having been a key inventor 
 of the integrated circuit (the microchip).',
 'Intel is the world\'s highest valued semiconductor chip manufacturer and developed the x86 series of microprocessors.',
-'https://imgur.com/MP98tiu', '200+', 2006, 30000000, 6, '	intel.com', 'Bob Swan', 'Software/Tech');
+'https://imgur.com/MP98tiu.png', '200+', 2006, 30000000, 6, '	intel.com', 'Bob Swan', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('NvidiaBusiness@gmail.com', 'GeForceRTX3070', 'Nvidia', 'Business', 1, null);
@@ -216,7 +216,7 @@ applications. They are deployed in supercomputing sites around the world.\n\n
 In May 2020, Nvidia\'s top scientists developed an open-source ventilator in order to address the shortage resulting from the global coronavirus pandemic.\n
 Second website: developer.nvidia.com',
 'Nvidia designs GPUs for gaming and professional markets.',
-'https://imgur.com/Gs4Hj9L', '200+', 2006, 30000000, 6, 'nvidia.com', 'Jensen Huang', 'Software/Tech');
+'https://imgur.com/Gs4Hj9L.png', '200+', 2006, 30000000, 6, 'nvidia.com', 'Jensen Huang', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('tesla@contact.us', 'ElonTusk420', 'Tesla', 'Business', 1, null);
@@ -228,7 +228,7 @@ Elon Musk, who has served as CEO since 2008, said in 2006 that "the overarching 
 towards a solar electric economy" and it would build a wide range of electric vehicles, including "affordably priced family cars", and co-market SolarCity solar panels to do so. 
 Tesla acquired SolarCity in 2016',
 'Tesla (formerly Tesla Motors) is an American electric vehicle and clean energy company based in Palo Alto, California.',
-'https://imgur.com/zaeIwWi', '200+', 2003, 300000000, 1, 'www.tesla.com', 'Elon Musk', 'Software/Tech');
+'https://imgur.com/zaeIwWi.png', '200+', 2003, 300000000, 1, 'www.tesla.com', 'Elon Musk', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('seatgeek@contact.us', 'qwertyuiop2009', 'SeatGeek', 'Business', 1, null);
@@ -242,7 +242,7 @@ funding from DreamIT Ventures.\n
 On April 3, 2018, the Dallas Cowboys announced an agreement with SeatGeek to serve as the team\'s primary ticket office, replacing Ticketmaster. Darren Rovell reported 
 that the Cowboys received a 15% stake in the company.',
 'SeatGeek is a mobile-focused ticket platform that enables users to buy and sell tickets for live sports, concerts and theater events.',
-'https://imgur.com/OBlhttY', '200+', 2009, 1000000, 5, 'seatgeek.com', 'Clinton Smith', 'Software/Tech');
+'https://imgur.com/OBlhttY.png', '200+', 2009, 1000000, 5, 'seatgeek.com', 'Clinton Smith', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('duolingo@gmail.com', 'einszweidrei', 'Duolingo', 'Business', 1, null);
@@ -252,7 +252,7 @@ VALUES ('duolingo@gmail.com', 'Duolingo',
 In 2013, Apple chose Duolingo as its iPhone App of the Year, the first time this honor had been awarded to an educational application.\n
 Duolingo has over 300 million registered users.',
 'Duolingo is Pittsburgh based company that focuses on language-learning through website and mobile apps.',
-'https://imgur.com/GllRiQG', '200+', 2009, 1000000, 6, 'www.duolingo.com', 'Luis von Ahn', 'Software/Tech');
+'https://imgur.com/GllRiQG.png', '200+', 2009, 1000000, 6, 'www.duolingo.com', 'Luis von Ahn', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('instructure@gmail.com', 'canvas1234', 'Instructure', 'Business', 1, null);
@@ -262,7 +262,7 @@ VALUES ('instructure@gmail.com', 'Instructure',
 students, Brian Whitmer and Devlin Daley, with initial funding from Mozy founder Josh Coates (currently the executive chairman of the Board) and Epic Ventures.\n
 In August 2020, 13 states across the United States confirmed a partnership with Instructure in order to adopt its Canvas LMS platform across the states’ educational institutions.',
 'Instructure is and educational technology company based in Utah. We are the publisher of Canvas.',
-'https://imgur.com/ZCIgQbA', '200+', 2009, 750000, 2, 'www.instructure.com', 'Dan Goldsmith', 'Software/Tech');
+'https://imgur.com/ZCIgQbA.png', '200+', 2009, 750000, 2, 'www.instructure.com', 'Dan Goldsmith', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('info@surveyauto.com', 'surveysurveysurvey', 'SurveyAuto', 'Business', 1, null);
@@ -272,7 +272,7 @@ VALUES ('info@surveyauto.com', 'SurveyAuto',
 Combining this data with publicly available maps, we are able to zoom-in to exact survey targets without the need for an expensive on-ground micro-census or a pre-survey. \n\n
 We are currently backed by the Bill and Melinda Gates Foundation',
 'SurveyAuto is an online survey platform to democratize data using machine learning algorithms to analyze the quality of results.',
-'https://imgur.com/jZqJG3w', '11-30', 2018, 125000, 15, 'surveyauto.com', 'Umar Saif', 'Software/Tech');
+'https://imgur.com/jZqJG3w.png', '11-30', 2018, 125000, 15, 'surveyauto.com', 'Umar Saif', 'Software/Tech');
 
 INSERT INTO accounts
 VALUES ('team@snackpass.co', 'snacksNsavings', 'Snackpass', 'Business', 1, null);
@@ -284,7 +284,7 @@ Before Snackpass, the restaurant owners were worried about the customers not col
 As soon as a customer places an order, the app automatically deducts money from his wallet. Simple, right?\n
 Snackpass is now used in multiple universities across the US and is backed by some of the bigshots of the tech industry.',
 'Snackpass is the best new way for customers to quickly order takeout meals at a discount.',
-'https://imgur.com/pCwvDvH', '11-30', 2019, 115000, 10, 'www.snackpass.co', 'Kevin Tan', 'Software/Tech');
+'https://imgur.com/pCwvDvH.png', '11-30', 2019, 115000, 10, 'www.snackpass.co', 'Kevin Tan', 'Software/Tech');
 
 
 # TEMPLATE FOR COMPANY PROJECTS
@@ -303,7 +303,7 @@ INSERT INTO investor_accounts
 VALUES ('johnsmith@gmail.com', 'John Smith',
 'Independently wealthy investor based in San Jose, CA.',
 'Pitt 2010, currently living in CA.',
-1000, 100000, 'www.johnsmithinvesting.com', null);
+'https://imgur.com/Zy90G8k.jpg', 1000, 100000, 'www.johnsmithinvesting.com', null);
 
 INSERT INTO accounts
 VALUES ('citizensbank@gmail.com', 'cbinvestor', 'Citizens Bank', 'Investor', 1, null);
@@ -312,7 +312,7 @@ VALUES ('citizensbank@gmail.com', 'Citizens Bank',
 'Citizens Bank operates more than 1,200 branches and approximately 3,200 ATMs across 11 states under the Citizens Bank brand.\n
 Citizens Bank ranks 24th on the List of largest banks in the United States. ',
 'Citizens Bank is an American bank headquartered in Rhode Island, which operates in the east coast of the US',
-100000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
+'https://imgur.com/RXe0DLX.png', 100000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
