@@ -37,7 +37,7 @@ public int getConnectionID()
 public boolean setDate(String newDate){
 	if(newDate == null)
 		return true;
-	date = newDate
+	date = newDate;
 
 	return date.equals(newDate);
 }

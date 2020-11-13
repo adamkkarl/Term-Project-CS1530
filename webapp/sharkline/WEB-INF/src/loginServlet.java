@@ -64,6 +64,8 @@ public class loginServlet extends HttpServlet
 			out.print(output);
 			}
 
+			RequestDispatcher rd;
+
 			if ( loginValue == 1 )
 			{
 				Account account = SQLCommands.findAccount(emailValue);
@@ -72,14 +74,14 @@ public class loginServlet extends HttpServlet
 
 				if(SQLCommands.findInvestorAccountByEmail(emailValue) == null)
 				{
-					RequestDispatcher rd = request.getRequestDispatcher("firstTimeSetupServlet");
-					rd.forward(request, response);
+					rd = request.getRequestDispatcher("firstTimeSetupServlet");
 				}
 				else
 				{
-					RequestDispatcher rd = request.getRequestDispatcher("mynetworkServlet");
-					rd.forward(request, response);
+					rd = request.getRequestDispatcher("mynetworkServlet");
 				}
+
+				rd.forward(request, response);
 			}
 			else if ( loginValue == 2 )
 			{
@@ -89,11 +91,11 @@ public class loginServlet extends HttpServlet
 
 				if(SQLCommands.findBusinessAccountByEmail(emailValue) == null)
 				{
-					RequestDispatcher rd = request.getRequestDispatcher("firstTimeSetupServlet");
+					rd = request.getRequestDispatcher("firstTimeSetupServlet");
 				}
 				else
 				{
-					RequestDispatcher rd = request.getRequestDispatcher("mynetworkServlet");
+					rd = request.getRequestDispatcher("mynetworkServlet");
 				}
 
 				rd.forward(request, response);

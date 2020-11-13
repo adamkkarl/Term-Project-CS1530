@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up</title>
+</head>
+<body>
+    <main>
+      <h2>Account Sign-up</h2>
+      <form method="post" action="createServlet">
+        <label for="type">Type of Account</label><br>
+        <input required type="radio" name="type" value="investor">
+        <label for="investor">Investor</label><br>
+        <input required type="radio" name="type" value="business">
+        <label for="business">Business</label><br><br>
+
+        <label for="name">Enter name of Business/Investment firm</label><br>
+        <input required class="input_section" placeholder="Name" name="name"><br><br>
+        <label for="email">Enter Email Address</label><br>
+        <input required type="email" class="input_section" placeholder="Email" name="email"><br><br>
+        <label for="password">Enter Password</label><br>
+        <input required type="password" class="input_section" placeholder="Password" name ="password"><br><br>
+        <label for="confirm">Confirm Password</label><br>
+        <input required type="password" class="input_section" placeholder="Confirm Password" name="confirm"><br><br>
+
+        <label for="proof">Imgur link to verification</label><br>
+        <input required type="url" class="input_section" placeholder="Imgur link" name="proof"><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+    </main>
+</body>
+</html>

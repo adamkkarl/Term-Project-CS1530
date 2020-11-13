@@ -6,15 +6,15 @@
     <title>SharkLine</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" href="./css/style.css">
-    
+
     <script src="scripts/login.js"></script>
 </head>
 <body onload="noDisplayHelp()">
     <main>
         <img src="./images/logo.png" class="center" alt="..." width=30% height="200">
-        <!-- if we want the form to sent the data from the form to 
+        <!-- if we want the form to sent the data from the form to
             the server then write: action=(double quotes)/action_page.php(double quotes) -->
         <button onclick="displayHelp()">I Need Help</button>
         <form method="post" action="loginServlet">
@@ -22,7 +22,7 @@
             <label for="email">Email Address:</label>
             <input required type="email" class="input_section" id="email" placeholder="Email" name="email"><br><br>
             <p id="passwordhelp">Please enter the password you used to create your account. If you forget what your password is, please click the "Forgot Password" button below.</p>
-            <label for="passwrd">Password:</label>
+            <label for="password">Password:</label>
             <input required type="password" class="input_section" id="password" placeholder="Password" name="password"><br><br>
             <input type="submit" class="signin_button" value="Sign In">
         </form>

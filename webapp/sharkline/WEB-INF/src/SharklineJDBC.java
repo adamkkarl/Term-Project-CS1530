@@ -210,6 +210,48 @@ public class SharklineJDBC
       return null;
     }
   }
+  public Account findAccountByName(String name)
+  {
+    try
+    {
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM accounts WHERE account_name= ?");
+      st.setString(1, name);
+
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+
+      //parsing data from account table into relevenat fields into Account object
+      //EXCEPT PASSWORD
+      Account retrievedAccount = new Account();
+      retrievedAccount.setEmail(result.getString("account_email"));
+      retrievedAccount.setName(name);
+      retrievedAccount.setImgPath(result.getString("img_proof"));
+      if(result.getString("type").equals("Investor"))
+        retrievedAccount.setType(Type.INVESTOR);
+      else
+        retrievedAccount.setType(Type.BUSINESS);
+
+      if(result.getInt("verification") == 1)
+        retrievedAccount.verify();
+
+      st.close();
+      return retrievedAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
   /***
   * verifyAccount searches through the database to update account with given email
   * to set verified attribute accounts table to 1 (or true)
@@ -228,7 +270,7 @@ public class SharklineJDBC
       st.setString(1, email);
       //int isUpdated returns number of rows affected, although it should only
       //ever affect one row (as email is primary key so we cant have repeats)
-      if(st.executeUpdate() >= 1);
+      if(st.executeUpdate() >= 1)
         isUpdated = true;
 
       dbcon.commit();

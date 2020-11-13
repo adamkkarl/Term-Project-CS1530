@@ -36,6 +36,16 @@
 <url-pattern>/logoutServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>createServlet</servlet-name>
+<servlet-class>createServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>createServlet</servlet-name>
+<url-pattern>/createServlet</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>
