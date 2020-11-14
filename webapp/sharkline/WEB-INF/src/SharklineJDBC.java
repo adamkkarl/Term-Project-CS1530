@@ -272,6 +272,7 @@ public class SharklineJDBC
       //ever affect one row (as email is primary key so we cant have repeats)
       if(st.executeUpdate() >= 1)
         isUpdated = true;
+      }
 
       dbcon.commit();
       st.close();
@@ -290,6 +291,7 @@ public class SharklineJDBC
       return false;
     }
   }
+
   /**
   * addBusinessAccount adds an account which has been verified into the
   * business_accounts table. To update the other attributes, call
@@ -338,6 +340,7 @@ public class SharklineJDBC
       return false;
     }
   }
+
    /**
   * updateBusinessAccount updates an account(with secondary attributes) which has been verified into the
   * business_accounts table.
@@ -491,6 +494,14 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findInvestorAccountByName queries investor_accounts for an exact match
+  * to investor_name
+  *
+  * @param String name the name of the investor
+  *
+  * @return null if no such investor account exists, otherwise return the investor object
+  */
   public Investor findInvestorAccountByName(String name)
   {
     try
@@ -532,6 +543,14 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findInvestorAccountByEmail queries investor_accounts for an exact match
+  * to investor_email
+  *
+  * @param String name the email to search
+  *
+  * @return null if no such investor account exists, otherwise return the investor object
+  */
   public Investor findInvestorAccountByEmail(String email)
   {
     try
@@ -572,6 +591,16 @@ public class SharklineJDBC
       return null;
     }
   }
+
+  /**
+  * findInvestorsByAsk queries investor_accounts for any investor whos stated
+  * investing range is within 10% of the asking price
+  *
+  * @param int ask, the investment amount
+  *
+  * @return null if no such investor account exists, otherwise return
+  * an arraylist of all investor objects
+  */
   public ArrayList<Investor> findInvestorsByAsk(int ask)
   {
     try
@@ -579,12 +608,12 @@ public class SharklineJDBC
       if(ask < 1000)
         return null;
 
-      ArrayList investors = new ArrayList<Investor>();
+      ArrayList<Investor> investors = new ArrayList<Investor>();
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investment_range_init <= ?"
                            + " AND investment_range_end >= ?");
-      st.setInt(1, ask);
-      st.setInt(2, ask);
+      st.setInt(1, (int) (ask * .9));
+      st.setInt(2, (int) (ask * 1.1));
 
       ResultSet result = st.executeQuery();
 
@@ -624,8 +653,8 @@ public class SharklineJDBC
   }
 
   /**
-  * findBusinessAccount searches by name of Business to locate
-  * entry in database
+  * findBusinessAccountByName searches by name of Business to locate
+  * entry in database. Must be exact match.
   *
   * @param name the string of the name associated to the business
   *             account we are trying to find
@@ -678,6 +707,14 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findBusinessAccountByEmail queries business_accounts for an exact email match
+  *
+  * @param String email, the email to search for
+  *
+  * @return null if no such investor account exists, otherwise return
+  * the business object
+  */
   public Business findBusinessAccountByEmail(String email)
   {
     try
@@ -723,11 +760,20 @@ public class SharklineJDBC
     }
   }
 
+  /**
+  * findBusinessesByIndustry queries business_accounts for any businesses in
+  * the given field
+  *
+  * @param Industry industry, the industry to search
+  *
+  * @return null if no such investor account exists, otherwise return an array list
+  * containing each matching business
+  */
   public ArrayList<Business> findBusinessesByIndustry(Industry industry)
   {
     try
     {
-      ArrayList businesses = new ArrayList<Business>();
+      ArrayList<Business> businesses = new ArrayList<Business>();
       PreparedStatement st =
       dbcon.prepareStatement("SELECT * FROM business_accounts WHERE industry = ?");
       st = setIndustry(st, industry, 1);
@@ -771,6 +817,66 @@ public class SharklineJDBC
       return null;
     }
   }
+
+  /**
+  * findBusinessesByLikeName queries business_accounts for any businesses with a
+  * name that contains the given substring
+  *
+  * @param String name, the substring to search for
+  *
+  * @return null if no such investor account exists, otherwise return an array list
+  * containing each matching business
+  */
+  public ArrayList<Business> findBusinessesByLikeName(String name)
+  {
+    try
+    {
+      ArrayList<Business> businesses = new ArrayList<Business>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE name LIKE ?");
+      st.setString(1, "%" + name + "%");
+
+      ResultSet result = st.executeQuery();
+      while(result.next())
+      {
+        Business account = new Business();
+
+        account.setBusinessEmail(result.getString("business_email"));
+        account.setBusinessName(result.getString("business_name"));
+        account.setBusinessAbstract(result.getString("business_abstract"));
+        account.setDescription(result.getString("business_description"));
+        account.setLogoPath(result.getString("logo"));
+        account.setSize(getSize(result.getString("size")));
+        account.setYear(result.getInt("established"));
+        account.setInvestmentAsk(result.getInt("investment_ask"));
+        account.setEquityOffer(result.getInt("equity_offer"));
+        account.setWebsite(result.getString("website"));
+        account.setCeoName(result.getString("name_CEO"));
+        account.setBusinessIndustry(getIndustry(result.getString("industry")));
+
+        businesses.add(account);
+      }
+      if(businesses.size() == 0)
+        return null;
+
+      st.close();
+      return businesses;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+
  /**
   * addConnection adds both business and investor emails along with the date connection was made as an
   * entry in the database
@@ -830,7 +936,6 @@ public class SharklineJDBC
   *         if otherwise
   *
   */
-
   public boolean removeConnection(UserConnection userCon)
   {
     try
