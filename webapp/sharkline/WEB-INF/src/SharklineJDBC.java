@@ -274,7 +274,6 @@ public class SharklineJDBC
       //ever affect one row (as email is primary key so we cant have repeats)
       if(st.executeUpdate() >= 1)
         isUpdated = true;
-      }
 
       dbcon.commit();
       st.close();
@@ -989,42 +988,36 @@ public class SharklineJDBC
    /**
   * storeMessageInfo adds connection id, date & time, determines sender, and stores message contents in db
   *
-  *
-  * @param chat a ChatLog object
+  * @param connection_id, sender, message
   *
   * @return true if connection is found and information is stored, false
   *         if otherwise
-  *
   */
-  public boolean storeMessageInfo(ChatLog chat)
+  public boolean storeMessage(int connection_id, int sender, String message)
   {
     try
     {
-      boolean isStored = false;
-      PreparedStatement pr = dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? AND investor_email = ?");
-      pr.setString(1, chat.getBusinessEmail());
-      pr.setString(2, chat.getInvestorEmail());
+      boolean isAdded = false;
+      PreparedStatement st = dbcon.prepareStatement("INSERT INTO chat_log"
+      + " VALUES(?, ?, ?, ?)");
 
-      ResultSet result = pr.executeQuery();
-       if(!(result.next()))
-        return false;
+      st.setInt(1, connection_id);
 
-       int connectionID = result.getInt("connection_id");
-       pr.close();
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy'T'HH:mm:ss");
+  		LocalDateTime now = LocalDateTime.now();
+  		String datetime_sent = dtf.format(now).toString();
+      st.setString(2, datetime_sent);
 
-      PreparedStatement st = dbcon.prepareStatement("INSERT INTO chat_log VALUES" +
-                                                      " (?,?,?,?");
-      st.setInt(1, connectionID);
-      st.setString(2, chat.getDateTime());
-      st.setInt(3, chat.getSender());
-      st.setString(4, chat.getMessage());
+      st.setInt(3, sender);
+      st.setString(4, message);
 
       if(st.executeUpdate() >= 1)
-        isStored = true;
+        isAdded = true;
 
       dbcon.commit();
       st.close();
-      return isStored;
+
+      return isAdded;
 
 
     } catch(SQLException e1)
@@ -1049,13 +1042,13 @@ public class SharklineJDBC
   *
   * @return null if no connections exists, otherwise return a list of connection_ids
   */
-  public ArrayList<integer> getConnectionIDsByEmail(String email)
+  public ArrayList<Integer> getConnectionIDsByEmail(String email)
   {
     try
     {
-      ArrayList<integer> connectionIDs = new ArrayList<integer>();
+      ArrayList<Integer> connectionIDs = new ArrayList<Integer>();
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT connection_id FROM account_connections WHERE business_email = ? OR investor_email = ?");
+      dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? OR investor_email = ?");
 
       st.setString(1, email);
       st.setString(2, email);
@@ -1066,12 +1059,66 @@ public class SharklineJDBC
 
       while(result.next())
       {
-        int id = result.getInteger("connection_id");
+        int id = result.getInt("connection_id");
         connectionIDs.add(id);
       }
 
       st.close();
       return connectionIDs;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  /**
+  * getChatLogByConnectionID queries chat_log for any messages for a certain connection_id
+  * THE MOST RECENT MESSAGE IS LISTED FIRST
+  *
+  * @param connection_id, the connection to search for
+  * @param numMessages, the number of messages to find
+  *
+  * @return null if no chats exist, otherwise return a list of chat_logs
+  * the business object
+  */
+  public ArrayList<ChatLog> getChatLogByConnectionID(int connection_id, int num_messages)
+  {
+    try
+    {
+      ArrayList<ChatLog> chat_logs = new ArrayList<ChatLog>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM chat_log WHERE connection_id = ? ORDER BY datetime_sent DESC LIMIT ?");
+
+      st.setInt(1, connection_id);
+      st.setInt(2, num_messages);
+
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next())
+      {
+        ChatLog c = new ChatLog(0, null, 0, null);
+        c.setConnectionID(result.getInt("connection_id"));
+        c.setDateTimeToString(result.getString("datetime_sent"));
+        c.setSender(result.getInt("sender"));
+        c.setMessage(result.getString("message"));
+
+        chat_logs.add(c);
+      }
+
+      st.close();
+      return chat_logs;
     }
     catch(SQLException e1)
     {
