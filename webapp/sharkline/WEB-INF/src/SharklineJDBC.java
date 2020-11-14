@@ -210,6 +210,7 @@ public class SharklineJDBC
       return null;
     }
   }
+
   public Account findAccountByName(String name)
   {
     try
@@ -252,6 +253,7 @@ public class SharklineJDBC
       return null;
     }
   }
+
   /***
   * verifyAccount searches through the database to update account with given email
   * to set verified attribute accounts table to 1 (or true)
@@ -617,6 +619,9 @@ public class SharklineJDBC
 
       ResultSet result = st.executeQuery();
 
+      if(!(result.next()))
+        return null;
+
       while(result.next())
       {
         Investor account = new Investor();
@@ -876,7 +881,6 @@ public class SharklineJDBC
     }
   }
 
-
  /**
   * addConnection adds both business and investor emails along with the date connection was made as an
   * entry in the database
@@ -981,6 +985,7 @@ public class SharklineJDBC
     }
 
   }
+
    /**
   * storeMessageInfo adds connection id, date & time, determines sender, and stores message contents in db
   *
@@ -1022,7 +1027,7 @@ public class SharklineJDBC
       return isStored;
 
 
-    }catch(SQLException e1)
+    } catch(SQLException e1)
     {
       while(e1 != null)
       {
@@ -1033,6 +1038,52 @@ public class SharklineJDBC
         e1 = e1.getNextException();
       }
       return false;
+    }
+  }
+
+  /**
+  * getConnectionIDsByEmail queries account_connections for an exact email match and
+  * returns all connection_ids for that email
+  *
+  * @param String email, the email to search for
+  *
+  * @return null if no connections exists, otherwise return a list of connection_ids
+  */
+  public ArrayList<integer> getConnectionIDsByEmail(String email)
+  {
+    try
+    {
+      ArrayList<integer> connectionIDs = new ArrayList<integer>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT connection_id FROM account_connections WHERE business_email = ? OR investor_email = ?");
+
+      st.setString(1, email);
+      st.setString(2, email);
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next())
+      {
+        int id = result.getInteger("connection_id");
+        connectionIDs.add(id);
+      }
+
+      st.close();
+      return connectionIDs;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
     }
   }
 
@@ -1122,6 +1173,7 @@ public class SharklineJDBC
     }
     return st;
   }
+
   private PreparedStatement setSize(PreparedStatement st, Size size, int pos)
   {
     try
@@ -1162,6 +1214,7 @@ public class SharklineJDBC
     }
     return st;
   }
+
   private Size getSize(String size)
   {
     Size returnSize;
