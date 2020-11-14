@@ -46,6 +46,16 @@
 <url-pattern>/createServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>firsttimesetupServlet</servlet-name>
+<servlet-class>firsttimesetupServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>firsttimesetupServlet</servlet-name>
+<url-pattern>/firsttimesetupServlet</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>

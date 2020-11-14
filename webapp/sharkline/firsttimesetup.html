@@ -9,6 +9,7 @@
   <label for="industry_select">Select Industry</label><br>
   <form method="post" action="firstTimeSetupServlet">
       <select required id ="industry_select" name="industry_select">
+          <option value="">Select an industry</option>
           <option value="industrial">Industrial</option>
           <option value="health">Health</option>
           <option value="software/tech">Software/Tech</option>
@@ -30,6 +31,7 @@
       </select><br><br>
       <label for="size">Number of Employees</label><br>
       <select id="size" name = "size">
+          <option value="">Select a company size</option>
           <option value="1-10">1-10</option>
           <option value="11-30">11-30</option>
           <option value="31-50">31-50</option>
@@ -45,6 +47,10 @@
       <input type="number" class="input_section" placeholder="Investment Ask" min=0 name="investment_ask"><br><br>
       <label for="established">Established Year</label><br>
       <input type="number" class="input_section" placeholder="Established" max=2020 min=0 name="established"><br><br>
+      <label for="abtract">Profile abstract</label><br>
+      <textarea name="abstract" rows="3" cols="25"></textarea><br><br>
+      <label for="description">Profile Description</label><br>
+      <textarea name="description" rows="5" cols="60"></textarea><br><br>
       <input type="submit" class="complete_setup" value="Complete Setup">
   </form>
 </body>
