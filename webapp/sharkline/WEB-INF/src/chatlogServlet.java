@@ -28,8 +28,8 @@ public class chatlogServlet extends HttpServlet
     response.setIntHeader("Refresh", 1);
 
     ArrayList<String> previews = SQLCommands.getConversationPreviews(email);
-    ArrayList<String> contact;
-    ArrayList<String> lastMessage;
+    ArrayList<String> contact = new ArrayList<String>();
+    ArrayList<String> lastMessage = new ArrayList<String>();
 
     for (String p : previews) {
       String a[]= p.split("~");
