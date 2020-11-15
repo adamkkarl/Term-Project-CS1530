@@ -1182,7 +1182,7 @@ public class SharklineJDBC
   *
   * @param connection_id, the connection to search for
   *
-  * @return null if no chats exist, otherwise return a list of String BusinessName, String investorName, String message tuples
+  * @return null if no chats exist, otherwise return a ~-separated list of investor name, business name, and message
   */
   public ArrayList<String> getConversationPreviews(String email)
   {
@@ -1190,7 +1190,7 @@ public class SharklineJDBC
     {
       boolean isBusiness = false;
 
-      ArrayList<String> connectedEmails = new ArrayList<String>();
+      ArrayList<String> info = new ArrayList<String>();
 
       PreparedStatement st =
       dbcon.prepareStatement("SELECT bn.business_name AS business_name, inv_name.investor_name AS investor_name, tmp.message AS message "
@@ -1215,10 +1215,13 @@ public class SharklineJDBC
       if(!(result.next()))
         return null;
 
-      //TODO
+      while(result.next()) {
+        String investor_business_message = "~".join(result.getString("investor_name"), result.getString("business_name"), result.getString("message"));
+        info.add(investor_business_message);
+      }
 
       st.close();
-      return null;
+      return info;
     }
     catch(SQLException e1)
     {
