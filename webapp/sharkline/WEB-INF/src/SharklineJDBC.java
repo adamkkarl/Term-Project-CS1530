@@ -358,10 +358,9 @@ public class SharklineJDBC
       boolean isAdded = false;
 
       PreparedStatement st =
-      dbcon.prepareStatement("UPDATE business_accounts SET business_email = ?,"+
-      " business_name = ?, business_description = ?, business_abstract = ?, logo = ?,"+
-      " size = ?, established = ?, investment_ask = ?, equity_offer = ?, website = ?,"+
-      " name_CEO = ?, industry = ? WHERE business_email = ?");
+      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+                            "(?, ?, ?, ?, ?, ?, ?," +
+                            "?, ?, ?, ?, ?)");
 
 
       st.setString(1,account.getBusinessEmail());
@@ -376,7 +375,6 @@ public class SharklineJDBC
       st.setString(10, account.getWebsite());
       st.setString(11, account.getCeoName());
       setIndustry(st, account.getBusinessIndustry(), 12);
-      st.setString(13, account.getBusinessEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -461,8 +459,8 @@ public class SharklineJDBC
     {
        boolean isAdded = false;
        PreparedStatement st =
-       dbcon.prepareStatement("UPDATE investor_accounts VALUES" +
-                            "(?, ?, ?, ?, ?, ?, ?, ?)");
+       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+                            "(?, ?, ?, ? , ?, ?, ?, ?)");
 
 
       st.setString(1,account.getInvestorEmail());
@@ -531,6 +529,40 @@ public class SharklineJDBC
 
       st.close();
       return returnAccount;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  public String getNameFromEmail(String email)
+  {
+    try
+    {
+      ArrayList<Integer> connectionIDs = new ArrayList<Integer>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM accounts WHERE account_email = ?");
+      st.setString(1, email);
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next())
+      {
+        String name = result.getString("account_name");
+        st.close();
+        return name;
+      }
     }
     catch(SQLException e1)
     {
@@ -1120,6 +1152,79 @@ public class SharklineJDBC
       }
 
       st.close();
+      return chat_logs;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  /**
+  * getChatLogByConnectionID queries chat_log for any messages for a certain connection_id
+  * THE MOST RECENT MESSAGE IS LISTED
+  *
+  * @param connection_id, the connection to search for
+  *
+  * @return null if no chats exist, otherwise return a list of String BusinessName, String investorName, String message tuples
+  */
+  public ArrayList<String> getConversationPreviews(String email)
+  {
+    try
+    {
+      boolean isBusiness = false;
+
+      ArrayList<String> connectedEmails = new ArrayList<String>();
+
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? OR investor_email = ?");
+      st.setString(1, email);
+      st.setString(2, email);
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next())
+      {
+        String inv_email = result.getString("investor_email")
+        if(email.equals(inv_email)) {
+          isBusiness = false;
+          connectedEmails.add(result.getString("business_email"));
+        } else {
+          isBusiness = true;
+          connectedEmails.add(inv_email);
+        }
+      }
+
+      ArrayList<String> connectedNames_recentMessage = new ArrayList<String>();
+      for (String e : connectedEmails) {
+        name = getNameFromEmail(connectedEmails);
+
+        if(isBusiness) {
+          PreparedStatement st2 =
+          dbcon.prepareStatement("SELECT * FROM account_connections a LEFT JOIN (SELECT * FROM chat_log c GROUP BY )");
+          st.setString(1, email);
+          st.setString(1, e);
+
+          ResultSet r2 = st.executeQuery();
+
+          int con = r2.getString();
+        }
+
+      }
+
+
+      st.close();
+      st2.close();
       return chat_logs;
     }
     catch(SQLException e1)
