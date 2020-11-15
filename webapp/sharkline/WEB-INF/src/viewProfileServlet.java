@@ -42,7 +42,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		account = (Account)session.getAttribute("account");
 		name = account.getName();
 		email = account.getEmail();
-		if(account.getType() == type.INVESTOR)
+		if(account.getType() == Type.INVESTOR)
 		{
 			investor = SQLCommands.findInvestorAccountByName(name);
 			description = investor.getInvestorDescription();
