@@ -57,6 +57,7 @@ public class firsttimesetupServlet extends HttpServlet
                     "<head>"+
                     "    <meta charset=\"UTF-8\">"+
                     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
+                    "    <link rel=\"stylesheet\" href=\"./css/setupStyle.css\">"+
                     "</head>"+
                     "<body>"+
                     "  <h2>Please complete your first time setup for your account</h2>"+
