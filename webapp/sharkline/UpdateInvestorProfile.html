@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Your Profile</title>
+</head>
+<body>
+    <main>
+      <h2>Update Your Profile</h2>
+      <form method="post" action="updateProfileServlet.html">
+        
+
+        <label for="description">Add a Description</label><br>
+        <input required type = "text" required class="input_section" placeholder="Description" name="description"><br><br>
+
+        <label for="abstract">Add an Abstract</label><br>
+        <input required type="text" class="input_section" placeholder="Abstract" name="abstract"><br><br>
+
+        <label for="investmentStart">Minimum Investment($)</label><br>
+        <input required type="number" class="input_section" placeholder="0" name ="investmentStart"><br><br>
+
+        <label for="investmentEnd">Maximum Investment($)</label><br>
+        <input required type="number" class="input_section" placeholder="0" name="investmentEnd"><br><br>
+
+        <label for="website">Website URL</label><br>
+        <input required type="url" class="input_section" placeholder="www.mywebsite.com" name="website"><br><br>
+
+        <label for="ceoName">CEO Name</label><br>
+        <input required type="text" class="input_section" placeholder="John Doe" name="ceoName"><br><br>
+        <script>
+        function revert()
+    {
+        var url = window.location.href;
+        url = url.replace(/\/[^\/]*$/, '/viewMyProfile.html');
+        location.replace(url)
+    
+    }
+        </script>
+
+        <input type="submit" value="Submit Changes" href = "revert();" >
+    </form>
+    </main>
+</body>
+</html>
