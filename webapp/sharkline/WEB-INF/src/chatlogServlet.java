@@ -9,11 +9,17 @@ import java.time.LocalDateTime;
 public class chatlogServlet extends HttpServlet
 {
 
+  SharklineJDBC SQLCommands;
+  Account account;
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
   {
+    HttpSession session = request.getSession();
+    account = (Account)session.getAttribute("account");
+    String email = account.getEmail();
+
     SQLCommands = new SharklineJDBC();
-    Account account = (Account)session.getAttribute("account");
     response.setContentType("text/html");
     PrintWriter out = response.getWriter();
 
@@ -21,22 +27,18 @@ public class chatlogServlet extends HttpServlet
     // Set refresh, autoload time as 1 seconds
     response.setIntHeader("Refresh", 1);
 
-    Account account = (Account)session.getAttribute("account");
-    String email = account.getEmail();
-    List<Integer> connectionIDs = getConnectionIDsByEmail(email);
+    ArrayList<String> previews = SQLCommands.getConversationPreviews(email);
 
-    //goal: list of names, and list of most recent messages for each connection
-    //note that connectionIDs[i] corresponds to connectionName[i] and connectionMessages[i]
-    //used as a sidebar to preview all current conversations
-    List<String> connectionName;
-    List<String> connectionMessages;
-    if(account.getType() == Type.BUSINESS)
-    {
-      
-    } else {
+    for (String p : previews) {
+      String a[]= p.split("~");
+      String inv_name = a[0];
+      String bus_name = a[1];
+      String message = a[2];
+
+      //TODO HERE
+
 
     }
-
 
     //from messaging.html, doesn't look like it's done yet
     String output = "<!DOCTYPE html>"+
