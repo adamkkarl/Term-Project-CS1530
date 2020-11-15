@@ -1132,16 +1132,15 @@ public class SharklineJDBC
   * @return null if no chats exist, otherwise return a list of chat_logs
   * the business object
   */
-  public ArrayList<ChatLog> getChatLogByConnectionID(int connection_id, int num_messages)
+  public ArrayList<ChatLog> getChatLogByConnectionID(int connection_id)
   {
     try
     {
       ArrayList<ChatLog> chat_logs = new ArrayList<ChatLog>();
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT * FROM chat_log WHERE connection_id = ? ORDER BY datetime_sent DESC LIMIT ?");
+      dbcon.prepareStatement("SELECT * FROM chat_log WHERE connection_id = ? ORDER BY datetime_sent ASC");
 
       st.setInt(1, connection_id);
-      st.setInt(2, num_messages);
 
       ResultSet result = st.executeQuery();
 
