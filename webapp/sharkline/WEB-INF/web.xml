@@ -63,7 +63,7 @@
 
 <servlet-mapping>
 <servlet-name>viewProfileServlet</servlet-name>
-<url-pattern>viewProfileServlet</url-pattern>
+<url-pattern>/viewProfileServlet</url-pattern>
 </servlet-mapping>
 
 <session-config>

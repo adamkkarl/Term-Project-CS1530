@@ -24,7 +24,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 	response.setContentType("text/html");
 PrintWriter out = response.getWriter();
 
-output = printMyNetwork(name);
+output = printMyNetwork(name, account);
 
 if(account.getType() == Type.INVESTOR)
 {
@@ -333,7 +333,7 @@ if ( size == null ) { return null; }
 		return true;
 	}
 
-	private static String printMyNetwork(String name)
+	private static String printMyNetwork(String name, Account account)
 	{
 		String output =
 		"<!DOCTYPE html>" +
@@ -382,7 +382,10 @@ if ( size == null ) { return null; }
     "</ul>" +
   "</div>" +
 "</nav>" +
-"<form class=\"form-inline center\" method=\"post\" action=\"mynetworkServlet\">" +
+"<form class=\"form-inline center\" method=\"post\" action=\"mynetworkServlet\">";
+ if ( account.getType() == Type.INVESTOR)
+ {
+	 output +=
     "<input class=\"form-control search\" type=\"text\" id=\"searchbusinessname\" name=\"searchbusinessname\" placeholder=\"Business Name\" aria-label=\"Business Name\">" +
     "<select class=\"form-control dropdown\" name=\"searchbusinessindustry\" aria-label=\"Industry Name\">"+
 		"          <option value=\"\">Select an industry</option>"+
@@ -405,8 +408,9 @@ if ( size == null ) { return null; }
 		"          <option value=\"Transportation\">Transportation</option>"+
 		"          <option value=\"Other\">Other</option>"+
 		"      </select>"+
-    "<button class=\"btn\" type=\"submit\">Search</button>" +
-"</form>";
+    "<button class=\"btn\" type=\"submit\">Search</button>";
+ }
+ output += "</form>";
 
 return output;
 	}
