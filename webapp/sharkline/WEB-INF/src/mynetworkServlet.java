@@ -20,75 +20,26 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 	SQLCommands = new SharklineJDBC();
 	account = (Account)session.getAttribute("account");
 	name = account.getName();
-	String searchValue = request.getParameter("searchval");
+	String searchValueByBusinessIndustry = request.getParameter("searchbusinessindustry");
+	String searchValueByBusinessName = request.getParameter("searchbusinessname");
 
 	response.setContentType("text/html");
 PrintWriter out = response.getWriter();
 
-output =
-"<!DOCTYPE html>" +
-"<html lang=\"en\">" +
-"<head>" +
-    "<meta charset=\"UTF-8\">" +
-    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
-    "<title>SharkLine - " + name + "</title>" +
-	"<!-- TODO: need to add filter button and suggestions header -->" +
-    "<script>suggestion();</script>" +
-"<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>" +
-"<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>" +
-    "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">" +
-    "<script src=\"main.js\"></script>" +
-    "<link rel=\"stylesheet\" href=\"./css/style.css\">" +
-"</head>" +
-"<body>" +
-  "<div class=\"sidenav navbar-dark bg-dark\">" +
-    "<a href=\"#\">Connections</a>" +
-    "<a href=\"#\">Events</a>" +
-    "<a href=\"#\">Groups</a>" +
-  "</div>" +
-"<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">" +
-  "<img src=\"./images/logo.png\" class=\"center logo\" alt=\"...\" width=\"160\" height=\"80\">" +
-  "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">" +
-    "<span class=\"navbar-toggler-icon\"></span>" +
-  "</button>" +
-  "<div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">" +
-    "<ul class=\"navbar-nav\">" +
-      "<li class=\"nav-item active\">" +
-        "<a class=\"nav-link\" href=\"#\">My Network <span class=\"sr-only\">(current)</span></a>" +
-      "</li>" +
-      "<li class=\"nav-item active\">" +
-        "<a class=\"nav-link\" href=\"#\">Messaging</a>" +
-      "</li>" +
-      "<li class=\"nav-item dropdown active\">" +
-        "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
-          "Profile" +
-        "</a>" +
-        "<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">" +
-          "<a class=\"dropdown-item\" href=\"#\">Edit Profile</a>" +
-          "<a class=\"dropdown-item\" href=\"#\">Settings</a>" +
-          "<a class=\"dropdown-item\" href=\"logout\">Logout</a>" +
-        "</div>" +
-      "</li>" +
-    "</ul>" +
-  "</div>" +
-"</nav>" +
-"<form class=\"form-inline center\" method=\"post\" action=\"mynetworkServlet\">" +
-    "<input class=\"form-control search\" type=\"text\" id=\"searchval\" name=\"searchval\" placeholder=\"Search\" aria-label=\"Search\">" +
-    "<button class=\"btn\" type=\"submit\">Search</button>" +
-"</form>";
+output = printMyNetwork(name);
 
 if(account.getType() == Type.INVESTOR)
 {
-	if ( searchValue != null )
+	if ( searchValueByBusinessIndustry != null  && searchValueByBusinessName.equals("") )
 	{
-		Industry industry = getIndustry(searchValue);
+		Industry industry = getIndustry(searchValueByBusinessIndustry);
 		ArrayList<Business> businesses = SQLCommands.findBusinessesByIndustry(industry);
 
 		if ( businesses == null )
 		{
-			output += "<h2>0 Search Results Found</h2>";
+			output += printNoSearchResults();
 		}
-		if ( businesses.size() >= 1 )
+		else
 		{
 			output +=
 			"<h2>Search Results</h2>" +
@@ -105,7 +56,32 @@ if(account.getType() == Type.INVESTOR)
 		}
 	}
 }
-else if(account.getType() == Type.BUSINESS)
+
+if ( searchValueByBusinessName != null && searchValueByBusinessIndustry.equals("") )
+{
+	ArrayList<Business> businesses = SQLCommands.findBusinessesByLikeName(searchValueByBusinessName);
+	
+	if ( businesses == null )
+		{
+			output += printNoSearchResults();
+		}
+			else
+		{
+			output +=
+			"<h2>Search Results</h2>" +
+			"<table class=\"center\">" +
+			"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
+			for ( int i = 0; i < businesses.size(); i++ )
+			{
+				output +=
+				"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>"
+				+ businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath()
+				+ "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
+			}
+			output += "</table>";
+		}
+}
+/*if(account.getType() == Type.BUSINESS)
 {
 	if(searchValue != null && isNumeric(searchValue))
 	{
@@ -114,9 +90,9 @@ else if(account.getType() == Type.BUSINESS)
 		ArrayList<Investor> investors = SQLCommands.findInvestorsByAsk(ask);
 		if(investors == null)
 		{
-			output += "<h2>0 Search Results Found</h2>";
+			output += printNoSearchResults();
 		}
-		if(investors.size() >= 1)
+		else
 		{
 			output +=
 			"<h2>Search Results</h2>" +
@@ -133,7 +109,7 @@ else if(account.getType() == Type.BUSINESS)
 			output += "</table>";
 		}
 	}
-}
+}*/
 
 output +=
 "</body>" +
@@ -340,4 +316,71 @@ if ( size == null ) { return null; }
 		}
 		return true;
 	}
+	
+	private static String printMyNetwork(String name)
+	{
+		String output =
+		"<!DOCTYPE html>" +
+"<html lang=\"en\">" +
+"<head>" +
+    "<meta charset=\"UTF-8\">" +
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+    "<title>SharkLine - " + name + "</title>" +
+	"<!-- TODO: need to add filter button and suggestions header -->" +
+    "<script>suggestion();</script>" +
+"<script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>" +
+"<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>" +
+    "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">" +
+    "<script src=\"main.js\"></script>" +
+    "<link rel=\"stylesheet\" href=\"./css/style.css\">" +
+"</head>" +
+"<body>" +
+  "<div class=\"sidenav navbar-dark bg-dark\">" +
+    "<a href=\"#\">Connections</a>" +
+    "<a href=\"#\">Events</a>" +
+    "<a href=\"#\">Groups</a>" +
+  "</div>" +
+"<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">" +
+  "<img src=\"./images/logo.png\" class=\"center logo\" alt=\"...\" width=\"160\" height=\"80\">" +
+  "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">" +
+    "<span class=\"navbar-toggler-icon\"></span>" +
+  "</button>" +
+  "<div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">" +
+    "<ul class=\"navbar-nav\">" +
+      "<li class=\"nav-item active\">" +
+        "<a class=\"nav-link\" href=\"#\">My Network <span class=\"sr-only\">(current)</span></a>" +
+      "</li>" +
+      "<li class=\"nav-item active\">" +
+        "<a class=\"nav-link\" href=\"#\">Messaging</a>" +
+      "</li>" +
+      "<li class=\"nav-item dropdown active\">" +
+        "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
+          "Profile" +
+        "</a>" +
+        "<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">" +
+          "<a class=\"dropdown-item\" href=\"#\">Edit Profile</a>" +
+          "<a class=\"dropdown-item\" href=\"#\">Settings</a>" +
+          "<a class=\"dropdown-item\" href=\"logout\">Logout</a>" +
+        "</div>" +
+      "</li>" +
+    "</ul>" +
+  "</div>" +
+"</nav>" +
+"<form class=\"form-inline center\" method=\"post\" action=\"mynetworkServlet\">" +
+    "<input class=\"form-control search\" type=\"text\" id=\"searchbusinessname\" name=\"searchbusinessname\" placeholder=\"Business Name\" aria-label=\"Business Name\">" +
+    "<input class=\"form-control search\" type=\"text\" id=\"searchbusinessindustry\" name=\"searchbusinessindustry\" placeholder=\"Business Industry\" aria-label=\"Business Industry\">" +
+    "<button class=\"btn\" type=\"submit\">Search</button>" +
+"</form>";
+
+return output;
+	}
+
+private static String printNoSearchResults()
+{
+	String output =
+	"<h2>No Search Results Found</h2>" +
+	"<p[>No results were returned. Try a different search.</p>";
+	
+	return output;
+}
 }

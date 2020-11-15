@@ -418,7 +418,7 @@ public class SharklineJDBC
 
       PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO investor_accounts VALUES" +
-                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
       st.setString(1, account.getEmail());
       st.setString(2, account.getName());
 
@@ -459,18 +459,22 @@ public class SharklineJDBC
     {
        boolean isAdded = false;
        PreparedStatement st =
-       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
-                            "(?, ?, ?, ? , ?, ?, ?, ?)");
+       dbcon.prepareStatement("UPDATE investor_accounts SET"+
+                            "investor_email = ?, investor_name = ?, investor_description = ?,"+
+                            " investor_abstract = ?, image = ?, investment_range_init = ?, investment_range_end = ?,"+
+                            " website = ?, name_CEO = ? WHERE investor_email = ?");
 
 
       st.setString(1,account.getInvestorEmail());
       st.setString(2, account.getInvestorName());
       st.setString(3, account.getInvestorDescription());
       st.setString(4, account.getInvestorAbstract());
-      st.setInt(5, account.getInvestmentRangeInit());
-      st.setInt(6, account.getInvestmentRangeEnd());
-      st.setString(7, account.getWebsite());
-      st.setString(8, account.getCeoName());
+      st.setString(5, account.getImage());
+      st.setInt(6, account.getInvestmentRangeInit());
+      st.setInt(7, account.getInvestmentRangeEnd());
+      st.setString(8, account.getWebsite());
+      st.setString(9, account.getCeoName());
+      st.setString(10, account.getInvestorEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -526,6 +530,7 @@ public class SharklineJDBC
       returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
       returnAccount.setWebsite(result.getString("website"));
       returnAccount.setCeoName(result.getString("name_CEO"));
+      returnAccount.setImage(result.getString("image"));
 
       st.close();
       return returnAccount;
@@ -609,6 +614,7 @@ public class SharklineJDBC
       returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
       returnAccount.setWebsite(result.getString("website"));
       returnAccount.setCeoName(result.getString("name_CEO"));
+      returnAccount.setImage(result.getString("image"));
 
       st.close();
       return returnAccount;
@@ -667,6 +673,7 @@ public class SharklineJDBC
         account.setInvestmentRangeEnd(result.getInt("investment_range_end"));
         account.setWebsite(result.getString("website"));
         account.setCeoName(result.getString("name_CEO"));
+        account.setImage(result.getString("image"));
 
         investors.add(account);
       }
@@ -871,7 +878,7 @@ public class SharklineJDBC
     {
       ArrayList<Business> businesses = new ArrayList<Business>();
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE name LIKE ?");
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE business_name LIKE ?");
       st.setString(1, "%" + name + "%");
 
       ResultSet result = st.executeQuery();
