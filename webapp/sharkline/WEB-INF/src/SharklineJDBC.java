@@ -460,7 +460,7 @@ public class SharklineJDBC
        boolean isAdded = false;
        PreparedStatement st =
        dbcon.prepareStatement("UPDATE investor_accounts SET"+
-                            "investor_email = ?, investor_name = ?, investor_description = ?,"+
+                            " investor_email = ?, investor_name = ?, investor_description = ?,"+
                             " investor_abstract = ?, image = ?, investment_range_init = ?, investment_range_end = ?,"+
                             " website = ?, name_CEO = ? WHERE investor_email = ?");
 
