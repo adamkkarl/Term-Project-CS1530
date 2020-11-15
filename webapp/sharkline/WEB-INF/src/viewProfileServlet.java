@@ -11,6 +11,8 @@ public class viewProfileServlet extends HttpServlet
 String output;
 	String name;
 	String email;
+	String image;
+	String logo;
 	Industry industry;
 	String description;
 	String myAbstract;
@@ -45,15 +47,18 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		if(account.getType() == Type.INVESTOR)
 		{
 			investor = SQLCommands.findInvestorAccountByName(name);
+			image = investor.getImage();
 			description = investor.getInvestorDescription();
 			myAbstract = investor.getInvestorAbstract();
 			investmentInit = investor.getInvestmentRangeInit();
 			investmentEnd = investor.getInvestmentRangeEnd();
 			website = investor.getWebsite();
 			ceoName = investor.getCeoName();
+			output = printInvestorProfile(name, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName );
 
 		}else{
 			business = SQLCommands.findBusinessAccountByName(name);
+			logo = business.getLogoPath();
 			industry = business.getBusinessIndustry();
 			description = business.getDescription();
 			myAbstract = business.getBusinessAbstract();
@@ -63,15 +68,19 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			equity = business.getEquityOffer();
 			website = business.getWebsite();
 			ceoName = business.getCeoName();
-
+			output = printBusinessProfile(name, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
 		}
 		
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+
+		
+		out.print(output);
+
 	}
 
-	private static String printInvestorProfile(String name, Industry industry, String description, String myAbstract,
+	private static String printInvestorProfile(String name, String image, String description, String myAbstract,
 												int investmentInit, int investmentEnd, String website, String ceoName )
 	{
 		
@@ -116,7 +125,7 @@ String output = "<!DOCTYPE html>"+
 ""+
 "  <div class=\"profile\">"+
 "    <img class=\"banner center\" src=\"https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-686x371.jpeg\"/>"+
-"    <img class=\"profilePic\" src=\"steve-jobs-macintosh 2.jpg\" alt=\"John\"/>"+
+"    <img class=\"profilePic\" src=\"" + image + "\" alt=\"John\"/>"+
 "    <div class=\"info\">"+
 "      <h5 class=\"name\">"+ name + "</h5>"+
 "      <h5 class=\"website\">" + website + "</h5><br>"+
@@ -152,7 +161,7 @@ return output;
 
 	}
 
-	private static String printBusinessProfile(String name, String description, String myAbstract, Size size, int year,
+	private static String printBusinessProfile(String name, String logo, Industry industry, String description, String myAbstract, Size size, int year,
 												int investmentAsk, int equity, String website, String ceoName)	
 	{
 		String output = "<!DOCTYPE html>"+
@@ -196,7 +205,7 @@ return output;
 ""+
 "  <div class=\"profile\">"+
 "    <img class=\"banner center\" src=\"https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-686x371.jpeg\"/>"+
-"    <img class=\"profilePic\" src=\"facebook.png\" alt=\"Profie Picture\"/>"+
+"    <img class=\"profilePic\" src=\"" + logo + "\" alt=\"Profie Picture\"/>"+
 "    <div class=\"info\">"+
 "      <h4 class=\"name\"><b>" + name + "</b></h4>"+
 "      <h5 class=\"ceo\">CEO: " + ceoName + "</h5>"+
