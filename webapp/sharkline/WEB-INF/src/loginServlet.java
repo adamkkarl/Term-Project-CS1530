@@ -74,7 +74,7 @@ public class loginServlet extends HttpServlet
 
 				if(SQLCommands.findInvestorAccountByEmail(emailValue) == null)
 				{
-					rd = request.getRequestDispatcher("firstTimeSetupServlet");
+					rd = request.getRequestDispatcher("");
 				}
 				else
 				{
@@ -91,7 +91,7 @@ public class loginServlet extends HttpServlet
 
 				if(SQLCommands.findBusinessAccountByEmail(emailValue) == null)
 				{
-					rd = request.getRequestDispatcher("firstTimeSetupServlet");
+					rd = request.getRequestDispatcher("/firsttimesetupbusiness.html");
 				}
 				else
 				{
