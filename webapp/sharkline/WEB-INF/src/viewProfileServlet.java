@@ -42,13 +42,13 @@ public void doGet(HttpServlet request, HttpServletResponse response) throws Serv
 		account = (Account)session.getAttribute("account");
 		name = account.getName();
 		email = account.getEmail();
-		if(account.getType() == INVESTOR)
+		if(account.getType() == type.INVESTOR)
 		{
 			investor = SQLCommands.findInvestorAccountByName(name);
 			description = investor.getInvestorDescription();
 			myAbstract = investor.getInvestorAbstract();
 			investmentInit = investor.getInvestmentRangeInit();
-			investmentEnd = investor.getInvestmenRangeEnd();
+			investmentEnd = investor.getInvestmentRangeEnd();
 			website = investor.getWebsite();
 			ceoName = investor.getCeoName();
 
@@ -134,7 +134,7 @@ String myvar = "<!DOCTYPE html>"+
 "      function update()"+
 "      {"+
 "        var url = window.location.href;"+
-"        url = url.replace(/\/[^\/]*$/, '/UpdateInvestorProfile.html');"+
+"        url = url.replace(/\\/[^\\/]*$/, '/UpdateInvestorProfile.html');"+
 "        location.replace(url)"+
 "      "+
 "      }"+
@@ -218,7 +218,7 @@ return output;
 "      function update()"+
 "      {"+
 "        var url = window.location.href;"+
-"        url = url.replace(/\/[^\/]*$/, '/UpdateBusinessProfile.html');"+
+"        url = url.replace(/\\/[^\\/]*$/, '/UpdateBusinessProfile.html');"+
 "        location.replace(url)"+
 "      "+
 "      }"+
