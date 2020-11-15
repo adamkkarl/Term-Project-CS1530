@@ -846,7 +846,7 @@ public class SharklineJDBC
     {
       ArrayList<Business> businesses = new ArrayList<Business>();
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE name LIKE ?");
+      dbcon.prepareStatement("SELECT * FROM business_accounts WHERE business_name LIKE ?");
       st.setString(1, "%" + name + "%");
 
       ResultSet result = st.executeQuery();

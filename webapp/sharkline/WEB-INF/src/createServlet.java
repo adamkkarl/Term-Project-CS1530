@@ -73,6 +73,7 @@ public class createServlet extends HttpServlet
     "<head>"+
     "    <meta charset=\"UTF-8\">"+
     "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
+    "    <link rel=\"stylesheet\" type=\"text/css\" href=\"./css/setupStyle.css\">"+
     "    <title>Sign-Up</title>"+
     "</head>"+
     "<body>"+
@@ -80,10 +81,8 @@ public class createServlet extends HttpServlet
     "      <h2>Account Sign-up</h2>"+
     "      <form method=\"post\" action=\"createServlet\">"+
     "        <label for=\"type\">Type of Account</label><br>"+
-    "        <input required type=\"radio\" name=\"type\" value=\"investor\">"+
-    "        <label for=\"investor\">Investor</label><br>"+
-    "        <input required type=\"radio\" name=\"type\" value=\"business\">"+
-    "        <label for=\"business\">Business</label><br><br>"+
+    "        <label for=\"investor\"><input required type=\"radio\" name=\"type\" value=\"investor\">Investor</label><br>"+
+    "        <label for=\"business\"><input required type=\"radio\" name=\"type\" value=\"business\">Business</label><br><br>"+
     ""+
     "        <label for=\"name\">Enter name of Business/Investment firm</label><br>"+
     "        <input required class=\"input_section\" placeholder=\"Name\" name=\"name\"><br><br>"+
