@@ -36,6 +36,11 @@ form {
     color: blue;
 }
 
+.help {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .card{
   width: 12rem;
 }
