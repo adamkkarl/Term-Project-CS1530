@@ -52,7 +52,8 @@ public class chatlogServlet extends HttpServlet
     //contact[i] corresponds to message[i]
 
 
-
+    int cid = null //TODO figure out which chat log we're looking at currently
+    ArrayList<ChatLog> allMessages = getChatLogByConnectionID(cid);
 
 
 
