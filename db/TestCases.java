@@ -53,6 +53,19 @@ public class TestCases
       //Test your written JDBC methods bellow here.
       //Make sure to add some test data in the database or the ResultSets won't
       //have anything in them!
+
+      String investorEmail = "fukk@god.com";
+      String investorName = "fukk";
+      String investorDescription = "testfukc";
+      String investorAbstract = "testagfab";
+      String image = "gahgha";
+      int investmentInit = 1005;
+      int investmentEnd = 1100;
+      String website = "ghasklhgl";
+      String ceo = "glashkglh";
+      Investor testInvestor = new Investor(investorEmail, investorName, investorDescription, investorAbstract, investmentInit, image, investmentEnd, website, ceo);
+      updateInvestorAccount(testInvestor);
+      /*
       Account test = findAccount("fraudulentEmail@hotmail.com");
       System.out.println(test.getName());
       if(findAccount("gaghksagkhj") == null)
@@ -92,6 +105,7 @@ public class TestCases
       }
       //Investor testInvestor = findInvestorAccountByEmail("johnsmith@gmail.com");
       //System.out.println(testInvestor.getInvestorName());
+      */
     }
     catch(Exception e)
     {
@@ -457,18 +471,22 @@ public class TestCases
     {
        boolean isAdded = false;
        PreparedStatement st =
-       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
-                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+       dbcon.prepareStatement("UPDATE investor_accounts SET"+
+                            " investor_email = ?, investor_name = ?, investor_description = ?,"+
+                            " investor_abstract = ?, image = ?, investment_range_init = ?, investment_range_end = ?,"+
+                            " website = ?, name_CEO = ? WHERE investor_email = ?");
 
 
       st.setString(1,account.getInvestorEmail());
       st.setString(2, account.getInvestorName());
       st.setString(3, account.getInvestorDescription());
       st.setString(4, account.getInvestorAbstract());
-      st.setInt(5, account.getInvestmentRangeInit());
-      st.setInt(6, account.getInvestmentRangeEnd());
-      st.setString(7, account.getWebsite());
-      st.setString(8, account.getCeoName());
+      st.setString(5, account.getImage());
+      st.setInt(6, account.getInvestmentRangeInit());
+      st.setInt(7, account.getInvestmentRangeEnd());
+      st.setString(8, account.getWebsite());
+      st.setString(9, account.getCeoName());
+      st.setString(10, account.getInvestorEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -888,6 +906,7 @@ public class TestCases
   *         if otherwise
   *
   */
+  /*
   public static boolean storeMessageInfo(ChatLog chat)
   {
     try
@@ -932,7 +951,7 @@ public class TestCases
       return false;
     }
   }
-
+  */
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries

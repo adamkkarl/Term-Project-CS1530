@@ -30,7 +30,19 @@ output = printMyNetwork(name);
 
 if(account.getType() == Type.INVESTOR)
 {
-	if ( searchValueByBusinessIndustry != null  && searchValueByBusinessName.equals("") )
+	if (searchValueByBusinessIndustry == null && searchValueByBusinessName == null )
+	{
+		output += "";
+	}
+	else if ( searchValueByBusinessIndustry.equals("") && searchValueByBusinessName.equals("") )
+	{
+		output += "<p>Please use one of the search fields above to find a business.</p>";
+	}
+	else if ( !searchValueByBusinessIndustry.equals("") && !searchValueByBusinessName.equals("") )
+	{
+		output += "<p>Please use only one field to search.</p>";
+	}
+	else if ( !searchValueByBusinessIndustry.equals("") && searchValueByBusinessName.equals("") )
 	{
 		Industry industry = getIndustry(searchValueByBusinessIndustry);
 		ArrayList<Business> businesses = SQLCommands.findBusinessesByIndustry(industry);
@@ -55,9 +67,8 @@ if(account.getType() == Type.INVESTOR)
 			output += "</table>";
 		}
 	}
-}
 
-if ( searchValueByBusinessName != null && searchValueByBusinessIndustry.equals("") )
+else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry.equals("") )
 {
 	ArrayList<Business> businesses = SQLCommands.findBusinessesByLikeName(searchValueByBusinessName);
 	
@@ -81,6 +92,8 @@ if ( searchValueByBusinessName != null && searchValueByBusinessIndustry.equals("
 			output += "</table>";
 		}
 }
+}
+
 /*if(account.getType() == Type.BUSINESS)
 {
 	if(searchValue != null && isNumeric(searchValue))

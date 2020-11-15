@@ -1,6 +1,3 @@
 #compiled class files
 *.class
 
-
-#ingored folder
-!webapp/sharkline/WEB-INF/*
