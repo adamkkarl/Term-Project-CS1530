@@ -20,8 +20,6 @@ public void doPost(HttpServletRequest request, HttpServletResponse response) thr
 	SQLCommands = new SharklineJDBC();
 	account = (Account)session.getAttribute("account");
 	name = account.getName();
-	String searchValueByBusinessIndustry = request.getParameter("searchbusinessindustry");
-	String searchValueByBusinessName = request.getParameter("searchbusinessname");
 
 	response.setContentType("text/html");
 PrintWriter out = response.getWriter();
@@ -30,6 +28,9 @@ output = printMyNetwork(name);
 
 if(account.getType() == Type.INVESTOR)
 {
+	String searchValueByBusinessIndustry = request.getParameter("searchbusinessindustry");
+	String searchValueByBusinessName = request.getParameter("searchbusinessname");
+
 	if (searchValueByBusinessIndustry == null && searchValueByBusinessName == null )
 	{
 		output += "";
@@ -94,7 +95,7 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 			output += "</table>";
 		}
 }
-}
+} // End of business search if block
 
 /*if(account.getType() == Type.BUSINESS)
 {
