@@ -358,10 +358,9 @@ public class SharklineJDBC
       boolean isAdded = false;
 
       PreparedStatement st =
-      dbcon.prepareStatement("UPDATE business_accounts SET business_email = ?,"+
-      " business_name = ?, business_description = ?, business_abstract = ?, logo = ?,"+
-      " size = ?, established = ?, investment_ask = ?, equity_offer = ?, website = ?,"+
-      " name_CEO = ?, industry = ? WHERE business_email = ?");
+      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
+                            "(?, ?, ?, ?, ?, ?, ?," +
+                            "?, ?, ?, ?, ?)");
 
 
       st.setString(1,account.getBusinessEmail());
@@ -376,7 +375,6 @@ public class SharklineJDBC
       st.setString(10, account.getWebsite());
       st.setString(11, account.getCeoName());
       setIndustry(st, account.getBusinessIndustry(), 12);
-      st.setString(13, account.getBusinessEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -420,7 +418,7 @@ public class SharklineJDBC
 
       PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO investor_accounts VALUES" +
-                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
       st.setString(1, account.getEmail());
       st.setString(2, account.getName());
 
@@ -461,18 +459,22 @@ public class SharklineJDBC
     {
        boolean isAdded = false;
        PreparedStatement st =
-       dbcon.prepareStatement("UPDATE investor_accounts VALUES" +
-                            "(?, ?, ?, ?, ?, ?, ?, ?)");
+       dbcon.prepareStatement("UPDATE investor_accounts SET"+
+                            "investor_email = ?, investor_name = ?, investor_description = ?,"+
+                            " investor_abstract = ?, image = ?, investment_range_init = ?, investment_range_end = ?,"+
+                            " website = ?, name_CEO = ? WHERE investor_email = ?");
 
 
       st.setString(1,account.getInvestorEmail());
       st.setString(2, account.getInvestorName());
       st.setString(3, account.getInvestorDescription());
       st.setString(4, account.getInvestorAbstract());
-      st.setInt(5, account.getInvestmentRangeInit());
-      st.setInt(6, account.getInvestmentRangeEnd());
-      st.setString(7, account.getWebsite());
-      st.setString(8, account.getCeoName());
+      st.setString(5, account.getImage());
+      st.setInt(6, account.getInvestmentRangeInit());
+      st.setInt(7, account.getInvestmentRangeEnd());
+      st.setString(8, account.getWebsite());
+      st.setString(9, account.getCeoName());
+      st.setString(10, account.getInvestorEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -528,6 +530,7 @@ public class SharklineJDBC
       returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
       returnAccount.setWebsite(result.getString("website"));
       returnAccount.setCeoName(result.getString("name_CEO"));
+      returnAccount.setImage(result.getString("image"));
 
       st.close();
       return returnAccount;
@@ -544,6 +547,41 @@ public class SharklineJDBC
       }
       return null;
     }
+  }
+
+  public String getNameFromEmail(String email)
+  {
+    try
+    {
+      ArrayList<Integer> connectionIDs = new ArrayList<Integer>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM accounts WHERE account_email = ?");
+      st.setString(1, email);
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next())
+      {
+        String name = result.getString("account_name");
+        st.close();
+        return name;
+      }
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+    return null;
   }
 
   /**
@@ -577,6 +615,7 @@ public class SharklineJDBC
       returnAccount.setInvestmentRangeEnd(result.getInt("investment_range_end"));
       returnAccount.setWebsite(result.getString("website"));
       returnAccount.setCeoName(result.getString("name_CEO"));
+      returnAccount.setImage(result.getString("image"));
 
       st.close();
       return returnAccount;
@@ -635,6 +674,7 @@ public class SharklineJDBC
         account.setInvestmentRangeEnd(result.getInt("investment_range_end"));
         account.setWebsite(result.getString("website"));
         account.setCeoName(result.getString("name_CEO"));
+        account.setImage(result.getString("image"));
 
         investors.add(account);
       }
@@ -1121,6 +1161,64 @@ public class SharklineJDBC
 
       st.close();
       return chat_logs;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  /**
+  * getChatLogByConnectionID queries chat_log for any messages for a certain connection_id
+  * THE MOST RECENT MESSAGE IS LISTED
+  *
+  * @param connection_id, the connection to search for
+  *
+  * @return null if no chats exist, otherwise return a list of String BusinessName, String investorName, String message tuples
+  */
+  public ArrayList<String> getConversationPreviews(String email)
+  {
+    try
+    {
+      boolean isBusiness = false;
+
+      ArrayList<String> connectedEmails = new ArrayList<String>();
+
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT bn.business_name AS business_name, inv_name.investor_name AS investor_name, tmp.message AS message "
+        + "FROM account.connections a "
+        + "JOIN ("
+        	+ "SELECT c.connection_id AS connection_id, c.message AS message "
+        	+ "FROM chat_log c "
+        	+ "LEFT JOIN chat_log d "
+        	+ "ON c.connection_id = d.connection_id AND c.datetime_sent > d.datetime_sent "
+        	+ "WHERE d.datetime_sent IS NULL"
+        + ") tmp "
+        + "ON a.connection_id = tmp.connection_id "
+        + "JOIN accounts inv_name "
+        + "ON a.investor_name = inv_name.investor_name "
+        + "JOIN accounts bus_name "
+        + "ON a.business_name = bus_name.business_name "
+        + "WHERE a.business_email = ? OR a.investor_email = ?");
+      st.setString(1, email);
+      st.setString(2, email);
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      //TODO
+
+      st.close();
+      return null;
     }
     catch(SQLException e1)
     {

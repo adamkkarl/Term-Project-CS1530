@@ -55,7 +55,27 @@ public class firsttimesetupServlet extends HttpServlet
     }
     else if(account.getType() == Type.INVESTOR)
     {
-      
+      String website = request.getParameter("website");
+      String ceo = request.getParameter("ceo_name");
+      int investmentInit = Integer.parseInt(request.getParameter("investment_init"));
+      int investmentEnd = Integer.parseInt(request.getParameter("investment_end"));
+      String abs = request.getParameter("abstract");
+      String description = request.getParameter("description");
+      String image = request.getParameter("image");
+
+      Investor newInvestor = new Investor(account.getEmail(), account.getName(),
+                             description, abs, investmentInit, image, investmentEnd,
+                             website, ceo);
+      if(SQLCommands.addInvestorAccount(account))
+      {
+        if(SQLCommands.updateInvestorAccount(newInvestor))
+        {
+          RequestDispatcher rd = request.getRequestDispatcher("mynetworkServlet");
+          rd.forward(request, response);
+        }
+      }
+      output += "</body></head>";
+      out.print(output);
     }
   }
   public String businessHtml()

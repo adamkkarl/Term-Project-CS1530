@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h2>Please complete your first time setup for your account</h2>
+  <form method="post" action="firsttimesetupServlet">
+      <label for="website">Website URL</label><br>
+      <input class="input_section" placeholder="Website" name="website"><br><br>
+      <label for="ceo_name">CEO/President Name</label><br>
+      <input class="input_section" placeholder="CEO Name" name="ceo_name"><br><br>
+      <label for="investment_init">Investment From Amount</label><br>
+      <input required type="number" class="input_section" placeholder="Investment beginning" min=1000 name="investment_init"><br><br>
+      <label for="investment_end">Investment To Amount</label><br>
+      <input required type="number" class="input_section" placeholder="Investment end" min=1001 name="investment_end"><br><br>
+      <label for="abtract">Profile abstract</label><br>
+      <textarea name="abstract" rows="3" cols="25"></textarea><br><br>
+      <label for="description">Profile Description</label><br>
+      <textarea name="description" rows="5" cols="60"></textarea><br><br>
+      <label for="image">Imgur link to Image</label><br>
+      <input required type="url" class="input_section" placeholder="Imgur link" name="image"><br><br>
+      <input type="submit" class="complete_setup" value="Complete Setup">
+  </form>
+</body>
+</html>

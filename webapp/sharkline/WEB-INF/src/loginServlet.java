@@ -74,7 +74,7 @@ public class loginServlet extends HttpServlet
 
 				if(SQLCommands.findInvestorAccountByEmail(emailValue) == null)
 				{
-					rd = request.getRequestDispatcher("");
+					rd = request.getRequestDispatcher("/firsttimesetupinvestor.html");
 				}
 				else
 				{

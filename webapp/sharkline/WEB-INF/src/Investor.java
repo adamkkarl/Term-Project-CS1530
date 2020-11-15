@@ -9,9 +9,10 @@ private int investmentRangeInit;
 private int investmentRangeEnd;
 private String website;
 private String ceoName;
+private String image;
 
 public Investor(String investorEmail, String investorName, String description, String abs, int investmentRangeInit,
-				int investmentRangeEnd, String website, String ceoName){
+				String image, int investmentRangeEnd, String website, String ceoName){
 
 	this.investorEmail = investorEmail;
 	this.investorName = investorName;
@@ -21,6 +22,7 @@ public Investor(String investorEmail, String investorName, String description, S
 	this.investmentRangeEnd = investmentRangeEnd;
 	this.website = website;
 	this.ceoName = ceoName;
+	this.image = image;
 
 }
 public Investor(){
@@ -121,5 +123,15 @@ public boolean setInvestorAbstract(String abs){
 	if(investorAbstract == null)
 		return true;
 	return investorAbstract.equals(abs);
+}
+
+public boolean setImage(String img){
+	image = img;
+	if(img == null)
+		return true;
+	return image.equals(img);
+}
+public String getImage(){
+	return image;
 }
 }
