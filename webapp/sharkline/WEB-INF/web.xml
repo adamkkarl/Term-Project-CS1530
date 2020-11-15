@@ -56,6 +56,16 @@
 <url-pattern>/firsttimesetupServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>viewProfileServlet</servlet-name>
+<servlet-class>viewProfileServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>viewProfileServlet</servlet-name>
+<url-pattern>viewProfileServlet</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>

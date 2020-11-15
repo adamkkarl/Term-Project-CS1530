@@ -698,6 +698,62 @@ public class SharklineJDBC
     }
   }
 
+   /**
+  * findInvestorsByLikeName queries investors_accounts for any investors with a
+  * name that contains the given substring
+  *
+  * @param String name, the substring to search for
+  *
+  * @return null if no such investor account exists, otherwise return an array list
+  * containing each matching investor
+  */
+  public ArrayList<Investor> findInvestorsByLikeName(String name)
+  {
+    try
+    {
+      ArrayList<Investor> investors = new ArrayList<Investor>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM investor_accounts WHERE investor_name LIKE ?");
+      st.setString(1, "%" + name + "%");
+
+      ResultSet result = st.executeQuery();
+      while(result.next())
+      {
+        Investor account = new Investor();
+
+        account.setInvestorEmail(result.getString("investor_email"));
+        account.setInvestorName(result.getString("business_name"));
+        account.setInvestorAbstract(result.getString("investor_abstract"));
+        account.setInvestorDescription(result.getString("investor_description"));
+        account.setImage(result.getString("image"));
+        account.setInvestmentRangeInit(result.getInt("investment_range_init"));
+        account.setInvestmentRangeEnd(result.getInt("investment_range_end"));
+        account.setWebsite(result.getString("website"));
+        account.setCeoName(result.getString("name_CEO"));
+        
+
+        investors.add(account);
+      }
+      if(investors.size() == 0)
+        return null;
+
+      st.close();
+      return investors;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
   /**
   * findBusinessAccountByName searches by name of Business to locate
   * entry in database. Must be exact match.
