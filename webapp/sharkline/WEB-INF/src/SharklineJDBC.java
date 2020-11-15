@@ -1221,6 +1221,17 @@ public class SharklineJDBC
     return st;
   }
 
+  /**
+  * setSize is a helper method designed to streamline updating size attribute
+  * in business_accounts table, not for use in queries
+  *
+  * @param st the PreparedStatement update which we will update
+  * @param size the enum Size (see enum Size above)
+  * @param pos the position in the PreparedStatement we would like to inject to
+  *
+  * @return the PreparedStatement st with size set at position pos, null
+  *         if otherwise
+  */
   private PreparedStatement setSize(PreparedStatement st, Size size, int pos)
   {
     try
@@ -1262,6 +1273,14 @@ public class SharklineJDBC
     return st;
   }
 
+  /**
+  * getSize is a helper method designed to streamline retrieving the size attribute
+  * from the business_accounts table, not for use in queries
+  *
+  * @param size the string that maps to an enum
+  *
+  * @return the enum Size
+  */
   private Size getSize(String size)
   {
     Size returnSize;
@@ -1285,6 +1304,15 @@ public class SharklineJDBC
 
     return returnSize;
   }
+
+  /**
+  * getIndustry is a helper method designed to streamline retrieving the industry attribute
+  * from the business_accounts table, not for use in queries
+  *
+  * @param industry the string that maps to an enum
+  *
+  * @return the enum Industry
+  */
   private Industry getIndustry(String industry)
   {
     Industry returnIndustry;
