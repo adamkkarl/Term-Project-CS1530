@@ -57,7 +57,7 @@ if(account.getType() == Type.INVESTOR)
 			output +=
 			"<h2>Search Results</h2>" +
 			"<table class=\"center\">" +
-			"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
+			"<tr><th>Logo</th><th>Business Name</th><th>Abstract</th><th>Website</th><th>View Profile</th></tr>";
 			for ( int i = 0; i < businesses.size(); i++ )
 			{
 				output += "<tr><form action=\"viewProfileServlet\" method=\"get\"><td><img src=\"" +
@@ -83,7 +83,7 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 			output +=
 			"<h2>Search Results</h2>" +
 			"<table class=\"center\">" +
-			"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
+			"<tr><th>Logo</th><th>Business Name</th><th>Abstract</th><th>Website</th><th>View Profile</th></tr>";
 			for ( int i = 0; i < businesses.size(); i++ )
 			{
 				output += "<tr><form action=\"viewProfileServlet\" method=\"get\"><td><img src=\"" +
@@ -384,7 +384,27 @@ if ( size == null ) { return null; }
 "</nav>" +
 "<form class=\"form-inline center\" method=\"post\" action=\"mynetworkServlet\">" +
     "<input class=\"form-control search\" type=\"text\" id=\"searchbusinessname\" name=\"searchbusinessname\" placeholder=\"Business Name\" aria-label=\"Business Name\">" +
-    "<input class=\"form-control search\" type=\"text\" id=\"searchbusinessindustry\" name=\"searchbusinessindustry\" placeholder=\"Business Industry\" aria-label=\"Business Industry\">" +
+    "<select class=\"form-control dropdown\" name=\"searchbusinessindustry\" aria-label=\"Industry Name\">"+
+		"          <option value=\"\">Select an industry</option>"+
+		"          <option value=\"Industrial\">Industrial</option>"+
+		"          <option value=\"Health\">Health</option>"+
+		"          <option value=\"Software/Tech\">Software/Tech</option>"+
+		"          <option value=\"Entertainment\">Entertainment</option>"+
+		"          <option value=\"Food\">Food</option>"+
+		"          <option value=\"Finance\">Finance</option>"+
+		"          <option value=\"Retail\">Retail</option>"+
+		"          <option value=\"Marketing\">Marketing</option>"+
+		"          <option value=\"Sales\">Sales</option>"+
+		"          <option value=\"Automotive\">Automotive</option>"+
+		"          <option value=\"Education\">Education</option>"+
+		"          <option value=\"Law\">Law</option>"+
+		"          <option value=\"Hotel\">Hotel</option>"+
+		"          <option value=\"Travel\">Travel</option>"+
+		"          <option value=\"Energy\">Energy</option>"+
+		"          <option value=\"Environment\">Environment</option>"+
+		"          <option value=\"Transportation\">Transportation</option>"+
+		"          <option value=\"Other\">Other</option>"+
+		"      </select>"+
     "<button class=\"btn\" type=\"submit\">Search</button>" +
 "</form>";
 

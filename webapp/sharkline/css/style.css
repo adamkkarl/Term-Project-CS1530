@@ -141,3 +141,8 @@ form {
 .column{
     flex: 33.33%;
 }
+.form-control dropdown{
+	border-radius: 25px;
+	margin-left: 10px;
+	margin-rigth: 10px;
+}
