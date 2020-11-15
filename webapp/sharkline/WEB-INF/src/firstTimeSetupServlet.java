@@ -47,6 +47,7 @@ public class firsttimesetupServlet extends HttpServlet
           }
       }
       output += "</body></head>";
+      out.print(output);
     }
   }
   public String businessHtml()
