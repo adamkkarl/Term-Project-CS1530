@@ -581,6 +581,7 @@ public class SharklineJDBC
       }
       return null;
     }
+    return null;
   }
 
   /**
@@ -1192,7 +1193,21 @@ public class SharklineJDBC
       ArrayList<String> connectedEmails = new ArrayList<String>();
 
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? OR investor_email = ?");
+      dbcon.prepareStatement("SELECT bn.business_name AS business_name, inv_name.investor_name AS investor_name, tmp.message AS message "
+        + "FROM account.connections a "
+        + "JOIN ("
+        	+ "SELECT c.connection_id AS connection_id, c.message AS message "
+        	+ "FROM chat_log c "
+        	+ "LEFT JOIN chat_log d "
+        	+ "ON c.connection_id = d.connection_id AND c.datetime_sent > d.datetime_sent "
+        	+ "WHERE d.datetime_sent IS NULL"
+        + ") tmp "
+        + "ON a.connection_id = tmp.connection_id "
+        + "JOIN accounts inv_name "
+        + "ON a.investor_name = inv_name.investor_name "
+        + "JOIN accounts bus_name "
+        + "ON a.business_name = bus_name.business_name "
+        + "WHERE a.business_email = ? OR a.investor_email = ?");
       st.setString(1, email);
       st.setString(2, email);
       ResultSet result = st.executeQuery();
@@ -1200,39 +1215,10 @@ public class SharklineJDBC
       if(!(result.next()))
         return null;
 
-      while(result.next())
-      {
-        String inv_email = result.getString("investor_email")
-        if(email.equals(inv_email)) {
-          isBusiness = false;
-          connectedEmails.add(result.getString("business_email"));
-        } else {
-          isBusiness = true;
-          connectedEmails.add(inv_email);
-        }
-      }
-
-      ArrayList<String> connectedNames_recentMessage = new ArrayList<String>();
-      for (String e : connectedEmails) {
-        name = getNameFromEmail(connectedEmails);
-
-        if(isBusiness) {
-          PreparedStatement st2 =
-          dbcon.prepareStatement("SELECT * FROM account_connections a LEFT JOIN (SELECT * FROM chat_log c GROUP BY )");
-          st.setString(1, email);
-          st.setString(1, e);
-
-          ResultSet r2 = st.executeQuery();
-
-          int con = r2.getString();
-        }
-
-      }
-
+      //TODO
 
       st.close();
-      st2.close();
-      return chat_logs;
+      return null;
     }
     catch(SQLException e1)
     {
