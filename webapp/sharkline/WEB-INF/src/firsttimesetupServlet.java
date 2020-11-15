@@ -55,6 +55,8 @@ public class firsttimesetupServlet extends HttpServlet
     }
     else if(account.getType() == Type.INVESTOR)
     {
+      boolean checkInvestment = true;
+
       String website = request.getParameter("website");
       String ceo = request.getParameter("ceo_name");
       int investmentInit = Integer.parseInt(request.getParameter("investment_init"));
@@ -66,14 +68,21 @@ public class firsttimesetupServlet extends HttpServlet
       Investor newInvestor = new Investor(account.getEmail(), account.getName(),
                              description, abs, investmentInit, image, investmentEnd,
                              website, ceo);
-      if(SQLCommands.addInvestorAccount(account))
+
+      if(investmentInit >= investmentEnd)
       {
-        if(SQLCommands.updateInvestorAccount(newInvestor))
+        checkInvestment = false;
+        output += "<h4>Initial Investment range was greater than End Investment range</h4>";
+      }
+      if(SQLCommands.addInvestorAccount(account) && checkInvestment)
+      {
+        if(SQLCommands.updateInvestorAccount(newInvestor) && checkInvestment)
         {
           RequestDispatcher rd = request.getRequestDispatcher("mynetworkServlet");
           rd.forward(request, response);
         }
       }
+
       output += "</body></head>";
       out.print(output);
     }
