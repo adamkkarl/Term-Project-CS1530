@@ -34,11 +34,15 @@ public class firsttimesetupServlet extends HttpServlet
       String abs = request.getParameter("abstract");
       String description = request.getParameter("description");
       String logo = request.getParameter("logo");
-      Business newBusiness = new Business(account.getEmail(), account.getName(),
-                            description, abs, logo, getSize(sizeStr), year,
-                            investment, equity, website, ceo, getIndustry(industryStr));
 
-      if(SQLCommands.addBusinessAccount(account, getIndustry(industryStr)))
+      Industry industry = getIndustry(industryStr);
+      Size size = getSize(sizeStr);
+
+      Business newBusiness = new Business(account.getEmail(), account.getName(),
+                            description, abs, logo, size, year,
+                            investment, equity, website, ceo, industry);
+
+      if(SQLCommands.addBusinessAccount(account, industry))
       {
           if(SQLCommands.updateBusinessAccount(newBusiness))
           {
@@ -48,6 +52,10 @@ public class firsttimesetupServlet extends HttpServlet
       }
       output += "</body></head>";
       out.print(output);
+    }
+    else if(account.getType() == Type.INVESTOR)
+    {
+      
     }
   }
   public String businessHtml()

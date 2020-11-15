@@ -358,9 +358,10 @@ public class SharklineJDBC
       boolean isAdded = false;
 
       PreparedStatement st =
-      dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
-                            "(?, ?, ?, ?, ?, ?, ?," +
-                            "?, ?, ?, ?, ?)");
+      dbcon.prepareStatement("UPDATE business_accounts SET business_email = ?,"+
+      " business_name = ?, business_description = ?, business_abstract = ?, logo = ?,"+
+      " size = ?, established = ?, investment_ask = ?, equity_offer = ?, website = ?,"+
+      " name_CEO = ?, industry = ? WHERE business_email = ?");
 
 
       st.setString(1,account.getBusinessEmail());
@@ -375,6 +376,7 @@ public class SharklineJDBC
       st.setString(10, account.getWebsite());
       st.setString(11, account.getCeoName());
       setIndustry(st, account.getBusinessIndustry(), 12);
+      st.setString(13, account.getBusinessEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
@@ -459,8 +461,8 @@ public class SharklineJDBC
     {
        boolean isAdded = false;
        PreparedStatement st =
-       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
-                            "(?, ?, ?, ? , ?, ?, ?, ?)");
+       dbcon.prepareStatement("UPDATE investor_accounts VALUES" +
+                            "(?, ?, ?, ?, ?, ?, ?, ?)");
 
 
       st.setString(1,account.getInvestorEmail());
