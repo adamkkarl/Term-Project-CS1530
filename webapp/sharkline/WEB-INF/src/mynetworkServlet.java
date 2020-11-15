@@ -59,10 +59,11 @@ if(account.getType() == Type.INVESTOR)
 			"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
 			for ( int i = 0; i < businesses.size(); i++ )
 			{
-				output +=
-				"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>"
-				+ businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath()
-				+ "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
+				output += "<tr><form action=\"viewProfileServlet\" method=\"get\"><td><img src=\"" +
+				businesses.get(i).getLogoPath() + "\" width=200px height=100px></td><td>" +
+				businesses.get(i).getBusinessName() + "</td><td>" +
+				businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getWebsite() + "</td><td>" +
+				"<input type=\"submit\" value=\"View Profile\"</td></form></tr>";
 			}
 			output += "</table>";
 		}
@@ -71,7 +72,7 @@ if(account.getType() == Type.INVESTOR)
 else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry.equals("") )
 {
 	ArrayList<Business> businesses = SQLCommands.findBusinessesByLikeName(searchValueByBusinessName);
-	
+
 	if ( businesses == null )
 		{
 			output += printNoSearchResults();
@@ -84,10 +85,11 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 			"<tr><th>Business Name</th><th>Description</th><th>Abstract</th><th>Logo</th><th>Website</th></tr>";
 			for ( int i = 0; i < businesses.size(); i++ )
 			{
-				output +=
-				"<tr><td>" + businesses.get(i).getBusinessName() + "</td><td>" + businesses.get(i).getDescription() + "</td><td>"
-				+ businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getLogoPath()
-				+ "</td><td>" + businesses.get(i).getWebsite() + "</td></tr>";
+				output += "<tr><form action=\"viewProfileServlet\" method=\"get\"><td><img src=\"" +
+				businesses.get(i).getLogoPath() + "\" width=200px height=100px></td><td>" +
+				businesses.get(i).getBusinessName() + "</td><td>" +
+				businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getWebsite() + "</td><td>" +
+				"<input type=\"submit\" value=\"View Profile\"</td></form></tr>";
 			}
 			output += "</table>";
 		}
@@ -329,7 +331,7 @@ if ( size == null ) { return null; }
 		}
 		return true;
 	}
-	
+
 	private static String printMyNetwork(String name)
 	{
 		String output =
@@ -393,7 +395,7 @@ private static String printNoSearchResults()
 	String output =
 	"<h2>No Search Results Found</h2>" +
 	"<p[>No results were returned. Try a different search.</p>";
-	
+
 	return output;
 }
 }
