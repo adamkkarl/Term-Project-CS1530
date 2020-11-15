@@ -376,7 +376,7 @@ if ( size == null ) { return null; }
         "<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">" +
           "<a class=\"dropdown-item\" href=\"#\">Edit Profile</a>" +
           "<a class=\"dropdown-item\" href=\"#\">Settings</a>" +
-          "<a class=\"dropdown-item\" href=\"logout\">Logout</a>" +
+          "<a class=\"dropdown-item\" href=\"logoutServlet\">Logout</a>" +
         "</div>" +
       "</li>" +
     "</ul>" +
