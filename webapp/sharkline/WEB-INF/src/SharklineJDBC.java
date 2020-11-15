@@ -1202,7 +1202,7 @@ public class SharklineJDBC
         	+ "ON c.connection_id = d.connection_id AND c.datetime_sent > d.datetime_sent "
         	+ "WHERE d.datetime_sent IS NULL"
         + ") tmp "
-        + "ON a.connection_id = tmp.connection_id "
+        + "ON a.connection_id = tmp.connection_id   "
         + "JOIN accounts inv_name "
         + "ON a.investor_name = inv_name.investor_name "
         + "JOIN accounts bus_name "
