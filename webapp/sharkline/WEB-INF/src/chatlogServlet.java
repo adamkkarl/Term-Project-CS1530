@@ -28,6 +28,8 @@ public class chatlogServlet extends HttpServlet
     response.setIntHeader("Refresh", 1);
 
     ArrayList<String> previews = SQLCommands.getConversationPreviews(email);
+    ArrayList<String> contact;
+    ArrayList<String> lastMessage;
 
     for (String p : previews) {
       String a[]= p.split("~");
@@ -36,9 +38,25 @@ public class chatlogServlet extends HttpServlet
       String message = a[2];
 
       //TODO HERE
-
-
+      if(account.getType() == Type.INVESTOR)
+      {
+        contact.add(bus_name);
+      } else {
+        contact.add(inv_name);
+      }
+      lastMessage.add(message);
     }
+
+    //TODO
+    //at this point, contact is an array of contact names, and message is an array of messages
+    //contact[i] corresponds to message[i]
+
+
+
+
+
+
+
 
     //from messaging.html, doesn't look like it's done yet
     String output = "<!DOCTYPE html>"+
