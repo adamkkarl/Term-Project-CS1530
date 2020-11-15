@@ -10,10 +10,6 @@ public class mynetworkServlet extends HttpServlet
 {
 	String output;
 	String name;
-	String jdbcUsername = "root";
-	String jdbcPassword = "grenadine@2020";
-	String jdbcURL = "jdbc:mysql://localhost/sharklinedb";
-	Connection jdbcConnection;
 	SharklineJDBC SQLCommands;
 	Account account;
 
