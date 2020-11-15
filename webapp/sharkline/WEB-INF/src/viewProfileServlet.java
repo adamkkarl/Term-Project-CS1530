@@ -35,7 +35,7 @@ String output;
 
 
 @Override
-public void doGet(HttpServlet request, HttpServletResponse response) throws ServletException, IOException
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
 		SQLCommands = new SharklineJDBC();
@@ -75,7 +75,7 @@ public void doGet(HttpServlet request, HttpServletResponse response) throws Serv
 												int investmentInit, int investmentEnd, String website, String ceoName )
 	{
 		
-String myvar = "<!DOCTYPE html>"+
+String output = "<!DOCTYPE html>"+
 "<html>"+
 "<head>"+
 "  <meta charset=\"UTF-8\">"+
