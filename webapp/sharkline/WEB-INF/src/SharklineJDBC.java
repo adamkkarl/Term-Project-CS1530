@@ -359,8 +359,8 @@ public class SharklineJDBC
 
       PreparedStatement st =
       dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
-                            "(?, ?, NULL, NULL, NULL, NULL, NULL," +
-                            "NULL, NULL, NULL, NULL, ?)");
+                            "(?, ?, ?, ?, ?, ?, ?," +
+                            "?, ?, ?, ?, ?)");
 
 
       st.setString(1,account.getBusinessEmail());
@@ -460,7 +460,7 @@ public class SharklineJDBC
        boolean isAdded = false;
        PreparedStatement st =
        dbcon.prepareStatement("INSERT INTO business_accounts VALUES" +
-                            "(?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+                            "(?, ?, ?, ? , ?, ?, ?, ?)");
 
 
       st.setString(1,account.getInvestorEmail());
