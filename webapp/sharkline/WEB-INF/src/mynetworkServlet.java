@@ -95,7 +95,7 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 			output += "</table>";
 		}
 }
-} // End of business search if block
+}
 
 if(account.getType() == Type.BUSINESS)
 {
