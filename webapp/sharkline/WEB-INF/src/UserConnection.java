@@ -7,6 +7,8 @@ private String businessEmail;
 private String investorEmail;
 private String date;
 private int connectionID;
+private int connected;
+private int sender;
 
 
 public UserConnection(){
@@ -35,9 +37,9 @@ public int getConnectionID()
 	return connectionID;
 }
 public boolean setDate(String newDate){
-	if(newDate == null)
-		return true;
 	date = newDate;
+	if(newDate == null)
+		return false;
 
 	return date.equals(newDate);
 }
@@ -69,9 +71,23 @@ public void setConnectionID(int conID){
 	connectionID = conID;
 }
 
+public int getConnected()
+{
+	return connected;
+}
+public boolean setConnected(int con){
+	connected = con;
+	return connected == con;
+}
 
-
-
+public int getSender()
+{
+	return sender;
+}
+public boolean setSender(int s){
+	sender = s;
+	return sender == s;
+}
 
 
 
