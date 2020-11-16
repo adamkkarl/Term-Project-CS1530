@@ -18,7 +18,7 @@ public class updateProfileServlet extends HttpServlet
 	Account account;
 
 	@Override
-	public void doPost(HttpServlet request, HttpServletResponse response) throws ServletException, IOException
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
 		SQLCommands = new SharklineJDBC();
@@ -27,8 +27,8 @@ public class updateProfileServlet extends HttpServlet
 
 		String description = request.getParameter("description");
 		String userAbstract = request.getParameter("abstract");
-		int investmentInit = request.getParameter("investmentInit");
-		int investmentEnd = request.getParameter("investmentEnd");
+		int investmentInit = Integer.parseInt(request.getParameter("investmentInit"));
+		int investmentEnd = Integer.parseInt(request.getParameter("investmentEnd"));
 		String website = request.getParameter("website");
 		String ceoName = request.getParameter("ceoName");
 
@@ -43,8 +43,6 @@ public class updateProfileServlet extends HttpServlet
 
 	private String investorHTML()
 	{
-
-		
-
+		return null;
 	}
 }
