@@ -97,12 +97,52 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 }
 } // End of business search if block
 
-/*if(account.getType() == Type.BUSINESS)
+if(account.getType() == Type.BUSINESS)
 {
-	if(searchValue != null && isNumeric(searchValue))
+	String searchValueByInvestorAsk = request.getParameter("searchinvestorask");
+	String searchValueByInvestorName = request.getParameter("searchinvestorname");
+	
+	if ( searchValueByInvestorAsk == null && searchValueByInvestorName == null )
 	{
-		searchValue = searchValue.trim();
-		int ask = Integer.parseInt(searchValue);
+		output += "";
+	}
+	else if ( searchValueByInvestorAsk.equals("") && searchValueByInvestorName.equals("") )
+	{
+		output += "<p>Please use one of the fields to search</p>";
+	}
+	else if ( !searchValueByInvestorAsk.equals("") && !searchValueByInvestorName.equals("") )
+	{
+		output += "<p>Please use only one of the fields to search</p>";
+	}
+	else if ( !searchValueByInvestorName.equals("") && searchValueByInvestorAsk.equals("") )
+	{
+		ArrayList<Investor> investors = SQLCommands.findInvestorsByLikeName(searchValueByInvestorName);
+		
+		if ( investors == null )
+		{
+			output += printNoSearchResults();
+		}
+		else
+		{
+			output +=
+			"<h2>Search Results</h2>" +
+			"<table class=\"center\">" +
+			"<tr><th>Investor Name</th><th>Abstract</th><th>Investment Range</th><th>Website</th></tr>";
+			for(int i = 0; i < investors.size(); i++)
+			{
+				output +=
+				"<tr><td>" + investors.get(i).getInvestorName() + "</td>" +
+				"<td>" + investors.get(i).getInvestorAbstract() + "</td>" +
+				"<td>" + investors.get(i).getInvestmentRangeInit() + " - " + investors.get(i).getInvestmentRangeEnd() + "</td>" +
+				"<td>" + investors.get(i).getWebsite() + "</td></tr>";
+			}
+			output += "</table>";
+		}
+		}
+	else if ( !searchValueByInvestorAsk.equals("") && isNumeric(searchValueByInvestorAsk) && searchValueByInvestorName.equals("") )
+	{
+		searchValueByInvestorAsk = searchValueByInvestorAsk.trim();
+		int ask = Integer.parseInt(searchValueByInvestorAsk);
 		ArrayList<Investor> investors = SQLCommands.findInvestorsByAsk(ask);
 		if(investors == null)
 		{
@@ -125,7 +165,7 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 			output += "</table>";
 		}
 	}
-}*/
+}
 
 output +=
 "</body>" +
@@ -407,10 +447,17 @@ if ( size == null ) { return null; }
 		"          <option value=\"Environment\">Environment</option>"+
 		"          <option value=\"Transportation\">Transportation</option>"+
 		"          <option value=\"Other\">Other</option>"+
-		"      </select>"+
-    "<button class=\"btn\" type=\"submit\">Search</button>";
+		"      </select>";
  }
- output += "</form>";
+ if ( account.getType() == Type.BUSINESS)
+ {
+	 output +=
+	 "<input class=\"form-control search\" type=\"number\" id=\"searchinvestorask\" name=\"searchinvestorask\" placeholder=\"Investor Asking Value\" aria-label=\"Investor Asking Price\">" +
+	 "<input class=\"form-control search\" type=\"text\" id=\"searchinvestorname\" name=\"searchinvestorname\" placeholder=\"Investor Name\" aria-label=\"Investor Name\">";
+ }
+ output +=
+ "<button class=\"btn\" type=\"submit\">Search</button>" +
+ "</form>";
 
 return output;
 	}
