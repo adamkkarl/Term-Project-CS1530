@@ -995,12 +995,15 @@ public class SharklineJDBC
        boolean isAdded = false;
        PreparedStatement st =
        dbcon.prepareStatement("INSERT INTO account_connections VALUES" +
-                            " (?, ?, ?, ?)");
+                            " (?, ?, ?, ?, ?, ?)");
 
 
-      st.setString(1,userCon.getBusinessEmail());
-      st.setString(2,userCon.getInvestorEmail());
+      st.setString(1, userCon.getBusinessEmail());
+      st.setString(2, userCon.getInvestorEmail());
+      st.setInt(3, userCon.getConnectionID());
       st.setString(4, userCon.getDate());
+      st.setInt(5, userCon.getConnected());
+      st.setInt(6, userCon.getSender());
 
 
       if(st.executeUpdate() >= 1)
