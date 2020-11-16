@@ -722,7 +722,7 @@ public class SharklineJDBC
         Investor account = new Investor();
 
         account.setInvestorEmail(result.getString("investor_email"));
-        account.setInvestorName(result.getString("business_name"));
+        account.setInvestorName(result.getString("investor_name"));
         account.setInvestorAbstract(result.getString("investor_abstract"));
         account.setInvestorDescription(result.getString("investor_description"));
         account.setImage(result.getString("image"));
