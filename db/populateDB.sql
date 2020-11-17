@@ -252,7 +252,7 @@ VALUES ('duolingo@gmail.com', 'Duolingo',
 In 2013, Apple chose Duolingo as its iPhone App of the Year, the first time this honor had been awarded to an educational application.\n
 Duolingo has over 300 million registered users.',
 'Duolingo is Pittsburgh based company that focuses on language-learning through website and mobile apps.',
-'https://imgur.com/GllRiQG.png', '200+', 2009, 1000000, 6, 'www.duolingo.com', 'Luis von Ahn', 'Software/Tech');
+'https://imgur.com/GllRiQG.png', '200+', 2009, 1000000, 6, 'www.duolingo.com', 'Luis von Ahn', 'Education');
 
 INSERT INTO accounts
 VALUES ('instructure@gmail.com', 'canvas1234', 'Instructure', 'Business', 1, null);
@@ -325,7 +325,25 @@ VALUES ('nbagiatisi@reedsmith.com', 'Reed Smith LLP',
 Europe, the Middle East and Asia.\n
 Reed Smith was founded in Pittsburgh in 1877 by Philander C. Knox and James H. Reed.',
 'Reed Smith LLP is a global law firm headquartered in Pittsburgh, Pennsylvania.',
-'https://imgur.com/undefined.png', '200+', 1901, 20000000, 1, 'www.reedsmith.com', 'Nick Bagiatis', 'Law');
+'https://imgur.com/CR1ppzl.png', '200+', 1901, 20000000, 1, 'www.reedsmith.com', 'Nick Bagiatis', 'Law');
+
+INSERT INTO accounts
+VALUES ('marriottHQ@gmail.com', 'hotels123', 'Marriott', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('marriottHQ@gmail.com', 'Marriott',
+'Founded by J. Willard Marriott, the company is now led by his son, executive chairman Bill Marriott, and president and chief executive officer Arne Sorenson. 
+Marriott International is the largest hotel chain in the world by number of available rooms.',
+'Marriott is an American hotel chain.',
+'https://imgur.com/SyYWMqe.png', '200+', 1927, 100000000, 2, 'marriott.com', 'Arne Sorenson', 'Hotel');
+
+INSERT INTO accounts
+VALUES ('WWF@gmail.com', 'savethepandas', 'World Wildlife Fund', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('WWF@gmail.com', 'World Wildlife Fund',
+'Founded by J. Willard Marriott, the company is now led by his son, executive chairman Bill Marriott, and president and chief executive officer Arne Sorenson. 
+Marriott International is the largest hotel chain in the world by number of available rooms.',
+'The World Wide Fund for Nature (WWF) is an international non-governmental organization founded in 1961.',
+'https://imgur.com/QvOYZry.png', '200+', 1927, 100000000, 2, 'worldwildlife.org', 'Pavan Sukhdev', 'Environment');
 
 
 # TEMPLATE FOR INVESTOR ACCOUNTS
@@ -345,7 +363,15 @@ VALUES ('citizensbank@gmail.com', 'Citizens Bank',
 'Citizens Bank operates more than 1,200 branches and approximately 3,200 ATMs across 11 states under the Citizens Bank brand.\n
 Citizens Bank ranks 24th on the List of largest banks in the United States. ',
 'Citizens Bank is an American bank headquartered in Rhode Island, which operates in the east coast of the US',
-'https://imgur.com/RXe0DLX.png', 100000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
+'https://imgur.com/RXe0DLX.png', 10000, 250000000, 'www.citizensbank.com', 'Bruce Van Saun');
+
+INSERT INTO accounts
+VALUES ('adamkkarl@gmail.com', 'mrrobot', 'Adam Karl', 'Investor', 1, null);
+INSERT INTO investor_accounts
+VALUES ('adamkkarl@gmail.com', 'Adam Karl',
+'Pitt CS major from Lancaster, PA. Graduated from Hempfield High School.',
+'Pitt 2021, CS major living in South Oakland.',
+'https://imgur.com/hgziZlf.png', 1000, 10000, 'github.com/adamkkarl', null);
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
