@@ -66,6 +66,16 @@
 <url-pattern>/viewProfileServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>adminServlet</servlet-name>
+<servlet-class>adminServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>adminServlet</servlet-name>
+<url-pattern>/adminmode</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>
