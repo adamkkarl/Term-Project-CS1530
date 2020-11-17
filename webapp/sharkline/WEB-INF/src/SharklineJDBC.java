@@ -217,7 +217,7 @@ public class SharklineJDBC
     try
     {
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT * FROM accounts WHERE verification = 1");
+      dbcon.prepareStatement("SELECT * FROM accounts");
 
       ResultSet result = st.executeQuery();
       if(!(result.next()))
