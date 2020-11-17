@@ -91,6 +91,8 @@ public class adminServlet extends HttpServlet
 		"<input type=\"submit\" value=\"Add User\">" +
 		"</form>" +
 		"<h2>List of Accounts in DB</h2>" +
+		"<table>" +
+		"</table>" +
 		"<h2>Verify User</h2>" +
 		"<form method=\"post\" action=\"adminmode\">" +
 		"Account Email: <input required type=\"email\" name=\"verifyemail\"><br/>" +
