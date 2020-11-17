@@ -42,7 +42,7 @@ CREATE TABLE business_accounts (
     'Finance', 'Marketing', 'Sales', 'Automotive', 'Education', 'Law', 'Hotel', 'Travel',
     'Energy', 'Environment', 'Transportation', 'Other') NOT NULL,
 
-    FOREIGN KEY (business_email) REFERENCES accounts(account_email)
+    FOREIGN KEY (business_email) REFERENCES accounts(account_email) ON DELETE CASCADE
 );
 
 # investor_accounts table stores all the data for investor type accounts.
@@ -59,7 +59,7 @@ CREATE TABLE investor_accounts (
     website VARCHAR(2083),
     name_CEO VARCHAR(50),
 
-    FOREIGN KEY (investor_email) REFERENCES accounts(account_email)
+    FOREIGN KEY (investor_email) REFERENCES accounts(account_email) ON DELETE CASCADE
 );
 
 # account_connections table refers to currently matched companies
@@ -75,8 +75,8 @@ CREATE TABLE account_connections (
 		sender TINYINT DEFAULT 1, # 0= sent by business, 1 = sent by investor
 
     PRIMARY KEY(business_email, investor_email),
-    FOREIGN KEY (business_email) REFERENCES business_accounts(business_email),
-    FOREIGN KEY (investor_email) REFERENCES investor_accounts(investor_email)
+    FOREIGN KEY (business_email) REFERENCES business_accounts(business_email) ON DELETE CASCADE,
+    FOREIGN KEY (investor_email) REFERENCES investor_accounts(investor_email) ON DELETE CASACDE
 );
 
 # chat_log stores the information regarding messages sent

@@ -28,9 +28,9 @@ public class loginServlet extends HttpServlet
 		emailValue = request.getParameter("email");
 		passwordValue = request.getParameter("password");
 		
-		if ( emailValue.equals("feartheshark") && passwordValue.equals("adminmode") )
+		if ( emailValue.equals("feartheshark@sharkline.net") && passwordValue.equals("adminmode") )
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("admin");
+			RequestDispatcher rd = request.getRequestDispatcher("adminmode");
 			rd.forward(request, response);
 		}
 		SQLCommands = new SharklineJDBC();
