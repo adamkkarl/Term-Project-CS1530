@@ -147,7 +147,7 @@ String output = "<!DOCTYPE html>"+
 "          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">"+
 "            <a class=\"dropdown-item\" href=\"viewProfileServlet?name="+ account.getName() + "&type=" + account.getType().name() + "\">Edit Profile</a>"+
 "            <a class=\"dropdown-item\" href=\"#\">Settings</a>"+
-"            <a class=\"dropdown-item\" href=\"logoutSer\">Logout</a>"+
+"            <a class=\"dropdown-item\" href=\"logoutServlet\">Logout</a>"+
 "          </div>"+
 "        </li>"+
 "      </ul>"+

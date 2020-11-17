@@ -130,8 +130,7 @@ public class adminServlet extends HttpServlet
 		"Account Email: <input required type=\"email\" name=\"removeemail\"><br/>" +
 		"<input type=\"submit\" value=\"Remove User\">" +
 		"</form>" +
-		"<form method=\"post\" action=\"loginServlet\">"+
-		"<input type=\"submit\" value=\"Return to Login\">"+
+		"<a href=\"/index.html\">Return to login</a>"
 		"</body></html>";
 
 		out.println(output);
