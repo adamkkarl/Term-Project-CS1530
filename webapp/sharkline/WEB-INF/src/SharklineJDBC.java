@@ -1428,7 +1428,7 @@ public class SharklineJDBC
       ResultSet result = st.executeQuery();
 
       if(!(result.next()))
-        return null;
+        return "";
 
       String inv_nm = result.getString("investor_name");
       String bus_nm = result.getString("business_name");
