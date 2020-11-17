@@ -9,7 +9,7 @@
 <body>
     <main>
       <h2>Update Your Profile</h2>
-      <form method="post" action="updateProfileServlet">
+      <form method="post" action="/sharkline/updateProfileServlet">
         
 
         <label for="description">Add a Description</label><br>
@@ -128,13 +128,13 @@
         <br><br>
 
 
-        <label for="investment">Seeking Investment Of)</label><br>
+        <label for="investment">Seeking Investment Of</label><br>
         <input required type="number" class="input_section" placeholder="0" name="investment"><br><br>
 
         <label for="equity">Equity Offer</label><br>
 
         <div class="slidecontainer">
-          <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          <input type="range" min="1" max="100" value="50" class="slider" id="equity" name ="equity">
           <p>Value: <span id="demo"></span>%</p>
         </div>
 
@@ -149,7 +149,7 @@
     </form>
     </main>
   <script>
-    var slider = document.getElementById("myRange");
+    var slider = document.getElementById("equity");
     var output = document.getElementById("demo");
     output.innerHTML = slider.value;
 
