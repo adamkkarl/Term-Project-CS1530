@@ -24,6 +24,8 @@ String output;
 	int equity;
 	String website;
 	String ceoName;
+	String business_email;
+	String investor_email;
 
 	String jdbcUsername = "root";
 	String jdbcPassword = "root";
@@ -50,6 +52,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		if(account.getType() == Type.INVESTOR && parameterName.equals(name))
 		{
 			investor = SQLCommands.findInvestorAccountByName(name);
+			investor_email = investor.getInvestorEmail();
 			image = investor.getImage();
 			description = investor.getInvestorDescription();
 			myAbstract = investor.getInvestorAbstract();
@@ -62,6 +65,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		else if(account.getType() == Type.BUSINESS && parameterName.equals(name))
 		{
 			business = SQLCommands.findBusinessAccountByName(name);
+			business_email = business.getBusinessEmail();
 			logo = business.getLogoPath();
 			industry = business.getBusinessIndustry();
 			description = business.getDescription();
@@ -178,8 +182,21 @@ String output = "<!DOCTYPE html>"+
 "        location.replace(url)"+
 "      "+
 "      }"+
-"    </script>"+
-"    <button type =\"button\" class=\"update center\" onclick=\"update();\"> Update My Profile</button>"+
+"    </script>";
+
+if ( !account.getName().equals(name) && SQLCommands.findConnectionByEmails(email, business_email) == null )
+{
+	output += "<button>Send Connection Request</button>";
+}
+else if ( !account.getName().equals(name) && SQLCommands.findConnectionByEmails(email, business_email) != null )
+{
+	output += "";
+}
+else
+{
+output += "    <button type =\"button\" class=\"update center\" onclick=\"update();\"> Update My Profile</button>";
+}
+output +=
 "  </div>"+
 "  <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>"+
 "  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>"+
@@ -262,8 +279,21 @@ return output;
 "        location.replace(url)"+
 "      "+
 "      }"+
-"    </script>"+
-"    <button type =\"button\" class=\"update center\" onclick=\"update();\"> Update My Profile</button>"+
+"    </script>";
+
+if ( !account.getName().equals(name) && SQLCommands.findConnectionByEmails(email, business_email) == null )
+{
+	output += "<button>Send Connection Request</button>";
+}
+else if ( !account.getName().equals(name) && SQLCommands.findConnectionByEmails(email, business_email) != null )
+{
+	output += "";
+}
+else
+{
+output += "    <button type =\"button\" class=\"update center\" onclick=\"update();\"> Update My Profile</button>";
+}
+output +=
 "  </div>"+
 "  <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>"+
 "  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>"+
