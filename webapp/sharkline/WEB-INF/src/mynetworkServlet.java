@@ -27,7 +27,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 	output += "</body></html>";
 	out.print(output);
 }
-	@Override
+@Override
 public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 {
 	HttpSession session = request.getSession();
@@ -416,7 +416,7 @@ if ( size == null ) { return null; }
         "<a class=\"nav-link\" href=\"mynetworkServlet\" method=\"post\">My Network <span class=\"sr-only\">(current)</span></a>" +
       "</li>" +
       "<li class=\"nav-item active\">" +
-        "<a class=\"nav-link\" href=\"#\">Messaging</a>" +
+        "<a class=\"nav-link\" href=\"myconnectionsServlet\">Connections/Messaging</a>" +
       "</li>" +
       "<li class=\"nav-item dropdown active\">" +
         "<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +

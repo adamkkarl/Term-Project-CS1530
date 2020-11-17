@@ -139,7 +139,7 @@ String output = "<!DOCTYPE html>"+
 "          <a class=\"nav-link\" href=\"mynetworkServlet\">My Network <span class=\"sr-only\">(current)</span></a>"+
 "        </li>"+
 "        <li class=\"nav-item active\">"+
-"          <a class=\"nav-link\" href=\"./webapp/messaging.html\">Messaging</a>"+
+"          <a class=\"nav-link\" href=\"myconnectionsServlet\">Connections/Messaging</a>"+
 "        </li>"+
 "        <li class=\"nav-item dropdown active\">"+
 "          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"+
@@ -219,7 +219,7 @@ return output;
 "          <a class=\"nav-link\" href=\"mynetworkServlet\">My Network <span class=\"sr-only\">(current)</span></a>"+
 "        </li>"+
 "        <li class=\"nav-item active\">"+
-"          <a class=\"nav-link\" href=\"./webapp/messaging.html\">Messaging</a>"+
+"          <a class=\"nav-link\" href=\"myconnectionsServlet\">Connections/Messaging</a>"+
 "        </li>"+
 "        <li class=\"nav-item dropdown active\">"+
 "          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"+
