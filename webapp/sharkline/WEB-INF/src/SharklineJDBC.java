@@ -1115,11 +1115,11 @@ public boolean removeAccount(String email)
     try
     {
       boolean isAdded = false;
-      PreparedStatenebt st = dbcon.prepareStatement
+      PreparedStatement st = dbcon.prepareStatement
       ("UPDATE account_connections SET connected = 1 WHERE business_email = ? AND investor_email = ?");
 
       st.setString(1, userCon.getBusinessEmail());
-      st.setString(2, userCon.getInvestorEmail())
+      st.setString(2, userCon.getInvestorEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
