@@ -1303,7 +1303,7 @@ public class SharklineJDBC
   *
   * @return null if no chats exist, otherwise return a ~-separated list of investor name, business name, and message
   */
-  public ArrayList<String> getMostRecentMessages(String email)
+  public ArrayList<String> getMostRecentMessages(String inv_email, String bus_email)
   {
     try
     {
@@ -1328,8 +1328,8 @@ public class SharklineJDBC
         "ON a.business_email = bus_name.account_email " +
         "WHERE (a.business_email = ? OR a.investor_email = ?) " +
         "AND a.connected = 1");
-      st.setString(1, email);
-      st.setString(2, email);
+      st.setString(1, bus_email);
+      st.setString(2, inv_email);
       ResultSet result = st.executeQuery();
 
       if(!(result.next()))
