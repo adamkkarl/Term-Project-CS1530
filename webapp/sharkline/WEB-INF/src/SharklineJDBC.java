@@ -230,6 +230,7 @@ public class SharklineJDBC
         //EXCEPT PASSWORD
         Account retrievedAccount = new Account();
         retrievedAccount.setEmail(result.getString("account_email"));
+		retrievedAccount.setPassword(result.getString("account_password"));
         retrievedAccount.setName(result.getString("account_name"));
         if(result.getString("type").equals("Investor"))
           retrievedAccount.setType(Type.INVESTOR);
