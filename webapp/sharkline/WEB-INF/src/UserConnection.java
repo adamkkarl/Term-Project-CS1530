@@ -15,13 +15,14 @@ public UserConnection(){
 
 }
 
-public UserConnection(String businessEmail, String investorEmail)
+public UserConnection(String businessEmail, String investorEmail, String date, int connectionID, int connected, int sender)
 {
 	this.businessEmail = businessEmail;
 	this.investorEmail = investorEmail;
-	setDate();
-	date = getDate();
-	System.out.println("date");
+	this.date = date;
+	this.connectionID = connectionID;
+	this.connected = connected;
+	this.sender = sender;
 }
 
 public String getBusinessEmail()
@@ -44,7 +45,7 @@ public boolean setDate(String newDate){
 	return date.equals(newDate);
 }
 public boolean setDate(){
-	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/DD");
 	LocalDateTime now = LocalDateTime.now();
 	date = dtf.format(now).toString();
 	return true;

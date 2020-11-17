@@ -1135,6 +1135,53 @@ public class SharklineJDBC
     }
   }
 
+  public ArrayList<UserConnection> getConnectionsByEmail(String email)
+  {
+    try
+    {
+      ArrayList<UserConnection> connections = new ArrayList<UserConnection>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? OR investor_email = ?");
+
+      st.setString(1, email);
+      st.setString(2, email);
+
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next())
+      {
+        String businessEmail = result.getString("business_email");
+        String investorEmail = result.getString("investor_email");
+        String date = result.getString("date_connected");
+        int id = result.getInt("connection_id");
+        int connected = result.getInt("connected");
+        int sender = result.getInt("sender");
+
+        UserConnection userConnection = new UserConnection(businessEmail,
+                    investorEmail, date, id, connected, sender);
+
+        connections.add(userConnection);
+      }
+
+      st.close();
+      return connections;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
   /**
   * getConnectionIDsByEmail queries account_connections for an exact email match and
   * returns all connection_ids for that email
