@@ -85,4 +85,8 @@ public class Account
     accountType = type;
     return accountType == type;
   }
+  public void setVerified(boolean val)
+  {
+	  isVerified = val;
+  }
 }
