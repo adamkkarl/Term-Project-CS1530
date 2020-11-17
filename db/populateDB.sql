@@ -402,6 +402,9 @@ VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE(
 INSERT INTO account_connections
 VALUES ('Sinochem@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), 0, 0);
 
+INSERT INTO account_connections
+VALUES ('amazonHQ@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,11,2020','%d,%m,%Y'), 0, 0);
+
 # TEMPLATE FOR chatlog
 INSERT INTO chat_log
 VALUES (1, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, my name is John and I\'m interested in investing.');
