@@ -200,6 +200,8 @@ PrintWriter out = response.getWriter();
 
   {
 
+
+
 String output = "<!DOCTYPE html>"+
 "<html lang=\"en-us\">"+
 "<head>"+
@@ -211,7 +213,7 @@ String output = "<!DOCTYPE html>"+
 "<body>"+
 "    <main>"+
 "      <h2>Update Your Profile</h2>"+
-"      <form method=\"post\" action=\"/updateProfileServlet\">"+
+"      <form method=\"post\" action=\"/sharkline/updateProfileServlet\">"+
 "        "+
 ""+
 "        <label for=\"description\">Add a Description</label><br>"+
@@ -231,28 +233,23 @@ String output = "<!DOCTYPE html>"+
 ""+
 "        <label for=\"ceoName\">CEO Name</label><br>"+
 "        <input required type=\"text\" class=\"input_section\" placeholder=\"John Doe\" name=\"ceoName\"><br><br>"+
-"        <script>"+
-"        function revert()"+
-"    {"+
-"        var url = window.location.href;"+
-"        url = url.replace(/\\/[^\\/]*$/, '/viewMyProfile.html');"+
-"        location.replace(url)"+
-"    "+
-"    }"+
-"        </script>"+
 ""+
-"        <input type=\"submit\" class=\"complete_setup\" value=\"Submit Changes\" href = \"revert();\" >"+
+"        <input type=\"submit\" class=\"complete_setup\" value=\"Submit Changes\" >"+
 "    </form>"+
 "    </main>"+
 "</body>"+
 "</html>";
 	
-	return output;
+
+
+return output;
+	
 
   }
 
   private String businessHTML()
   {
+
 
 String output = "<!DOCTYPE html>"+
 "<html lang=\"en-us\">"+
@@ -265,7 +262,7 @@ String output = "<!DOCTYPE html>"+
 "<body>"+
 "    <main>"+
 "      <h2>Update Your Profile</h2>"+
-"      <form method=\"post\" action=\"/updateProfileServlet\">"+
+"      <form method=\"post\" action=\"/sharkline/updateProfileServlet\">"+
 "        "+
 ""+
 "        <label for=\"description\">Add a Description</label><br>"+
@@ -417,6 +414,7 @@ String output = "<!DOCTYPE html>"+
 "</html>";
 	
 	return output;
+
 
 
   }
