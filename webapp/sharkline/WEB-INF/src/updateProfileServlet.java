@@ -35,7 +35,7 @@ public class updateProfileServlet extends HttpServlet
 	SharklineJDBC SQLCommands;
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
 		SQLCommands = new SharklineJDBC();
@@ -53,7 +53,7 @@ public class updateProfileServlet extends HttpServlet
 			investor = SQLCommands.findInvestorAccountByName(name);
 			description = request.getParameter("description");
 			myAbstract = request.getParameter("abstract");
-			investmentInit = Integer.parseInt(request.getParameter("investmentInit"));
+			investmentInit = Integer.parseInt(request.getParameter("investmentStart"));
 			investmentEnd = Integer.parseInt(request.getParameter("investmentEnd"));
 			website = request.getParameter("website");
 			ceoName = request.getParameter("ceoName");
@@ -71,8 +71,8 @@ public class updateProfileServlet extends HttpServlet
 
 
 			
-				RequestDispatcher rd = request.getRequestDispatcher("viewProfileServlet");
-            rd.forward(request, response);
+			 response.sendRedirect("/sharkline/viewProfileServlet");
+           
 			
 		}else{
 
@@ -103,8 +103,8 @@ public class updateProfileServlet extends HttpServlet
 			SQLCommands.updateBusinessAccount(business);
 
 			
-				RequestDispatcher rd = request.getRequestDispatcher("viewProfileServlet");
-            rd.forward(request, response);
+				response.sendRedirect("/sharkline/viewProfileServlet");
+           
 			
 			
 			
@@ -119,12 +119,7 @@ PrintWriter out = response.getWriter();
 	out.print(output);
 
 	}
-
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-
-		doPost(request, response);
-	}
+	
 
 
 
@@ -213,7 +208,7 @@ String output = "<!DOCTYPE html>"+
 "<body>"+
 "    <main>"+
 "      <h2>Update Your Profile</h2>"+
-"      <form method=\"post\" action=\"/sharkline/updateProfileServlet\">"+
+"      <form method=\"get\" action=\"/sharkline/updateProfileServlet\">"+
 "        "+
 ""+
 "        <label for=\"description\">Add a Description</label><br>"+
@@ -262,7 +257,7 @@ String output = "<!DOCTYPE html>"+
 "<body>"+
 "    <main>"+
 "      <h2>Update Your Profile</h2>"+
-"      <form method=\"post\" action=\"/sharkline/updateProfileServlet\">"+
+"      <form method=\"get\" action=\"/sharkline/updateProfileServlet\">"+
 "        "+
 ""+
 "        <label for=\"description\">Add a Description</label><br>"+
