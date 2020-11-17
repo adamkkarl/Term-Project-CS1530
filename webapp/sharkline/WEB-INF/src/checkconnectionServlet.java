@@ -13,7 +13,7 @@ public class checkconnectionServlet extends HttpServlet
   {
     HttpSession session = request.getSession();
     Account account = (Account)session.getAttribute("account");
-    SQLCommands = new SharklineJDBC();
+    SharklineJDBC SQLCommands = new SharklineJDBC();
 
     int connID = Integer.parseInt(request.getParameter("connectionid"));
     String check = request.getParameter("check");
