@@ -211,6 +211,54 @@ public class SharklineJDBC
     }
   }
 
+
+  public ArrayList<Account> findAllAccounts()
+  {
+    try
+    {
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM accounts WHERE verification = 1");
+
+      ResultSet result = st.executeQuery();
+      if(!(result.next()))
+        return null;
+
+      ArrayList<Account> all = new ArrayList<Account>();
+
+      while(result.next()) {
+        //parsing data from account table into relevant fields into Account object
+        //EXCEPT PASSWORD
+        Account retrievedAccount = new Account();
+        retrievedAccount.setEmail(result.getString("account_email"));
+        retrievedAccount.setName(result.getString("account_name"));
+        if(result.getString("type").equals("Investor"))
+          retrievedAccount.setType(Type.INVESTOR);
+        else
+          retrievedAccount.setType(Type.BUSINESS);
+
+        if(result.getInt("verification") == 1)
+          retrievedAccount.verify();
+
+        all.add(retrievedAccount);
+      }
+
+      st.close();
+      return all;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
   public Account findAccountByName(String name)
   {
     try
@@ -1303,7 +1351,7 @@ public class SharklineJDBC
   *
   * @return null if no chats exist, otherwise return a ~-separated list of investor name, business name, and message
   */
-  public ArrayList<String> getMostRecentMessages(String inv_email, String bus_email)
+  public String getMostRecentMessage(String inv_email, String bus_email)
   {
     try
     {
@@ -1335,24 +1383,23 @@ public class SharklineJDBC
       if(!(result.next()))
         return null;
 
-      while(result.next()) {
-        String inv_nm = result.getString("investor_name");
-        String bus_nm = result.getString("business_name");
-        int sender = result.getInt("investor_name");
-        String msg = result.getString("message");
-        String s = "";
-        if (sender == 1) {
-          //sent by investor
-          s = ": ".join(inv_nm, msg);
-        } else {
-          //sent by business
-          s = ": ".join(bus_nm, msg);
-        }
-        info.add(s);
+      String inv_nm = result.getString("investor_name");
+      String bus_nm = result.getString("business_name");
+      int sender = result.getInt("investor_name");
+      String msg = result.getString("message");
+
+      String s = "";
+
+      if (sender == 1) {
+        //sent by investor
+        s = ": ".join(inv_nm, msg);
+      } else {
+        //sent by business
+        s = ": ".join(bus_nm, msg);
       }
 
       st.close();
-      return info;
+      return s;
     }
     catch(SQLException e1)
     {
