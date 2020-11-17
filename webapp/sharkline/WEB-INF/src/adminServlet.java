@@ -7,11 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
 public class adminServlet extends HttpServlet
-{
+	{
 
-@Override
-public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-{
-
-}
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		SharklineJDBC SQLCommands = new SharklineJDBC();
+		
+	}
 }
