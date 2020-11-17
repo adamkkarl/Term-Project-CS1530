@@ -60,11 +60,11 @@ if(account.getType() == Type.INVESTOR)
 			"<tr><th>Logo</th><th>Business Name</th><th>Abstract</th><th>Website</th><th>View Profile</th></tr>";
 			for ( int i = 0; i < businesses.size(); i++ )
 			{
-				output += "<tr><form action=\"viewProfileServlet\" method=\"get\"><td><img src=\"" +
+				output += "<tr><td><img src=\"" +
 				businesses.get(i).getLogoPath() + "\" width=200px height=100px></td><td>" +
 				businesses.get(i).getBusinessName() + "</td><td>" +
 				businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getWebsite() + "</td><td>" +
-				"<input type=\"submit\" value=\"View Profile\"</td></form></tr>";
+				"<a href=\"viewProfileServlet?name=" + businesses.get(i).getBusinessName() + "&type=business\">View Profile</a></td></tr>";
 			}
 			output += "</table>";
 		}
@@ -86,11 +86,11 @@ else if ( !searchValueByBusinessName.equals("") && searchValueByBusinessIndustry
 			"<tr><th>Logo</th><th>Business Name</th><th>Abstract</th><th>Website</th><th>View Profile</th></tr>";
 			for ( int i = 0; i < businesses.size(); i++ )
 			{
-				output += "<tr><form action=\"viewProfileServlet\" method=\"get\"><td><img src=\"" +
+				output += "<tr><td><img src=\"" +
 				businesses.get(i).getLogoPath() + "\" width=200px height=100px></td><td>" +
 				businesses.get(i).getBusinessName() + "</td><td>" +
 				businesses.get(i).getBusinessAbstract() + "</td><td>" + businesses.get(i).getWebsite() + "</td><td>" +
-				"<input type=\"submit\" value=\"View Profile\"</td></form></tr>";
+				"<a href=\"viewProfileServlet?name=" + businesses.get(i).getBusinessName() + "&type=business\">View Profile</a></td></tr>";
 			}
 			output += "</table>";
 		}
@@ -101,7 +101,7 @@ if(account.getType() == Type.BUSINESS)
 {
 	String searchValueByInvestorAsk = request.getParameter("searchinvestorask");
 	String searchValueByInvestorName = request.getParameter("searchinvestorname");
-	
+
 	if ( searchValueByInvestorAsk == null && searchValueByInvestorName == null )
 	{
 		output += "";
@@ -117,7 +117,7 @@ if(account.getType() == Type.BUSINESS)
 	else if ( !searchValueByInvestorName.equals("") && searchValueByInvestorAsk.equals("") )
 	{
 		ArrayList<Investor> investors = SQLCommands.findInvestorsByLikeName(searchValueByInvestorName);
-		
+
 		if ( investors == null )
 		{
 			output += printNoSearchResults();

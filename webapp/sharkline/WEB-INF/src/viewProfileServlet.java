@@ -44,7 +44,10 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		account = (Account)session.getAttribute("account");
 		name = account.getName();
 		email = account.getEmail();
-		if(account.getType() == Type.INVESTOR)
+		String parameterName = request.getParameter("name");
+		String parameterType = request.getParameter("type");
+
+		if(account.getType() == Type.INVESTOR && parameterName.equals(name))
 		{
 			investor = SQLCommands.findInvestorAccountByName(name);
 			image = investor.getImage();
@@ -56,7 +59,9 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			ceoName = investor.getCeoName();
 			output = printInvestorProfile(name, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName );
 
-		}else{
+		}
+		else if(account.getType() == Type.BUSINESS && parameterName.equals(name))
+		{
 			business = SQLCommands.findBusinessAccountByName(name);
 			logo = business.getLogoPath();
 			industry = business.getBusinessIndustry();
@@ -70,12 +75,12 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			ceoName = business.getCeoName();
 			output = printBusinessProfile(name, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
 		}
-		
+
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		
+
 		out.print(output);
 
 	}
@@ -83,7 +88,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 	private static String printInvestorProfile(String name, String image, String description, String myAbstract,
 												int investmentInit, int investmentEnd, String website, String ceoName )
 	{
-		
+
 String output = "<!DOCTYPE html>"+
 "<html>"+
 "<head>"+
@@ -154,15 +159,15 @@ String output = "<!DOCTYPE html>"+
 "  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>"+
 "</body>"+
 "</html>";
-	
 
-	
+
+
 return output;
 
 	}
 
 	private static String printBusinessProfile(String name, String logo, Industry industry, String description, String myAbstract, Size size, int year,
-												int investmentAsk, int equity, String website, String ceoName)	
+												int investmentAsk, int equity, String website, String ceoName)
 	{
 		String output = "<!DOCTYPE html>"+
 "<html>"+
@@ -238,7 +243,7 @@ return output;
 "  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>"+
 "</body>"+
 "</html>";
-	
+
 
 
 	return output;
