@@ -59,22 +59,6 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			ceoName = investor.getCeoName();
 			output = printInvestorProfile(name, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName);
 		}
-		else if(account.getType().equals("Investor") && !account.getType().equals(parameterType) && !parameterName.equals(name))
-		{
-			business = SQLCommands.findBusinessAccountByName(name);
-			logo = business.getLogoPath();
-			industry = business.getBusinessIndustry();
-			description = business.getDescription();
-			myAbstract = business.getBusinessAbstract();
-			size = business.getSize();
-			year = business.getYear();
-			investmentAsk = business.getInvestmentAsk();
-			equity = business.getEquityOffer();
-			website = business.getWebsite();
-			ceoName = business.getCeoName();
-			output = printBusinessOtherProfile(name, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
-		}
-
 		else if(account.getType() == Type.BUSINESS && parameterName.equals(name))
 		{
 			business = SQLCommands.findBusinessAccountByName(name);

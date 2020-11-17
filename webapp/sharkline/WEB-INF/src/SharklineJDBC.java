@@ -1057,6 +1057,44 @@ public boolean removeAccount(String email)
       return null;
     }
   }
+  public UserConnection findConnectionByEmails(String investorEmail, String businessEmail)
+  {
+    try
+    {
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM account_connections WHERE investor_email = ? AND business_email = ?");
+      st.setString(1, investorEmail);
+      st.setString(2, businessEmail);
+
+      ResultSet result = st.executeQuery();
+      UserConnection returnConnection = new UserConnection();
+
+      if(!(result.next()))
+        return null;
+
+      returnConnection.setBusinessEmail(result.getString("business_email"));
+      returnConnection.setInvestorEmail(result.getString("investor_email"));
+      returnConnection.setConnectionID(result.getInt("connection_id"));
+      returnConnection.setDate(result.getString("date_connected"));
+      returnConnection.setConnected(result.getInt("connected"));
+      returnConnection.setSender(result.getInt("sender"));
+
+      st.close();
+      return returnConnection;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
 
   public UserConnection findConnection(int connID)
   {
