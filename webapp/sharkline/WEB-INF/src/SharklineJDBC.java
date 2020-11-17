@@ -1110,6 +1110,38 @@ public boolean removeAccount(String email)
 
   }
 
+  public boolean updateConnected(UserConnection userCon)
+  {
+    try
+    {
+      boolean isAdded = false;
+      PreparedStatenebt st = dbcon.prepareStatement
+      ("UPDATE account_connections SET connected = 1 WHERE business_email = ? AND investor_email = ?");
+
+      st.setString(1, userCon.getBusinessEmail());
+      st.setString(2, userCon.getInvestorEmail())
+
+      if(st.executeUpdate() >= 1)
+        isAdded = true;
+
+      dbcon.commit();
+      st.close();
+      return isAdded;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+    return false;
+    }
+  }
+
    /**
   * removeConnection retrieves the connection id with business and investor emails and
   *  removes the corresponding row in the database
