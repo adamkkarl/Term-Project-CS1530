@@ -1,0 +1,74 @@
+1. Login Page:
+If you have created an account, enter your email in the first field, and password in the second.
+If you have not created an account, click on Join Now
+
+2. Account Sign-Up:
+Fill in the following credentials:
+	-Type of Account
+	-Name of Business or Investment Firm
+	-Email Address
+	-Password
+	-Re-enter Password
+	-Imgur link
+
+3. First Time Setup:
+	Business:
+		Fill in the following credentials:
+			-Industry
+			-Number of Employees
+			-Website URL
+			-CEO Name
+			-Investment that you are seeking
+			-Year Company was established
+			-Percent of Equity you are willing to offer
+			-Description. Briefly describe the company
+			-Abstract. Elaborate further
+			-Imgur Link for Logo
+
+	Investor:
+		Fill in the following credentials:
+			-Website URL
+			-CEO Name
+			-Minimum Investment willing to give
+			-Maximum Investment willing to give
+			-Description. Briefly describe your firm 
+			-Abstract. Elaborate further
+			-Imgur Link for Profile Picture
+
+4. My Network (HomePage):
+	Search:
+		Business:
+			Search for Investors with:
+				- Investor Name
+					or
+				- Investment Seeking Amount
+		Investor:
+			Search for Businesses with:
+				-Business Name
+					or
+				- Industry
+
+		Different Businesses or Investors will appear with their profile information. Click View Profile to navigate to their page.
+
+	Add Connection:
+		Click the Connect button next to the company or investor listing to send a connection request to them
+
+5. Messaging:
+	Click the Messaging tab in the top left navigation bar next to the Sharkline logo
+	Here you can view your connections and messages. Click on a connection to start or resume a chat with them. 
+
+6. Profile:
+	Click the Profile tab in the top left navigation bar next to the Sharkline Logo
+		Edit Profile:
+			If you wish to view or update your profile, click this tab.
+
+		Settings:
+
+		Logout: 
+			If you wish to sign out of your account and return to the login page, click this tab.
+
+
+
+
+	
+

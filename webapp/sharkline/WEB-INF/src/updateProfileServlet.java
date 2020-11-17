@@ -10,12 +10,29 @@ public class updateProfileServlet extends HttpServlet
 {
 	String output;
 	String name;
+	String email;
+	String image;
+	String logo;
+	Industry industry;
+	Size size;
+	int year;
+	Account account;
+	String description;
+	String myAbstract;
+	int investmentInit;
+	int investmentEnd;
+	int investmentAsk;
+	int equity;
+	String website;
+	String ceoName;
+	Investor investor;
+	Business business;
+
 	String jdbcUsername = "root";
 	String jdbcPassword = "root";
 	String jdbcURL = "jdbc:mysql://localhost/sharklinedb";
 	Connection jdbcConnection;
 	SharklineJDBC SQLCommands;
-	Account account;
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -25,24 +42,68 @@ public class updateProfileServlet extends HttpServlet
 		account = (Account)session.getAttribute("account");
 		name = account.getName();
 
-		String description = request.getParameter("description");
-		String userAbstract = request.getParameter("abstract");
-		int investmentInit = Integer.parseInt(request.getParameter("investmentInit"));
-		int investmentEnd = Integer.parseInt(request.getParameter("investmentEnd"));
-		String website = request.getParameter("website");
-		String ceoName = request.getParameter("ceoName");
+		
 
 
 
 		if(account.getType() == Type.INVESTOR)
 		{
+			
+			investor = SQLCommands.findInvestorAccountByName(name);
+			description = request.getParameter("description");
+			myAbstract = request.getParameter("abstract");
+			investmentInit = Integer.parseInt(request.getParameter("investmentInit"));
+			investmentEnd = Integer.parseInt(request.getParameter("investmentEnd"));
+			website = request.getParameter("website");
+			ceoName = request.getParameter("ceoName");
+
+			investor.setInvestorDescription(description);
+			investor.setInvestorAbstract(myAbstract);
+			investor.setInvestmentRangeInit(investmentInit);
+			investor.setInvestmentRangeEnd(investmentEnd);
+			investor.setWebsite(website);
+			investor.setCeoName(ceoName);
+
+			
+
+			SQLCommands.updateInvestorAccount(investor);
+		}else{
+
+			
+			business = SQLCommands.findBusinessAccountByName(name);
+			description = request.getParameter("description");
+			myAbstract = request.getParameter("abstract");
+			size = Size.valueOf(request.getParameter("size"));
+			year = Integer.parseInt(request.getParameter("year"));
+			investmentAsk = Integer.parseInt(request.getParameter("investment"));
+			equity = Integer.parseInt(request.getParameter("equity"));
+			website = request.getParameter("website");
+			ceoName = request.getParameter("ceoName");
+
+			business.setDescription(description);
+			business.setBusinessAbstract(myAbstract);
+			business.setSize(size);
+			business.setYear(year);
+			business.setInvestmentAsk(investmentAsk);
+			business.setEquityOffer(equity);
+			business.setWebsite(website);
+			business.setCeoName(ceoName);
+
+
+			SQLCommands.updateBusinessAccount(business);
+			
+			
 
 		}
 
+
+
+		response.setContentType("text/html");
+PrintWriter out = response.getWriter();
+
+	out.print(output);
+
 	}
 
-	private String investorHTML()
-	{
-		return null;
-	}
+	
 }
