@@ -52,9 +52,9 @@ public class chatlogServlet extends HttpServlet
     //contact[i] corresponds to message[i]
 
 
-    ArrayList<Integer> CIDs = getConnectionIDsByEmail(email)
+    ArrayList<Integer> CIDs = SQLCommands.getConnectionIDsByEmail(email);
     //TODO figure out which of these chat log we're looking at currently
-    ArrayList<ChatLog> allMessages = SQLCommands.getChatLogByConnectionID(CIDs[0]);
+    ArrayList<ChatLog> allMessages = SQLCommands.getChatLogByConnectionID(CIDs.get(0));
 
 
 
