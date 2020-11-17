@@ -22,6 +22,7 @@ public class adminServlet extends HttpServlet
 		String accountType= request.getParameter("accounttype");
 		
 		SharklineJDBC SQLCommands = new SharklineJDBC();
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
@@ -73,7 +74,19 @@ public class adminServlet extends HttpServlet
 				output += "Account has already been verified";
 			}
 		}
-		else if ( removeUserByEmail != null ) { output += removeUserByEmail; }
+		else if ( removeUserByEmail != null )
+		{
+			if ( SQLCommands.removeAccount(removeUserByEmail) == true )
+			{
+				output += "Account was successfully removed";
+			}
+			else
+			{
+				output += "Account was not removed";
+			}
+		}
+		
+		ArrayList<Account> allAccounts = SQLCommands.findAllAccounts();
 		
 		output +=
 		"<h2>Add User</h2>" +
@@ -91,6 +104,22 @@ public class adminServlet extends HttpServlet
 		"<input type=\"submit\" value=\"Add User\">" +
 		"</form>" +
 		"<h2>List of Accounts in DB</h2>" +
+		"<table>" +
+		"<tr><th>Name</th><th>Email</th>" +
+		"<th>Password</th><th>Verified</th>" +
+		"<th>Image URL Path</th><th>Type</th></tr>";
+		if ( allAccounts != null )
+		{
+		for (int i = 0; i < allAccounts.size(); i++ )
+		{
+			output +=
+			"<tr><td> " + allAccounts.get(i).getName() + "</td><td>" + allAccounts.get(i).getEmail() + "</td>" +
+			"<td>" + allAccounts.get(i).getPassword() + "</td><td>" + allAccounts.get(i).checkVerified() + "</td>" +
+			"<td>" + allAccounts.get(i).getImgPath() + "</td><td>" + allAccounts.get(i).getType() + "</td></tr>";
+		}
+		}
+		output +=
+		"</table>" +
 		"<h2>Verify User</h2>" +
 		"<form method=\"post\" action=\"adminmode\">" +
 		"Account Email: <input required type=\"email\" name=\"verifyemail\"><br/>" +

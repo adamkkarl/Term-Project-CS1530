@@ -158,6 +158,36 @@ public class SharklineJDBC
     }
   }
 
+public boolean removeAccount(String email)
+  {
+    try
+    {
+      boolean isRemoved = false;
+      PreparedStatement st = dbcon.prepareStatement("DELETE FROM ACCOUNTS"
+      + " WHERE account_email = ?");
+      st.setString(1, email);
+      if(st.executeUpdate() >= 1)
+        isRemoved = true;
+
+      dbcon.commit();
+      st.close();
+
+      return isRemoved;
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return false;
+    }
+  }
+
   /**
   * findAccount searches through account table to find matching tuple
   * with given email
@@ -230,6 +260,8 @@ public class SharklineJDBC
         //EXCEPT PASSWORD
         Account retrievedAccount = new Account();
         retrievedAccount.setEmail(result.getString("account_email"));
+		retrievedAccount.setImgPath(result.getString("img_proof")); // for image path
+		retrievedAccount.setPassword(result.getString("account_password"));
         retrievedAccount.setName(result.getString("account_name"));
         if(result.getString("type").equals("Investor"))
           retrievedAccount.setType(Type.INVESTOR);

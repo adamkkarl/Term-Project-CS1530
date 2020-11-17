@@ -86,6 +86,16 @@
 <url-pattern>/myconnectionsServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>updateProfileServlet</servlet-name>
+<servlet-class>updateProfileServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>updateProfileServlet</servlet-name>
+<url-pattern>/updateProfileServlet</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>
