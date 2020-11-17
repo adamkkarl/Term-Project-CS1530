@@ -148,7 +148,8 @@ if(account.getType() == Type.BUSINESS)
 				"<tr><td>" + investors.get(i).getInvestorName() + "</td>" +
 				"<td>" + investors.get(i).getInvestorAbstract() + "</td>" +
 				"<td>" + investors.get(i).getInvestmentRangeInit() + " - " + investors.get(i).getInvestmentRangeEnd() + "</td>" +
-				"<td>" + investors.get(i).getWebsite() + "</td></tr>";
+				"<td>" + investors.get(i).getWebsite() + "</td><td>"+
+				"<a href=\"viewProfileServlet?name=" + investors.get(i).getInvestorName() + "&type=investor\">View Profile</a></td></tr>";
 			}
 			output += "</table>";
 		}
@@ -174,7 +175,8 @@ if(account.getType() == Type.BUSINESS)
 				"<tr><td>" + investors.get(i).getInvestorName() + "</td>" +
 				"<td>" + investors.get(i).getInvestorAbstract() + "</td>" +
 				"<td>" + investors.get(i).getInvestmentRangeInit() + " - " + investors.get(i).getInvestmentRangeEnd() + "</td>" +
-				"<td>" + investors.get(i).getWebsite() + "</td></tr>";
+				"<td>" + investors.get(i).getWebsite() + "</td><td>"+
+				"<a href=\"viewProfileServlet?name=" + investors.get(i).getInvestorName() + "&type=investor\">View Profile</a></td></tr>";
 			}
 			output += "</table>";
 		}

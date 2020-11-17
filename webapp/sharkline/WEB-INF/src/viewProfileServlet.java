@@ -74,7 +74,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			ceoName = business.getCeoName();
 			output = printBusinessOtherProfile(name, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
 		}
-		
+
 		else if(account.getType() == Type.BUSINESS && parameterName.equals(name))
 		{
 			business = SQLCommands.findBusinessAccountByName(name);
@@ -107,7 +107,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		}
 		else if(parameterType.equalsIgnoreCase("investor"))
 		{
-			investor = SQLCommands.findInvestorAccountByName(name);
+			investor = SQLCommands.findInvestorAccountByName(parameterName);
 			image = investor.getImage();
 			description = investor.getInvestorDescription();
 			myAbstract = investor.getInvestorAbstract();
