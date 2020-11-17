@@ -57,7 +57,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			investmentEnd = investor.getInvestmentRangeEnd();
 			website = investor.getWebsite();
 			ceoName = investor.getCeoName();
-			output = printInvestorProfile(name, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName );
+			output = printInvestorProfile(name, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName);
 
 		}
 		else if(account.getType() == Type.BUSINESS && parameterName.equals(name))
@@ -74,6 +74,33 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			website = business.getWebsite();
 			ceoName = business.getCeoName();
 			output = printBusinessProfile(name, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
+		}
+		else if(parameterType.equalsIgnoreCase("business"))
+		{
+			business = SQLCommands.findBusinessAccountByName(parameterName);
+			logo = business.getLogoPath();
+			industry = business.getBusinessIndustry();
+			description = business.getDescription();
+			myAbstract = business.getBusinessAbstract();
+			size = business.getSize();
+			year = business.getYear();
+			investmentAsk = business.getInvestmentAsk();
+			equity = business.getEquityOffer();
+			website = business.getWebsite();
+			ceoName = business.getCeoName();
+			output = printBusinessProfile(parameterName, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
+		}
+		else if(parameterType.equalsIgnoreCase("investor"))
+		{
+			investor = SQLCommands.findInvestorAccountByName(name);
+			image = investor.getImage();
+			description = investor.getInvestorDescription();
+			myAbstract = investor.getInvestorAbstract();
+			investmentInit = investor.getInvestmentRangeInit();
+			investmentEnd = investor.getInvestmentRangeEnd();
+			website = investor.getWebsite();
+			ceoName = investor.getCeoName();
+			output = printInvestorProfile(parameterName, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName);
 		}
 
 
@@ -109,7 +136,7 @@ String output = "<!DOCTYPE html>"+
 "    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">"+
 "      <ul class=\"navbar-nav\">"+
 "        <li class=\"nav-item active\">"+
-"          <a class=\"nav-link\" href=\"#\">My Network <span class=\"sr-only\">(current)</span></a>"+
+"          <a class=\"nav-link\" href=\"mynetworkServlet\">My Network <span class=\"sr-only\">(current)</span></a>"+
 "        </li>"+
 "        <li class=\"nav-item active\">"+
 "          <a class=\"nav-link\" href=\"./webapp/messaging.html\">Messaging</a>"+
@@ -189,7 +216,7 @@ return output;
 "    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">"+
 "      <ul class=\"navbar-nav\">"+
 "        <li class=\"nav-item active\">"+
-"          <a class=\"nav-link\" href=\"#\">My Network <span class=\"sr-only\">(current)</span></a>"+
+"          <a class=\"nav-link\" href=\"mynetworkServlet\">My Network <span class=\"sr-only\">(current)</span></a>"+
 "        </li>"+
 "        <li class=\"nav-item active\">"+
 "          <a class=\"nav-link\" href=\"./webapp/messaging.html\">Messaging</a>"+

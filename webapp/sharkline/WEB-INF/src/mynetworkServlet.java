@@ -13,6 +13,20 @@ public class mynetworkServlet extends HttpServlet
 	SharklineJDBC SQLCommands;
 	Account account;
 
+@Override
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+{
+	HttpSession session = request.getSession();
+	account = (Account)session.getAttribute("account");
+	name = account.getName();
+
+	response.setContentType("text/html");
+	PrintWriter out = response.getWriter();
+
+	output = printMyNetwork(name, account);
+	output += "</body></html>";
+	out.print(output);
+}
 	@Override
 public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 {
@@ -391,11 +405,6 @@ if ( size == null ) { return null; }
     "<link rel=\"stylesheet\" href=\"./css/style.css\">" +
 "</head>" +
 "<body>" +
-  "<div class=\"sidenav navbar-dark bg-dark\">" +
-    "<a href=\"#\">Connections</a>" +
-    "<a href=\"#\">Events</a>" +
-    "<a href=\"#\">Groups</a>" +
-  "</div>" +
 "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">" +
   "<img src=\"./images/logo.png\" class=\"center logo\" alt=\"...\" width=\"160\" height=\"80\">" +
   "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">" +
@@ -404,7 +413,7 @@ if ( size == null ) { return null; }
   "<div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">" +
     "<ul class=\"navbar-nav\">" +
       "<li class=\"nav-item active\">" +
-        "<a class=\"nav-link\" href=\"#\">My Network <span class=\"sr-only\">(current)</span></a>" +
+        "<a class=\"nav-link\" href=\"mynetworkServlet\" method=\"post\">My Network <span class=\"sr-only\">(current)</span></a>" +
       "</li>" +
       "<li class=\"nav-item active\">" +
         "<a class=\"nav-link\" href=\"#\">Messaging</a>" +
@@ -414,7 +423,7 @@ if ( size == null ) { return null; }
           "Profile" +
         "</a>" +
         "<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">" +
-          "<a class=\"dropdown-item\" href=\"viewProfileServlet\">Edit Profile</a>" +
+          "<a class=\"dropdown-item\" href=\"viewProfileServlet?name=" + name + "&type=" + account.getType().name() + "\">Edit Profile</a>" +
           "<a class=\"dropdown-item\" href=\"#\">Settings</a>" +
           "<a class=\"dropdown-item\" href=\"logoutServlet\">Logout</a>" +
         "</div>" +
