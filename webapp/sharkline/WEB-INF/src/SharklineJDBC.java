@@ -1235,7 +1235,7 @@ public class SharklineJDBC
   }
 
   /**
-  * getChatLogByConnectionID queries chat_log for any messages for a certain connection_id
+  * getChatLogByConnectionID queries chat_log for any messages for a certain email
   * THE MOST RECENT MESSAGE IS LISTED
   *
   * @param connection_id, the connection to search for
@@ -1276,6 +1276,79 @@ public class SharklineJDBC
       while(result.next()) {
         String investor_business_message = "~".join(result.getString("investor_name"), result.getString("business_name"), result.getString("message"));
         info.add(investor_business_message);
+      }
+
+      st.close();
+      return info;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
+
+  /**
+  * getMostRecentMessage queries chat_log for any messages for a certain email
+  * THE MOST RECENT MESSAGE IS LISTED for each commection
+  *
+  * @param connection_id, the connection to search for
+  *
+  * @return null if no chats exist, otherwise return a ~-separated list of investor name, business name, and message
+  */
+  public ArrayList<String> getMostRecentMessages(String email)
+  {
+    try
+    {
+      boolean isBusiness = false;
+
+      ArrayList<String> info = new ArrayList<String>();
+
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT bus_name.account_name AS business_name, inv_name.account_name AS investor_name, tmp.sender as sender, tmp.message AS message " +
+        "FROM account_connections a " +
+        "JOIN (" +
+        "	SELECT c.connection_id AS connection_id, c.sender AS sender, c.message AS message " +
+        "	FROM chat_log c " +
+        "	LEFT JOIN chat_log d " +
+        "	ON c.connection_id = d.connection_id AND c.datetime_sent < d.datetime_sent " +
+        "	WHERE d.datetime_sent IS NULL" +
+        ") tmp " +
+        "ON a.connection_id = tmp.connection_id " +
+        "JOIN accounts inv_name " +
+        "ON a.investor_email = inv_name.account_email " +
+        "JOIN accounts bus_name " +
+        "ON a.business_email = bus_name.account_email " +
+        "WHERE (a.business_email = ? OR a.investor_email = ?) " +
+        "AND a.connected = 1");
+      st.setString(1, email);
+      st.setString(2, email);
+      ResultSet result = st.executeQuery();
+
+      if(!(result.next()))
+        return null;
+
+      while(result.next()) {
+        String inv_nm = result.getString("investor_name");
+        String bus_nm = result.getString("business_name");
+        int sender = result.getInt("investor_name");
+        String msg = result.getString("message");
+        String s = "";
+        if (sender == 1) {
+          //sent by investor
+          s = ": ".join(inv_nm, msg);
+        } else {
+          //sent by business
+          s = ": ".join(bus_nm, msg);
+        }
+        info.add(s);
       }
 
       st.close();
