@@ -23,6 +23,7 @@ String output =
 "<doctype html>><head><title>Connection Status</title></head>" +
 "<body><h1>Outcome</h1>" +
 "<p>Sent connection request successfully!</p>" +
+"<a href=\"/sharkline/mynetworkServlet\">Go to MyNetwork</a>" +
 "</body></html>";
 
 out.println(output);
