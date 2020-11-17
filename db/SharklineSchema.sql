@@ -76,7 +76,7 @@ CREATE TABLE account_connections (
 
     PRIMARY KEY(business_email, investor_email),
     FOREIGN KEY (business_email) REFERENCES business_accounts(business_email) ON DELETE CASCADE,
-    FOREIGN KEY (investor_email) REFERENCES investor_accounts(investor_email) ON DELETE CASACDE
+    FOREIGN KEY (investor_email) REFERENCES investor_accounts(investor_email) ON DELETE CASCADE
 );
 
 # chat_log stores the information regarding messages sent

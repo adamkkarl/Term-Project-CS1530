@@ -394,13 +394,13 @@ VALUES ('adamkkarl@gmail.com', 'Adam Karl',
 
 # TEMPLATE FOR CONNECTIONS
 INSERT INTO account_connections
-VALUES ('googleHQ@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), null, null);
+VALUES ('googleHQ@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), 1, 1);
 
 INSERT INTO account_connections
-VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE('11,5,2020','%d,%m,%Y'), null, null);
+VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE('11,5,2020','%d,%m,%Y'), 1, 1);
 
 INSERT INTO account_connections
-VALUES ('Sinochem@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), null, null);
+VALUES ('Sinochem@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), 0, 0);
 
 # TEMPLATE FOR chatlog
 INSERT INTO chat_log

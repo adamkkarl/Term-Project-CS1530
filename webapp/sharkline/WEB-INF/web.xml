@@ -76,6 +76,16 @@
 <url-pattern>/adminmode</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>myconnectionsServlet</servlet-name>
+<servlet-class>myconnectionsServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>myconnectionsServlet</servlet-name>
+<url-pattern>/myconnectionsServlet</url-pattern>
+</servlet-mapping>
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>

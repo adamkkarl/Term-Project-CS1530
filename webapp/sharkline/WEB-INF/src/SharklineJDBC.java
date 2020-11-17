@@ -1196,9 +1196,6 @@ public class SharklineJDBC
 
       ResultSet result = st.executeQuery();
 
-      if(!(result.next()))
-        return null;
-
       while(result.next())
       {
         String businessEmail = result.getString("business_email");
@@ -1213,6 +1210,9 @@ public class SharklineJDBC
 
         connections.add(userConnection);
       }
+
+      if(connections.size() <= 0)
+        return null;
 
       st.close();
       return connections;

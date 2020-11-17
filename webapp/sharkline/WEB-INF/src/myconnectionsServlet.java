@@ -17,7 +17,13 @@ public class myconnectionsServlet extends HttpServlet
     Account account = (Account)session.getAttribute("account");
     SQLCommands = new SharklineJDBC();
 
+    String output = getHtml(account);
+    response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
+
+    out.print(output);
   }
+
   private String getHtml(Account account)
   {
     String output =
@@ -64,26 +70,100 @@ public class myconnectionsServlet extends HttpServlet
     if(account.getType() == Type.INVESTOR)
     {
       output +=
-"     <label for=\"accepted\">Accepted Connections</label>"+
-"     <table name=\"accepted\">"+
-"       <tr><th>Logo</th><th>Name</th><th>Date Connected</th><th>Most Recent Message</th></tr>";
+      "<h5>Accepted Connections</h5>"+
+      "<table name=\"accepted\">"+
+      "<tr><th>Logo</th><th>Name</th><th>Date Connected</th><th>Most Recent Message</th></tr>";
 
       ArrayList<UserConnection> connections = SQLCommands.getConnectionsByEmail(account.getEmail());
+
       for(int i = 0; i < connections.size(); i++)
       {
         if(connections.get(i).getConnected() == 1)
         {
           Business business = SQLCommands.findBusinessAccountByEmail
                                           (connections.get(i).getBusinessEmail());
+          String recentMsg = SQLCommands.getMostRecentMessage
+                                          (account.getEmail(), business.getBusinessEmail());
+
           output +=
           "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
           "<td>" + business.getBusinessName() + "</td>" +
           "<td>" + connections.get(i).getDate() + "</td>" +
-          "<td>Most recent message here</td>"
-        }
-      }
-    }
+          "<td>" + recentMsg + "</td>" +
+          "<td><a href=\"chatlogServlet\">View Chatlog</a></td></tr>";
+         }
+       }
 
-    return null;
-  }
+       output +="<br></table><h5>Pending Connections</h5>"+
+       "<table name=\"pending\">"+
+       "<tr><th>Logo</th><th>Name</th><th>Date Connected</th></tr>";
+
+       for(int i = 0; i < connections.size(); i++)
+       {
+        Business business = SQLCommands.findBusinessAccountByEmail
+                                        (connections.get(i).getBusinessEmail());
+        if(connections.get(i).getConnected() == 0 && connections.get(i).getSender() == 0)
+        {
+          int id = connections.get(i).getConnectionID();
+
+          output +=
+          "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
+          "<td>" + business.getBusinessName() + "</td>" +
+          "<td>" + connections.get(i).getDate() + "</td>" +
+          "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=accept\">Accept request</a></td>" +
+          "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=reject\">Reject request</a></td></tr>";
+        }
+       }
+      }
+      else if(account.getType() == Type.BUSINESS)
+      {
+        output +=
+        "<h5>Accepted Connections</h5>"+
+        "<table name=\"accepted\">"+
+        "<tr><th>Logo</th><th>Name</th><th>Date Connected</th><th>Most Recent Message</th></tr>";
+
+        ArrayList<UserConnection> connections = SQLCommands.getConnectionsByEmail(account.getEmail());
+
+        for(int i = 0; i < connections.size(); i++)
+        {
+          if(connections.get(i).getConnected() == 1)
+          {
+            Investor investor = SQLCommands.findInvestorAccountByEmail
+                                            (connections.get(i).getInvestorEmail());
+            String recentMsg = SQLCommands.getMostRecentMessage
+                                            (investor.getInvestorEmail(), account.getEmail());
+
+            output +=
+            "<tr><td><img src=\"" + investor.getImage() + "\" height=100px width=200px></td>"+
+            "<td>" + investor.getInvestorName() + "</td>" +
+            "<td>" + connections.get(i).getDate() + "</td>" +
+            "<td>" + recentMsg + "</td>" +
+            "<td><a href=\"chatlogServlet\">View Chatlog</a></td></tr>";
+           }
+         }
+
+         output +="<br></table><h5>Pending Connections</h5>"+
+         "<table name=\"pending\">"+
+         "<tr><th>Logo</th><th>Name</th><th>Date Connected</th></tr>";
+
+         for(int i = 0; i < connections.size(); i++)
+         {
+          Investor investor = SQLCommands.findInvestorAccountByEmail
+                                          (connections.get(i).getBusinessEmail());
+          if(connections.get(i).getConnected() == 0 && connections.get(i).getSender() == 1)
+          {
+            int id = connections.get(i).getConnectionID();
+
+            output +=
+            "<tr><td><img src=\"" + investor.getImage() + "\" height=100px width=200px></td>"+
+            "<td>" + investor.getInvestorName() + "</td>" +
+            "<td>" + connections.get(i).getDate() + "</td>" +
+            "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=accept\">Accept request</a></td>" +
+            "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=reject\">Reject request</a></td></tr>";
+          }
+         }
+      }
+      output += "</table></body></html>";
+     return output;
+   }
 }

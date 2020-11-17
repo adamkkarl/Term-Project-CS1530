@@ -54,6 +54,12 @@ public class TestCases
       //Make sure to add some test data in the database or the ResultSets won't
       //have anything in them!
 
+      ArrayList<UserConnection> testStrings = getConnectionsByEmail("johnsmith@gmail.com");
+      for(int i = 0; i < testStrings.size(); i++)
+      {
+        System.out.println(testStrings.get(i).getBusinessEmail());
+      }
+      /*
       String investorEmail = "fukk@god.com";
       String investorName = "fukk";
       String investorDescription = "testfukc";
@@ -65,6 +71,7 @@ public class TestCases
       String ceo = "glashkglh";
       Investor testInvestor = new Investor(investorEmail, investorName, investorDescription, investorAbstract, investmentInit, image, investmentEnd, website, ceo);
       updateInvestorAccount(testInvestor);
+      */
       /*
       Account test = findAccount("fraudulentEmail@hotmail.com");
       System.out.println(test.getName());
@@ -952,6 +959,52 @@ public class TestCases
     }
   }
   */
+  public static ArrayList<UserConnection> getConnectionsByEmail(String email)
+  {
+    try
+    {
+      ArrayList<UserConnection> connections = new ArrayList<UserConnection>();
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM account_connections WHERE business_email = ? OR investor_email = ?");
+
+      st.setString(1, email);
+      st.setString(2, email);
+
+      ResultSet result = st.executeQuery();
+
+      while(result.next())
+      {
+        String businessEmail = result.getString("business_email");
+        String investorEmail = result.getString("investor_email");
+        String date = result.getString("date_connected");
+        int id = result.getInt("connection_id");
+        int connected = result.getInt("connected");
+        int sender = result.getInt("sender");
+
+        UserConnection userConnection = new UserConnection(businessEmail,
+                    investorEmail, date, id, connected, sender);
+
+        connections.add(userConnection);
+      }
+      if(connections.size() <= 0)
+        return null;
+
+      st.close();
+      return connections;
+    }
+    catch(SQLException e1)
+    {
+      while (e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
   /**
   * setIndustry is a helper method designed to streamline updating industry attribute
   * in business_accounts table, not for use in queries
