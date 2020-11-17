@@ -106,6 +106,15 @@
 <url-pattern>/checkconnectionServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>sendConnectionServlet</servlet-name>
+<servlet-class>sendConnectionServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>sendConnectionServlet</servlet-name>
+<url-pattern>/sendConnectionServlet</url-pattern>
+</servlet-mapping>
 
 <session-config>
    <session-timeout>15</session-timeout>

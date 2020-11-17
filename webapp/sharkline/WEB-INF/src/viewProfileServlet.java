@@ -283,7 +283,12 @@ return output;
 
 if ( !account.getName().equals(name) && SQLCommands.findConnectionByEmails(email, business_email) == null )
 {
-	output += "<button>Send Connection Request</button>";
+	output +=
+	"<form method=\"post\" action=\"/sharkline/sendConnectionServlet\">" +
+	"<input hidden type=\"text\" name=\"investor_email\" value=\"test\">" +
+	"<input hidden type=\"text\" name=\business_email\" value=\"test\">" +
+	"<input type=\"submit\" value=\"Send Connection Request\">" +
+	"</form>";
 }
 else if ( !account.getName().equals(name) && SQLCommands.findConnectionByEmails(email, business_email) != null )
 {
