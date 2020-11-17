@@ -64,7 +64,7 @@ public class adminServlet extends HttpServlet
 		}
 		else if ( verifyUserByEmail != null )
 		{
-			if ( SQLCommands.verifyAccount(accountEmail) == true )
+			if ( SQLCommands.verifyAccount(verifyUserByEmail) == true )
 			{
 				output += "Account has been verified";
 			}
