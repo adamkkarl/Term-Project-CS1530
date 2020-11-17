@@ -340,10 +340,29 @@ INSERT INTO accounts
 VALUES ('WWF@gmail.com', 'savethepandas', 'World Wildlife Fund', 'Business', 1, null);
 INSERT INTO business_accounts
 VALUES ('WWF@gmail.com', 'World Wildlife Fund',
-'Founded by J. Willard Marriott, the company is now led by his son, executive chairman Bill Marriott, and president and chief executive officer Arne Sorenson. 
-Marriott International is the largest hotel chain in the world by number of available rooms.',
+'WWF is the world\'s largest conservation organization, with over five million supporters worldwide, working in more than 100 countries 
+and supporting around 3,000 conservation and environmental projects.',
 'The World Wide Fund for Nature (WWF) is an international non-governmental organization founded in 1961.',
-'https://imgur.com/QvOYZry.png', '200+', 1927, 100000000, 2, 'worldwildlife.org', 'Pavan Sukhdev', 'Environment');
+'https://imgur.com/QvOYZry.png', '200+', 1927, 5000000, 7, 'worldwildlife.org', 'Pavan Sukhdev', 'Environment');
+
+INSERT INTO accounts
+VALUES ('marvel@gmail.com', 'spooderman1234', 'Marvel', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('marvel@gmail.com', 'Marvel',
+'In 2009, The Walt Disney Company acquired Marvel Entertainment for US$4 billion; it has been a limited liability company (LLC) since then. 
+For financial reporting purposes, Marvel is primarily reported as part of Disney\'s Consumer Products segment ever since Marvel Studios\' reorganization 
+from Marvel Entertainment into Walt Disney Studios.',
+'Marvel Entertainment is an American entertainment company founded in June 1998 and based in New York City.',
+'https://imgur.com/wWU9pN4.png', '200+', 1998, 5000000, 9, 'www.marvel.com', 'Isaac Perlmutter', 'Entertainment');
+
+INSERT INTO accounts
+VALUES ('sonypictures@gmail.com', 'spiderman1234', 'Sony Pictures', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('sonypictures@gmail.com', 'Sony Pictures',
+'Based at the former Metro-Goldwyn-Mayer lot in Culver City, California, it encompasses Sony\'s motion picture, television production and distribution units. 
+Its group sales in the fiscal year 2017 (April 2017 – March 2018) has been reported to be $9.133 billion.',
+'Sony Pictures is an American entertainment company that produces, acquires, and distributes filmed entertainment.',
+'https://imgur.com/U234gtm.jpg', '200+', 1987, 50000000, 3, 'www.sonypictures.com', 'Tony Vinciquerra', 'Entertainment');
 
 
 # TEMPLATE FOR INVESTOR ACCOUNTS
