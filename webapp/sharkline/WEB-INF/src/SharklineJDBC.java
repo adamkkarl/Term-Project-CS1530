@@ -730,7 +730,7 @@ public class SharklineJDBC
         account.setInvestmentRangeEnd(result.getInt("investment_range_end"));
         account.setWebsite(result.getString("website"));
         account.setCeoName(result.getString("name_CEO"));
-        
+
 
         investors.add(account);
       }
@@ -995,12 +995,15 @@ public class SharklineJDBC
        boolean isAdded = false;
        PreparedStatement st =
        dbcon.prepareStatement("INSERT INTO account_connections VALUES" +
-                            " (?, ?, ?, ?)");
+                            " (?, ?, ?, ?, ?, ?)");
 
 
-      st.setString(1,userCon.getBusinessEmail());
-      st.setString(2,userCon.getInvestorEmail());
+      st.setString(1, userCon.getBusinessEmail());
+      st.setString(2, userCon.getInvestorEmail());
+      st.setInt(3, userCon.getConnectionID());
       st.setString(4, userCon.getDate());
+      st.setInt(5, userCon.getConnected());
+      st.setInt(6, userCon.getSender());
 
 
       if(st.executeUpdate() >= 1)
@@ -1248,21 +1251,21 @@ public class SharklineJDBC
       ArrayList<String> info = new ArrayList<String>();
 
       PreparedStatement st =
-      dbcon.prepareStatement("SELECT bn.business_name AS business_name, inv_name.investor_name AS investor_name, tmp.message AS message "
-        + "FROM account.connections a "
-        + "JOIN ("
-        	+ "SELECT c.connection_id AS connection_id, c.message AS message "
-        	+ "FROM chat_log c "
-        	+ "LEFT JOIN chat_log d "
-        	+ "ON c.connection_id = d.connection_id AND c.datetime_sent > d.datetime_sent "
-        	+ "WHERE d.datetime_sent IS NULL"
-        + ") tmp "
-        + "ON a.connection_id = tmp.connection_id   "
-        + "JOIN accounts inv_name "
-        + "ON a.investor_name = inv_name.investor_name "
-        + "JOIN accounts bus_name "
-        + "ON a.business_name = bus_name.business_name "
-        + "WHERE a.business_email = ? OR a.investor_email = ?");
+      dbcon.prepareStatement("SELECT bus_name.account_name AS business_name, inv_name.account_name AS investor_name, tmp.message AS message " +
+        "FROM account_connections a " +
+        "JOIN (" +
+        "	SELECT c.connection_id AS connection_id, c.message AS message " +
+        "	FROM chat_log c " +
+        "	LEFT JOIN chat_log d " +
+        "	ON c.connection_id = d.connection_id AND c.datetime_sent < d.datetime_sent " +
+        "	WHERE d.datetime_sent IS NULL" +
+        ") tmp " +
+        "ON a.connection_id = tmp.connection_id " +
+        "JOIN accounts inv_name " +
+        "ON a.investor_email = inv_name.account_email " +
+        "JOIN accounts bus_name " +
+        "ON a.business_email = bus_name.account_email " +
+        "WHERE a.business_email = ? OR a.investor_email = ?");
       st.setString(1, email);
       st.setString(2, email);
       ResultSet result = st.executeQuery();

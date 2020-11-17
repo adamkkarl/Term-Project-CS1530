@@ -45,18 +45,6 @@ CREATE TABLE business_accounts (
     FOREIGN KEY (business_email) REFERENCES accounts(account_email)
 );
 
-# company_project table stores all the data entries for the company
-# projects they would like to list on their account page. The business_email
-# references the business_accounts table and its respective attribute business_email.
-
-CREATE TABLE company_project (
-	business_email VARCHAR(50) NOT NULL,
-    project_name VARCHAR(100) NOT NULL PRIMARY KEY,
-    project_description VARCHAR(1500),
-
-    FOREIGN KEY (business_email) REFERENCES business_accounts(business_email)
-);
-
 # investor_accounts table stores all the data for investor type accounts.
 # investor_email reference the accounts table
 

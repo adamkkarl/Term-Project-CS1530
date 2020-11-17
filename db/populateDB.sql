@@ -228,7 +228,7 @@ Elon Musk, who has served as CEO since 2008, said in 2006 that "the overarching 
 towards a solar electric economy" and it would build a wide range of electric vehicles, including "affordably priced family cars", and co-market SolarCity solar panels to do so. 
 Tesla acquired SolarCity in 2016',
 'Tesla (formerly Tesla Motors) is an American electric vehicle and clean energy company based in Palo Alto, California.',
-'https://imgur.com/zaeIwWi.png', '200+', 2003, 300000000, 1, 'www.tesla.com', 'Elon Musk', 'Software/Tech');
+'https://imgur.com/zaeIwWi.png', '200+', 2003, 300000000, 1, 'www.tesla.com', 'Elon Musk', 'Automotive');
 
 INSERT INTO accounts
 VALUES ('seatgeek@contact.us', 'qwertyuiop2009', 'SeatGeek', 'Business', 1, null);
@@ -286,13 +286,46 @@ Snackpass is now used in multiple universities across the US and is backed by so
 'Snackpass is the best new way for customers to quickly order takeout meals at a discount.',
 'https://imgur.com/pCwvDvH.png', '11-30', 2019, 115000, 10, 'www.snackpass.co', 'Kevin Tan', 'Software/Tech');
 
+INSERT INTO accounts
+VALUES ('Sinochem@gmail.com', 'chemicalCN', 'Sinochem', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('Sinochem@gmail.com', 'Sinochem',
+'Sinochem Corporation is a Chinese state-owned multinational conglomerate primarily engaged in the production and trading of chemicals and fertilizer 
+and exploration and production of oil for civilian and military purposes. Its majority owned fertilizer subsidiary Sinofert is involved throughout 
+the chain from production of the product and procurement on international markets to distribution and retail.\n
+Sinochem Group is China\'s earliest entrant in Fortune Global 500 and has entered the list for 25 times, ranking 139th in 2016',
+'Sinochem is one of the world\'s largest chemical and fertilizer producer.',
+'https://imgur.com/bI9MHzk.jpg', '200+', 1950, 100000000, 3, 'english.sinochem.com', 'Ning Gaoning', 'Industrial');
 
-# TEMPLATE FOR COMPANY PROJECTS
+INSERT INTO accounts
+VALUES ('UPMCpittsburgh@gmail.com', 'pittMedicine123', 'UPMC', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('UPMCpittsburgh@gmail.com', 'UPMC',
+'It is considered a leading American health care provider, as its flagship facilities have ranked in U.S. News & World Report "Honor Roll" of the approximately 
+15 to 20 best hospitals in America for over 15 years. As of 2016, flagship hospital, UPMC Presbyterian is ranked 12th nationally among the best hospitals 
+(and first in Pennsylvania) by U.S. News & World Report and ranked in 15 of 16 specialty areas when including UPMC Magee-Womens Hospital.',
+'The University of Pittsburgh Medical Center (UPMC) is a global nonprofit health enterprise.',
+'https://imgur.com/undefined.png', '200+', 1901, 100000000, 8, 'upmc.com', 'Jeffrey Romoff', 'Health');
 
-INSERT INTO company_project
-VALUES ('googleHQ@gmail.com', 'Wayme - The Google Self Driving Car', 'Waymo began as the Google Self-Driving Car Project in 2009. 
-Fully self-driving vehicles hold the promise to improve road safety and offer new mobility options to millions of people. 
-Whether they’re helping people run errands, commute to work, or drop off kids at school, fully self-driving vehicles hold enormous potential to transform people’s lives.');
+INSERT INTO accounts
+VALUES ('BASFgermany@gmail.com', 'chemicalDE', 'BASF', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('BASFgermany@gmail.com', 'BASF',
+'The BASF Group comprises subsidiaries and joint ventures in more than 80 countries and operates six integrated production sites and 390 other production 
+sites in Europe, Asia, Australia, the Americas and Africa. Its headquarters is located in Ludwigshafen, Germany. BASF has customers in over 190 countries 
+and supplies products to a wide variety of industries.',
+'BASF SE is a German multinational chemical company and the largest chemical producer in the world.',
+'https://imgur.com/yWdZcUE.png', '200+', 1901, 20000000, 1, 'basf.com', 'JMartin Brudermüller', 'Industrial');
+
+INSERT INTO accounts
+VALUES ('nbagiatisi@reedsmith.com', 'chemicalDE', 'Reed Smith LLP', 'Business', 1, null);
+INSERT INTO business_accounts
+VALUES ('nbagiatisi@reedsmith.com', 'Reed Smith LLP',
+'Reed Smith LLP is a global law firm headquartered in Pittsburgh, Pennsylvania, with more than 1,500 lawyers in 30 offices throughout the United States, 
+Europe, the Middle East and Asia.\n
+Reed Smith was founded in Pittsburgh in 1877 by Philander C. Knox and James H. Reed.',
+'Reed Smith LLP is a global law firm headquartered in Pittsburgh, Pennsylvania.',
+'https://imgur.com/undefined.png', '200+', 1901, 20000000, 1, 'www.reedsmith.com', 'Nick Bagiatis', 'Law');
 
 
 # TEMPLATE FOR INVESTOR ACCOUNTS
@@ -321,6 +354,9 @@ VALUES ('googleHQ@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,20
 INSERT INTO account_connections
 VALUES ('YachtClubGames@gmail.com', 'citizensbank@gmail.com', null, STR_TO_DATE('11,5,2020','%d,%m,%Y'), null, null);
 
+INSERT INTO account_connections
+VALUES ('Sinochem@gmail.com', 'johnsmith@gmail.com', null, STR_TO_DATE('01,10,2020','%d,%m,%Y'), null, null);
+
 # TEMPLATE FOR chatlog
 INSERT INTO chat_log
 VALUES (1, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, my name is John and I\'m interested in investing.');
@@ -331,3 +367,10 @@ INSERT INTO chat_log
 VALUES (2, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, we are Citizen\'s Bank and we are interested in investing.');
 INSERT INTO chat_log
 VALUES (2, NOW(), 0, 'Hi Citize\'s, how much?');
+
+INSERT INTO chat_log
+VALUES (3, DATE_SUB(NOW(), interval 3 hour), 1, 'Hi, my name is John and I\'m interested in investing in your company Sinochem.');
+INSERT INTO chat_log
+VALUES (3, DATE_SUB(NOW(), interval 1 hour), 0, 'Hi John, what are you thinking?');
+INSERT INTO chat_log
+VALUES (3, NOW(), 1, 'Hold on one second.');
