@@ -79,7 +79,7 @@ public class myconnectionsServlet extends HttpServlet
           "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
           "<td>" + business.getBusinessName() + "</td>" +
           "<td>" + connections.get(i).getDate() + "</td>" +
-          "<td>Most recent message here</td>"
+          "<td>Most recent message here</td>";
         }
       }
     }
