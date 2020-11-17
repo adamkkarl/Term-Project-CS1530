@@ -58,8 +58,23 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			website = investor.getWebsite();
 			ceoName = investor.getCeoName();
 			output = printInvestorProfile(name, image, description, myAbstract,investmentInit, investmentEnd, website, ceoName);
-
 		}
+		else if(account.getType().equals("Investor") && !account.getType().equals(parameterType) && !parameterName.equals(name))
+		{
+			business = SQLCommands.findBusinessAccountByName(name);
+			logo = business.getLogoPath();
+			industry = business.getBusinessIndustry();
+			description = business.getDescription();
+			myAbstract = business.getBusinessAbstract();
+			size = business.getSize();
+			year = business.getYear();
+			investmentAsk = business.getInvestmentAsk();
+			equity = business.getEquityOffer();
+			website = business.getWebsite();
+			ceoName = business.getCeoName();
+			output = printBusinessOtherProfile(name, logo, industry,  description,myAbstract, size, year, investmentAsk, equity, website, ceoName);
+		}
+		
 		else if(account.getType() == Type.BUSINESS && parameterName.equals(name))
 		{
 			business = SQLCommands.findBusinessAccountByName(name);
@@ -277,6 +292,89 @@ return output;
 
 	}
 
+private static String printBusinessOtherProfile(String name, String logo, Industry industry, String description, String myAbstract, Size size, int year,
+												int investmentAsk, int equity, String website, String ceoName)
+	{
+		String output = "<!DOCTYPE html>"+
+"<html>"+
+"<head>"+
+"  <meta charset=\"UTF-8\">"+
+"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"+
+"  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">"+
+"  <script src=\"https://kit.fontawesome.com/18f40713d3.js\" crossorigin=\"anonymous\"></script>"+
+"  <link rel=\"stylesheet\" type=\"text/css\" href=\"./css/profileStyle.css\">"+
+"  <title>Profile</title>"+
+"</head>"+
+"<body>"+
+"  <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">"+
+"    <img src=\"./images/logo.png\" class=\"center logo\" alt=\"...\" width=\"160\" height=\"80\">"+
+"    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">"+
+"      <span class=\"navbar-toggler-icon\"></span>"+
+"    </button>"+
+""+
+"    <div class=\"collapse navbar-collapse\" id=\"navbarNavDropdown\">"+
+"      <ul class=\"navbar-nav\">"+
+"        <li class=\"nav-item active\">"+
+"          <a class=\"nav-link\" href=\"mynetworkServlet\">My Network <span class=\"sr-only\">(current)</span></a>"+
+"        </li>"+
+"        <li class=\"nav-item active\">"+
+"          <a class=\"nav-link\" href=\"myconnectionsServlet\">Connections/Messaging</a>"+
+"        </li>"+
+"        <li class=\"nav-item dropdown active\">"+
+"          <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">"+
+"            Profile"+
+"          </a>"+
+"          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">"+
+"            <a class=\"dropdown-item\" href=\"#\">Edit Profile</a>"+
+"            <a class=\"dropdown-item\" href=\"#\">Settings</a>"+
+"            <a class=\"dropdown-item\" href=\"#\">Logout</a>"+
+"          </div>"+
+"        </li>"+
+"      </ul>"+
+"    </div>"+
+"  </nav>"+
+""+
+"  <div class=\"profile\">"+
+"    <img class=\"banner center\" src=\"https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-686x371.jpeg\"/>"+
+"    <img class=\"profilePic\" src=\"" + logo + "\" alt=\"Profie Picture\"/>"+
+"    <div class=\"info\">"+
+"      <h4 class=\"name\"><b>" + name + "</b></h4>"+
+"      <h5 class=\"ceo\">CEO: " + ceoName + "</h5>"+
+"      <h5 class=\"size\">"+size + "Employees</h5>"+
+"      <h5 class=\"established\">Established" + year + "</h5>"+
+"      <h5 class=\"website\">" + website + "</h5><br>"+
+"      <h5 class=\"seeking\">Seeking: $" + investmentAsk + "K</h5>"+
+"      <h5 class=\"equity\">For " + equity + "% equity</h5>"+
+"    </div>"+
+"    <div class=\"about\">"+
+"      <h5 class=\"looking\">Description:</h5>"+
+"      <p>" + description + "</p>"+
+"    </div>"+
+"    <div class=\"previous\">"+
+"      <h5>Abstraction</h5>"+
+"      <p>" + myAbstract + "</p>"+
+"    </div>"+
+"    <script>"+
+"      function update()"+
+"      {"+
+"        var url = window.location.href;"+
+"        url = url.replace(/\\/[^\\/]*$/, '/UpdateBusinessProfile.html');"+
+"        location.replace(url)"+
+"      "+
+"      }"+
+"    </script>"+
+"    <button>Send Connection Request</button>" +
+"  </div>"+
+"  <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>"+
+"  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx\" crossorigin=\"anonymous\"></script>"+
+"</body>"+
+"</html>";
+
+
+
+	return output;
+
+	}
 
 
 
