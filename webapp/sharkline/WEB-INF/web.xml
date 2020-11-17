@@ -96,6 +96,17 @@
 <url-pattern>/updateProfileServlet</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>checkconnectionServlet</servlet-name>
+<servlet-class>checkconnectionServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>checkconnectionServlet</servlet-name>
+<url-pattern>/checkconnectionServlet</url-pattern>
+</servlet-mapping>
+
+
 <session-config>
    <session-timeout>15</session-timeout>
 </session-config>

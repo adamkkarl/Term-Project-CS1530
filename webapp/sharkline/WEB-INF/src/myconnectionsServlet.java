@@ -69,73 +69,31 @@ public class myconnectionsServlet extends HttpServlet
 
     if(account.getType() == Type.INVESTOR)
     {
-      output +=
-      "<h5>Accepted Connections</h5>"+
-      "<table name=\"accepted\">"+
-      "<tr><th>Logo</th><th>Name</th><th>Date Connected</th><th>Most Recent Message</th></tr>";
-
       ArrayList<UserConnection> connections = SQLCommands.getConnectionsByEmail(account.getEmail());
 
-      for(int i = 0; i < connections.size(); i++)
+      if(connections == null)
       {
-        if(connections.get(i).getConnected() == 1)
-        {
-          Business business = SQLCommands.findBusinessAccountByEmail
-                                          (connections.get(i).getBusinessEmail());
-          String recentMsg = SQLCommands.getMostRecentMessage
-                                          (account.getEmail(), business.getBusinessEmail());
-
-          output +=
-          "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
-          "<td>" + business.getBusinessName() + "</td>" +
-          "<td>" + connections.get(i).getDate() + "</td>" +
-          "<td>" + recentMsg + "</td>" +
-          "<td><a href=\"chatlogServlet\">View Chatlog</a></td></tr>";
-         }
-       }
-
-       output +="<br></table><h5>Pending Connections</h5>"+
-       "<table name=\"pending\">"+
-       "<tr><th>Logo</th><th>Name</th><th>Date Connected</th></tr>";
-
-       for(int i = 0; i < connections.size(); i++)
-       {
-        Business business = SQLCommands.findBusinessAccountByEmail
-                                        (connections.get(i).getBusinessEmail());
-        if(connections.get(i).getConnected() == 0 && connections.get(i).getSender() == 0)
-        {
-          int id = connections.get(i).getConnectionID();
-
-          output +=
-          "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
-          "<td>" + business.getBusinessName() + "</td>" +
-          "<td>" + connections.get(i).getDate() + "</td>" +
-          "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=accept\">Accept request</a></td>" +
-          "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=reject\">Reject request</a></td></tr>";
-        }
-       }
+        output += "<h4>No Connections found</h4>";
       }
-      else if(account.getType() == Type.BUSINESS)
+      else
       {
         output +=
         "<h5>Accepted Connections</h5>"+
         "<table name=\"accepted\">"+
         "<tr><th>Logo</th><th>Name</th><th>Date Connected</th><th>Most Recent Message</th></tr>";
 
-        ArrayList<UserConnection> connections = SQLCommands.getConnectionsByEmail(account.getEmail());
-
         for(int i = 0; i < connections.size(); i++)
         {
           if(connections.get(i).getConnected() == 1)
           {
-            Investor investor = SQLCommands.findInvestorAccountByEmail
-                                            (connections.get(i).getInvestorEmail());
+            Business business = SQLCommands.findBusinessAccountByEmail
+                                            (connections.get(i).getBusinessEmail());
             String recentMsg = SQLCommands.getMostRecentMessage
-                                            (investor.getInvestorEmail(), account.getEmail());
+                                            (account.getEmail(), business.getBusinessEmail());
 
             output +=
-            "<tr><td><img src=\"" + investor.getImage() + "\" height=100px width=200px></td>"+
-            "<td>" + investor.getInvestorName() + "</td>" +
+            "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
+            "<td>" + business.getBusinessName() + "</td>" +
             "<td>" + connections.get(i).getDate() + "</td>" +
             "<td>" + recentMsg + "</td>" +
             "<td><a href=\"chatlogServlet\">View Chatlog</a></td></tr>";
@@ -148,20 +106,76 @@ public class myconnectionsServlet extends HttpServlet
 
          for(int i = 0; i < connections.size(); i++)
          {
-          Investor investor = SQLCommands.findInvestorAccountByEmail
+          Business business = SQLCommands.findBusinessAccountByEmail
                                           (connections.get(i).getBusinessEmail());
-          if(connections.get(i).getConnected() == 0 && connections.get(i).getSender() == 1)
+          if(connections.get(i).getConnected() == 0 && connections.get(i).getSender() == 0)
           {
             int id = connections.get(i).getConnectionID();
 
             output +=
-            "<tr><td><img src=\"" + investor.getImage() + "\" height=100px width=200px></td>"+
-            "<td>" + investor.getInvestorName() + "</td>" +
+            "<tr><td><img src=\"" + business.getLogoPath() + "\" height=100px width=200px></td>"+
+            "<td>" + business.getBusinessName() + "</td>" +
             "<td>" + connections.get(i).getDate() + "</td>" +
             "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=accept\">Accept request</a></td>" +
             "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=reject\">Reject request</a></td></tr>";
           }
          }
+        }
+      }
+      else if(account.getType() == Type.BUSINESS)
+      {
+        ArrayList<UserConnection> connections = SQLCommands.getConnectionsByEmail(account.getEmail());
+
+        if(connections == null)
+        {
+          output += "<h4>No Connections found</h4>";
+        }
+        else
+        {
+          output +=
+          "<h5>Accepted Connections</h5>"+
+          "<table name=\"accepted\">"+
+          "<tr><th>Logo</th><th>Name</th><th>Date Connected</th><th>Most Recent Message</th></tr>";
+
+          for(int i = 0; i < connections.size(); i++)
+          {
+            if(connections.get(i).getConnected() == 1)
+            {
+              Investor investor = SQLCommands.findInvestorAccountByEmail
+                                              (connections.get(i).getInvestorEmail());
+              String recentMsg = SQLCommands.getMostRecentMessage
+                                              (investor.getInvestorEmail(), account.getEmail());
+
+              output +=
+              "<tr><td><img src=\"" + investor.getImage() + "\" height=100px width=200px></td>"+
+              "<td>" + investor.getInvestorName() + "</td>" +
+              "<td>" + connections.get(i).getDate() + "</td>" +
+              "<td>" + recentMsg + "</td>" +
+              "<td><a href=\"chatlogServlet\">View Chatlog</a></td></tr>";
+             }
+           }
+
+           output +="<br></table><h5>Pending Connections</h5>"+
+           "<table name=\"pending\">"+
+           "<tr><th>Logo</th><th>Name</th><th>Date Connected</th></tr>";
+
+           for(int i = 0; i < connections.size(); i++)
+           {
+            Investor investor = SQLCommands.findInvestorAccountByEmail
+                                            (connections.get(i).getBusinessEmail());
+            if(connections.get(i).getConnected() == 0 && connections.get(i).getSender() == 1)
+            {
+              int id = connections.get(i).getConnectionID();
+
+              output +=
+              "<tr><td><img src=\"" + investor.getImage() + "\" height=100px width=200px></td>"+
+              "<td>" + investor.getInvestorName() + "</td>" +
+              "<td>" + connections.get(i).getDate() + "</td>" +
+              "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=accept\">Accept request</a></td>" +
+              "<td><a href=\"checkconnectionServlet?connectionid=" + id + "&check=reject\">Reject request</a></td></tr>";
+            }
+           }
+        }
       }
       output += "</table></body></html>";
      return output;

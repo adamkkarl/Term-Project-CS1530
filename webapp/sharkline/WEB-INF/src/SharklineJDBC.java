@@ -1058,6 +1058,46 @@ public boolean removeAccount(String email)
     }
   }
 
+  public UserConnection findConnection(int connID)
+  {
+    try
+    {
+      PreparedStatement st =
+      dbcon.prepareStatement("SELECT * FROM account_connections WHERE connection_id = ?");
+      st.setInt(1, connID);
+
+      ResultSet result = st.executeQuery();
+      UserConnection returnConnection = new UserConnection();
+
+      if(!(result.next()))
+        return null;
+
+      returnConnection.setBusinessEmail(result.getString("business_email"));
+      returnConnection.setInvestorEmail(result.getString("investor_email"));
+      returnConnection.setConnectionID(connID);
+      returnConnection.setDate(result.getString("date_connected"));
+      returnConnection.setConnected(result.getInt("connected"));
+      returnConnection.setSender(result.getInt("sender"));
+
+      st.close();
+      return returnConnection;
+
+
+
+    }
+    catch(SQLException e1)
+    {
+      while(e1 != null)
+      {
+        System.out.println("Message = " + e1.getMessage());
+        System.out.println("SQLErrorCode = " + e1.getErrorCode());
+        System.out.println("SQLState = " + e1.getSQLState());
+
+        e1 = e1.getNextException();
+      }
+      return null;
+    }
+  }
  /**
   * addConnection adds both business and investor emails along with the date connection was made as an
   * entry in the database
@@ -1096,18 +1136,17 @@ public boolean removeAccount(String email)
       }
 
       catch(SQLException e1)
-    {
-      while(e1 != null)
       {
-        System.out.println("Message = " + e1.getMessage());
-        System.out.println("SQLErrorCode = " + e1.getErrorCode());
-        System.out.println("SQLState = " + e1.getSQLState());
+        while(e1 != null)
+        {
+          System.out.println("Message = " + e1.getMessage());
+          System.out.println("SQLErrorCode = " + e1.getErrorCode());
+          System.out.println("SQLState = " + e1.getSQLState());
 
-        e1 = e1.getNextException();
+          e1 = e1.getNextException();
+        }
+        return false;
       }
-      return false;
-    }
-
   }
 
   public boolean updateConnected(UserConnection userCon)
@@ -1115,11 +1154,11 @@ public boolean removeAccount(String email)
     try
     {
       boolean isAdded = false;
-      PreparedStatenebt st = dbcon.prepareStatement
+      PreparedStatement st = dbcon.prepareStatement
       ("UPDATE account_connections SET connected = 1 WHERE business_email = ? AND investor_email = ?");
 
       st.setString(1, userCon.getBusinessEmail());
-      st.setString(2, userCon.getInvestorEmail())
+      st.setString(2, userCon.getInvestorEmail());
 
       if(st.executeUpdate() >= 1)
         isAdded = true;
