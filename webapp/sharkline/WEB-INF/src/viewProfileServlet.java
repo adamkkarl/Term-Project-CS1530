@@ -112,7 +112,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 
 	}
 
-	private static String printInvestorProfile(String name, String image, String description, String myAbstract,
+	private String printInvestorProfile(String name, String image, String description, String myAbstract,
 												int investmentInit, int investmentEnd, String website, String ceoName )
 	{
 
@@ -146,9 +146,9 @@ String output = "<!DOCTYPE html>"+
 "            Profile"+
 "          </a>"+
 "          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">"+
-"            <a class=\"dropdown-item\" href=\"#\">Edit Profile</a>"+
+"            <a class=\"dropdown-item\" href=\"viewProfileServlet?name="+ account.getName() + "&type=" + account.getType().name() + "\">Edit Profile</a>"+
 "            <a class=\"dropdown-item\" href=\"#\">Settings</a>"+
-"            <a class=\"dropdown-item\" href=\"#\">Logout</a>"+
+"            <a class=\"dropdown-item\" href=\"logoutSer\">Logout</a>"+
 "          </div>"+
 "        </li>"+
 "      </ul>"+
@@ -193,7 +193,7 @@ return output;
 
 	}
 
-	private static String printBusinessProfile(String name, String logo, Industry industry, String description, String myAbstract, Size size, int year,
+	private String printBusinessProfile(String name, String logo, Industry industry, String description, String myAbstract, Size size, int year,
 												int investmentAsk, int equity, String website, String ceoName)
 	{
 		String output = "<!DOCTYPE html>"+
@@ -226,9 +226,9 @@ return output;
 "            Profile"+
 "          </a>"+
 "          <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">"+
-"            <a class=\"dropdown-item\" href=\"#\">Edit Profile</a>"+
+"            <a class=\"dropdown-item\" href=\"viewProfileServlet?name="+ account.getName() + "&type=" + account.getType().name() + "\">Edit Profile</a>"+
 "            <a class=\"dropdown-item\" href=\"#\">Settings</a>"+
-"            <a class=\"dropdown-item\" href=\"#\">Logout</a>"+
+"            <a class=\"dropdown-item\" href=\"logoutServlet\">Logout</a>"+
 "          </div>"+
 "        </li>"+
 "      </ul>"+

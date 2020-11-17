@@ -20,20 +20,20 @@ public class adminServlet extends HttpServlet
 		String accountImagePath = request.getParameter("accountimgpath");
 		String accountVerified = request.getParameter("accountverified");
 		String accountType= request.getParameter("accounttype");
-		
+
 		SharklineJDBC SQLCommands = new SharklineJDBC();
-		
+
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
+
 		String output =
 		"<!doctype html><head><title>Admin Mode</title></head>" +
 		"<body><h1>Sharkline Admin Mode</h1>";
-		
+
 		if ( accountEmail != null )
 		{
 			Account newAccount = new Account();
-			
+
 			newAccount.setEmail(accountEmail);
 			newAccount.setName(accountName);
 			newAccount.setPassword(accountPassword);
@@ -85,9 +85,9 @@ public class adminServlet extends HttpServlet
 				output += "Account was not removed";
 			}
 		}
-		
+
 		ArrayList<Account> allAccounts = SQLCommands.findAllAccounts();
-		
+
 		output +=
 		"<h2>Add User</h2>" +
 		"<form method=\"post\" action=\"adminmode\">" +
@@ -130,8 +130,10 @@ public class adminServlet extends HttpServlet
 		"Account Email: <input required type=\"email\" name=\"removeemail\"><br/>" +
 		"<input type=\"submit\" value=\"Remove User\">" +
 		"</form>" +
+		"<form method=\"post\" action=\"loginServlet\">"+
+		"<input type=\"submit\" value=\"Return to Login\">"+
 		"</body></html>";
-		
+
 		out.println(output);
 	}
 }
